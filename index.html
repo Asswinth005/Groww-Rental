@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROWW RENTAL · high‑end photography studio</title>
+    <link rel="icon" type="asset/jpeg" href="assest/growwpark_logo.jpg">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5A0E24',
+                        'primary-light': '#B24C6B',
+                        'primary-dark': '#3F081B',
+                        'bg-warm': '#FAF8F6',
+                        'neutral-dark': '#2A2A2A',
+                        'neutral-light': '#EEEAE6',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#1e1e1e',
+                        'dark-surface': '#2a2a2a',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'system-ui', 'sans-serif'],
+                        display: ['Cormorant Garamond', 'serif'],
+                        alt: ['Source Sans Pro', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            background-color: #FAF8F6;
+            color: #1a1a1a;
+            font-family: 'Poppins', system-ui, sans-serif;
+            font-weight: 400;
+        }
+        .dark body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        body::-webkit-scrollbar { display: none; }
+        body { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .nav-item {
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 600;
+            color: #1a1a1a;
+            transition: color 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+        }
+        .dark .nav-item { color: #ffffff; font-weight: 500; }
+        .nav-item:hover { color: #5A0E24; }
+        .dark .nav-item:hover { color: #B24C6B; }
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #5A0E24;
+            transition: width 0.3s ease;
+        }
+        .dark .nav-item::after { background: #B24C6B; }
+        [dir="rtl"] .nav-item::after { left: auto; right: 0; }
+        .nav-item:hover::after { width: 100%; }
+        
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 220px;
+            background: white;
+            border-radius: 16px;
+            padding: 0.5rem 0;
+            box-shadow: 0 20px 40px rgba(90,14,36,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid rgba(90,14,36,0.1);
+        }
+        .dark .dropdown-menu { background: #1e1e1e; border-color: #404040; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        [dir="rtl"] .dropdown-menu { left: auto; right: 0; }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 1.5rem;
+            color: #1a1a1a;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .dark .dropdown-item { color: #ffffff; }
+        .dropdown-item:hover {
+            background: rgba(90,14,36,0.08);
+            color: #5A0E24;
+            padding-left: 2rem;
+        }
+        .dark .dropdown-item:hover { background: rgba(178,76,107,0.2); color: #B24C6B; }
+        [dir="rtl"] .dropdown-item:hover { padding-left:1.5rem; padding-right:2rem; }
+        .dropdown-item i { margin-right:0.75rem; width:20px; color:#5A0E24; }
+        .dark .dropdown-item i { color: #B24C6B; }
+        [dir="rtl"] .dropdown-item i { margin-right:0; margin-left:0.75rem; }
+        
+        .auth-icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            border: 1px solid #D0C9C4;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            font-size: 1.1rem;
+        }
+        .dark .auth-icon-btn { border-color: #666666; color: #ffffff; }
+        .auth-icon-btn:hover {
+            background: #5A0E24;
+            border-color: #5A0E24;
+            color: white;
+            transform: scale(1.05);
+        }
+        .dark .auth-icon-btn:hover { background: #B24C6B; border-color: #B24C6B; }
+        
+        .toggle-btn {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #E8E2DC;
+            color: #2A2A2A;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .dark .toggle-btn { background: #2a2a2a; color: #ffffff; }
+        .toggle-btn:hover { background: #5A0E24; color: white; }
+        .dark .toggle-btn:hover { background: #B24C6B; }
+        .toggle-btn.active { background: #5A0E24; color: white; }
+        .dark .toggle-btn.active { background: #B24C6B; }
+        @media (max-width: 1279px) { .desktop-toggle-group { display: none !important; } }
+        
+        .mobile-menu {
+            background: white;
+            border-top: 1px solid #E0D9D2;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            width: 100%;
+        }
+        .dark .mobile-menu { background: #1a1a1a; border-color: #333333; }
+        .mobile-menu.open { max-height: 85vh; overflow-y: auto; }
+        .mobile-menu-item {
+            display: block;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            border-bottom: 1px solid #E8E2DC;
+            transition: all 0.2s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        .dark .mobile-menu-item { color: #ffffff; border-bottom-color: #333333; }
+        .mobile-menu-item:hover { background-color: #F5F0EB; color: #5A0E24; }
+        .dark .mobile-menu-item:hover { background-color: #2a2a2a; color: #B24C6B; }
+        
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: #F9F6F2;
+            padding-left: 1rem;
+        }
+        .dark .mobile-dropdown-content { background: #2a2a2a; }
+        .mobile-dropdown-content.show { max-height: 300px; }
+        .mobile-dropdown-item {
+            display: block;
+            padding: 0.75rem 2rem;
+            font-size: 0.95rem;
+            color: #1a1a1a;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #E8E2DC;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+        }
+        .dark .mobile-dropdown-item { color: #e0e0e0; border-bottom-color:#333333; }
+        .mobile-dropdown-item:hover { color:#5A0E24; background:#E8E2DC; }
+        .dark .mobile-dropdown-item:hover { color:#B24C6B; background:#3a3a3a; }
+        
+        .mobile-auth-icon {
+            width: 44px; height:44px; border-radius:50%; border:1px solid #D0C9C4; display:flex; align-items:center; justify-content:center; margin:0 auto; color:#1a1a1a;
+        }
+        .dark .mobile-auth-icon { border-color:#666666; color:#ffffff; }
+        .mobile-auth-icon:hover { background:#5A0E24; color:white; border-color:#5A0E24; }
+        .dark .mobile-auth-icon:hover { background:#B24C6B; border-color:#B24C6B; }
+        
+        .desktop-nav-container { display: flex; align-items: center; gap: 2rem; }
+        
+        .social-icon {
+            width:40px; height:40px; border-radius:50%; background:#E8E2DC; color:#5A0E24; display:inline-flex; align-items:center; justify-content:center; transition:0.2s;
+        }
+        .dark .social-icon { background:#2a2a2a; color:#B24C6B; }
+        .social-icon:hover { background:#5A0E24; color:white; transform:translateY(-3px); }
+        .dark .social-icon:hover { background:#B24C6B; color:white; }
+        
+        footer {
+            background: white;
+            color: #1a1a1a;
+            border-top: 1px solid rgba(90,14,36,0.1);
+        }
+        .dark footer { background:#0f0f0f; color:#ffffff; border-color:#333333; }
+        
+        /* Hero video overlay simulation */
+        .hero-video-placeholder {
+            background: linear-gradient(135deg, #0a0a0a 0%, #2a1a1a 100%);
+            position: relative;
+        }
+        .play-btn {
+            width: 80px; height: 80px; background: rgba(255,255,255,0.25); backdrop-filter: blur(8px);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            transition: 0.2s; border: 2px solid rgba(255,255,255,0.8); color: white;
+            font-size: 2rem; cursor: pointer;
+        }
+        .play-btn:hover { background: #5A0E24; border-color: #5A0E24; transform: scale(1.05); }
+        .dark .play-btn:hover { background: #B24C6B; border-color: #B24C6B; }
+        .equipment-badge {
+            background: white; border-radius: 100px; padding: 0.5rem 1.5rem; box-shadow: 0 10px 25px -8px rgba(0,0,0,0.15);
+            display: inline-flex; align-items: center; gap: 0.75rem; font-weight: 600; color: #1a1a1a;
+        }
+        .dark .equipment-badge { background: #2a2a2a; color: #ffffff; border: 1px solid #444; }
+        .portfolio-card {
+            border-radius: 24px; overflow: hidden; transition: all 0.3s;
+        }
+        .portfolio-card:hover { transform: scale(1.02); box-shadow: 0 30px 40px -20px #5A0E24; }
+        .dark .portfolio-card:hover { box-shadow: 0 30px 40px -20px #B24C6B; }
+    </style>
+</head>
+<body class="bg-bg-warm dark:bg-dark-bg">
+
+    <!-- ========== HEADER ========== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-neutral-light dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-2 group">
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform duration-300">
+                        <i class="fas fa-camera-retro text-white text-lg"></i>
+                    </div>
+                    <div class="font-display text-2xl font-bold tracking-tight">
+                        <span class="text-neutral-dark dark:text-white">GROWW</span>
+                        <span class="text-primary dark:text-primary-light ml-1">RENTAL</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden xl:flex items-center">
+                    <div class="desktop-nav-container">
+                        <div class="flex items-center gap-8">
+                            <div class="dropdown">
+                                <button class="nav-item font-medium flex items-center">
+                                    Home <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a href="index.html" class="dropdown-item" style="background: rgba(90,14,36,0.04); color:#5A0E24;"><i class="fas fa-home"></i> Home 1</a>
+                                    <a href="home2.html" class="dropdown-item"><i class="fas fa-home"></i> Home 2</a>
+                                </div>
+                            </div>
+                            <a href="about.html" class="nav-item">About</a>
+                            <a href="studio.html" class="nav-item">Studio</a>
+                            <a href="service.html" class="nav-item">Services</a>
+                            <a href="portfolios.html" class="nav-item">Portfolios</a>
+                            <a href="book.html" class="nav-item">Book Now</a>
+                            <a href="contact.html" class="nav-item">Contact</a>
+                            <div class="dropdown">
+                                <button class="nav-item flex items-center">
+                                    Dashboard <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a href="admin.html" class="dropdown-item"><i class="fas fa-user-shield"></i> Admin</a>
+                                    <a href="client.html" class="dropdown-item"><i class="fas fa-user"></i> Client</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="register.html" class="auth-icon-btn" title="Login / Register">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                    <div class="flex gap-2 ml-4 desktop-toggle-group">
+                        <button id="theme-toggle" class="toggle-btn" title="Toggle theme"><i class="fas fa-moon"></i><i class="fas fa-sun hidden"></i></button>
+                        <button id="rtl-toggle" class="toggle-btn" title="Toggle RTL/LTR">⇄</button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-toggle" class="xl:hidden text-neutral-dark dark:text-white p-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu xl:hidden fixed top-20 left-0 right-0 z-40 bg-white dark:bg-dark-card shadow-lg">
+        <div class="container mx-auto px-6">
+            <div class="mobile-dropdown">
+                <button class="mobile-dropdown-btn flex items-center justify-between w-full mobile-menu-item">
+                    <span>Home</span>
+                    <i class="fas fa-chevron-down text-xs transition-transform"></i>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="index.html" class="mobile-dropdown-item"style="background: rgba(90,14,36,0.1); color: #5A0E24; border-left: 3px solid #5A0E24; font-weight: 600;"><i class="fas fa-home mr-2"></i>Home 1</a>
+                    <a href="home2.html" class="mobile-dropdown-item"><i class="fas fa-home mr-2"></i>Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="mobile-menu-item">About</a>
+            <a href="studio.html" class="mobile-menu-item">Studio</a>
+            <a href="service.html" class="mobile-menu-item">Services</a>
+            <a href="portfolios.html" class="mobile-menu-item">Portfolios</a>
+            <a href="book.html" class="mobile-menu-item">Book Now</a>
+            <a href="contact.html" class="mobile-menu-item">Contact</a>
+            <div class="mobile-dropdown">
+                <button class="mobile-dropdown-btn flex items-center justify-between w-full mobile-menu-item">
+                    <span>Dashboard</span>
+                    <i class="fas fa-chevron-down text-xs transition-transform"></i>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="admin.html" class="mobile-dropdown-item"><i class="fas fa-user-shield mr-2"></i>Admin</a>
+                    <a href="client.html" class="mobile-dropdown-item"><i class="fas fa-user mr-2"></i>Client</a>
+                </div>
+            </div>
+            <div class="flex justify-center p-6">
+                <a href="register.html" class="mobile-auth-icon">
+                    <i class="fas fa-user text-xl"></i>
+                </a>
+            </div>
+            <div class="flex justify-center gap-3 p-6 border-t border-gray-200 dark:border-gray-800">
+                <button id="theme-toggle-mobile" class="toggle-btn"><i class="fas fa-moon"></i><i class="fas fa-sun hidden"></i></button>
+                <button id="rtl-toggle-mobile" class="toggle-btn">⇄</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== MAIN HOME CONTENT – 5 SECTIONS ========== -->
+    <main class="mt-20">
+
+        <!-- SECTION 1: HERO + VIRTUAL TOUR (studio space showcase) -->
+        <section class="relative hero-video-placeholder text-white overflow-hidden">
+            <div class="absolute inset-0 bg-black/50 z-10"></div>
+            <!-- simulated video background -->
+            <div class="absolute inset-0 bg-[url('/assest/url.jpg')] bg-cover bg-center"></div>
+            <div class="container mx-auto px-6 relative z-20 py-28 md:py-36">
+                <div class="max-w-3xl">
+                    <span class="inline-block px-4 py-2 bg-primary/90 backdrop-blur-sm rounded-full text-sm font-semibold mb-6 text-white border border-white/20">virtual tour available</span>
+                    <h1 class="font-display text-5xl md:text-7xl font-bold leading-tight mb-6 text-white">Where light meets <span class="text-primary-light">vision</span></h1>
+                    <p class="text-xl text-white/90 mb-10 max-w-2xl font-medium">Step inside our 2,500 sqft flagship studio. 360° virtual tour, cyclorama wall, and full day-light control.</p>
+                    <div class="flex flex-wrap items-center gap-6">
+                        <button class="play-btn group">
+                            <i class="fas fa-play ml-1"></i>
+                        </button>
+                        <span class="text-lg font-semibold text-white">explore space in 3D</span>
+                        <a href="#virtual-tour" class="bg-white/30 backdrop-blur-sm border-2 border-white/60 rounded-full px-8 py-3 font-semibold hover:bg-primary hover:border-primary transition-all whitespace-nowrap text-white shadow-lg">launch virtual tour →</a>
+                    </div>
+                </div>
+            </div>
+            <!-- subtle scroll hint -->
+            <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 animate-bounce text-white"><i class="fas fa-chevron-down text-2xl"></i></div>
+        </section>
+
+       <!-- SECTION: STUDIO PACKAGES - SIMPLE CARDS -->
+<section class="py-24 bg-bg-warm dark:bg-dark-bg">
+    <div class="container mx-auto px-6">
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-neutral-dark dark:text-white">Rental <span class="text-primary dark:text-primary-light">Packages</span></h2>
+            <p class="text-lg text-neutral-dark/70 dark:text-gray-300 mt-4">Choose the perfect plan for your project</p>
+        </div>
+        
+        <!-- Cards -->
+        <div class="grid md:grid-cols-3 gap-6">
+            
+            <!-- Card 1 -->
+            <div class="bg-white dark:bg-dark-card rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition">
+                <img src="/assest/stu.jpg" class="w-full h-48 object-cover" alt="Hourly rental">
+                <div class="p-6">
+                    <h3 class="text-2xl font-display font-bold mb-2 dark:text-white">Hourly</h3>
+                    <p class="text-3xl font-bold text-primary dark:text-primary-light mb-4">$150<span class="text-base font-normal text-neutral-dark/60 dark:text-gray-400">/hr</span></p>
+                    <ul class="space-y-2 text-sm mb-6">
+                        <li class="flex items-center"><i class="fas fa-check text-primary dark:text-primary-light mr-2"></i> 2,500 sqft studio</li>
+                        <li class="flex items-center"><i class="fas fa-check text-primary dark:text-primary-light mr-2"></i> 20ft cyc wall</li>
+                        <li class="flex items-center"><i class="fas fa-check text-primary dark:text-primary-light mr-2"></i> Profoto lighting</li>
+                        <li class="flex items-center"><i class="fas fa-check text-primary dark:text-primary-light mr-2"></i> Min. 2 hours</li>
+                    </ul>
+                    <button class="w-full border-2 border-primary text-primary dark:border-primary-light dark:text-primary-light py-2 rounded-full font-semibold hover:bg-primary hover:text-white transition">
+                        Book Hourly
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Card 2 (Highlighted) -->
+            <div class="bg-white dark:bg-dark-card rounded-2xl overflow-hidden shadow-xl border-2 border-primary dark:border-primary-light transform scale-105 relative">
+                <div class="absolute top-0 right-0 bg-primary text-white px-4 py-1 text-xs font-bold rounded-bl-lg">BEST VALUE</div>
+                <img src="/assest/stu1.jpg" class="w-full h-48 object-cover" alt="Full day rental">
+                <div class="p-6">
+                    <h3 class="text-2xl font-display font-bold mb-2 dark:text-white">Full Day</h3>
+                    <p class="text-3xl font-bold text-primary dark:text-primary-light mb-4">$900<span class="text-base font-normal text-neutral-dark/60 dark:text-gray-400">/day</span></p>
+                    <ul class="space-y-2 text-sm mb-6">
+                        <li class="flex items-center"><i class="fas fa-check text-primary dark:text-primary-light mr-2"></i> 10 hours studio time</li>
+                        <li class="flex items-center"><i class="fas fa-check text-primary dark:text-primary-light mr-2"></i> Unlimited gear access</li>
+                        <li class="flex items-center"><i class="fas fa-check text-primary dark:text-primary-light mr-2"></i> Overtime grace</li>
+                        <li class="flex items-center"><i class="fas fa-check text-primary dark:text-primary-light mr-2"></i> Save $600</li>
+                    </ul>
+                    <button class="w-full bg-primary text-white py-2 rounded-full font-semibold hover:bg-primary-dark transition">
+                        Book Full Day
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="bg-white dark:bg-dark-card rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition">
+                <img src="/assest/stu3.jpg" class="w-full h-48 object-cover" alt="Monthly membership">
+                <div class="p-6">
+                    <h3 class="text-2xl font-display font-bold mb-2 dark:text-white">Monthly</h3>
+                    <p class="text-3xl font-bold text-primary dark:text-primary-light mb-4">$2.5k<span class="text-base font-normal text-neutral-dark/60 dark:text-gray-400">/mo</span></p>
+                    <ul class="space-y-2 text-sm mb-6">
+                        <li class="flex items-center"><i class="fas fa-check text-primary dark:text-primary-light mr-2"></i> 24/7 keycard access</li>
+                        <li class="flex items-center"><i class="fas fa-check text-primary dark:text-primary-light mr-2"></i> Unlimited hours</li>
+                        <li class="flex items-center"><i class="fas fa-check text-primary dark:text-primary-light mr-2"></i> Priority gear booking</li>
+                        <li class="flex items-center"><i class="fas fa-check text-primary dark:text-primary-light mr-2"></i> Guest passes</li>
+                    </ul>
+                    <button class="w-full border-2 border-primary text-primary dark:border-primary-light dark:text-primary-light py-2 rounded-full font-semibold hover:bg-primary hover:text-white transition">
+                        Inquire
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- SECTION 3: EQUIPMENT LIST -->
+        <section class="py-24 bg-bg-warm dark:bg-dark-bg">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-16 gap-6">
+                    <div>
+                        <span class="text-primary dark:text-primary-light font-bold tracking-wider uppercase">· gear included ·</span>
+                        <h2 class="font-display text-4xl md:text-5xl mt-2 text-neutral-dark dark:text-white font-bold">cinema & photo equipment</h2>
+                    </div>
+                    <a href="book.html" class="text-primary dark:text-primary-light border-b-2 border-primary dark:border-primary-light pb-0.5 font-bold hover:opacity-80 transition text-lg">full inventory →</a>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                    <!-- item -->
+                    <div class="bg-white dark:bg-dark-surface rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition border border-gray-100 dark:border-gray-700">
+                        <div class="w-14 h-14 bg-primary/10 dark:bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-camera-retro text-primary dark:text-primary-light text-2xl"></i></div>
+                        <h3 class="font-display text-xl mb-1 text-neutral-dark dark:text-white font-bold">ARRI Alexa</h3>
+                        <p class="text-sm text-neutral-dark/70 dark:text-gray-300 font-medium">Mini LF + Sigma</p>
+                    </div>
+                    <div class="bg-white dark:bg-dark-surface rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition border border-gray-100 dark:border-gray-700">
+                        <div class="w-14 h-14 bg-primary/10 dark:bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-film text-primary dark:text-primary-light text-2xl"></i></div>
+                        <h3 class="font-display text-xl mb-1 text-neutral-dark dark:text-white font-bold">RED Komodo</h3>
+                        <p class="text-sm text-neutral-dark/70 dark:text-gray-300 font-medium">6K, RF mount</p>
+                    </div>
+                    <div class="bg-white dark:bg-dark-surface rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition border border-gray-100 dark:border-gray-700">
+                        <div class="w-14 h-14 bg-primary/10 dark:bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-sun text-primary dark:text-primary-light text-2xl"></i></div>
+                        <h3 class="font-display text-xl mb-1 text-neutral-dark dark:text-white font-bold">ARRI M18</h3>
+                        <p class="text-sm text-neutral-dark/70 dark:text-gray-300 font-medium">HMI 1800W</p>
+                    </div>
+                    <div class="bg-white dark:bg-dark-surface rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition border border-gray-100 dark:border-gray-700">
+                        <div class="w-14 h-14 bg-primary/10 dark:bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-bolt text-primary dark:text-primary-light text-2xl"></i></div>
+                        <h3 class="font-display text-xl mb-1 text-neutral-dark dark:text-white font-bold">Aputure 600d</h3>
+                        <p class="text-sm text-neutral-dark/70 dark:text-gray-300 font-medium">Pro & light dome</p>
+                    </div>
+                    <div class="bg-white dark:bg-dark-surface rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition border border-gray-100 dark:border-gray-700">
+                        <div class="w-14 h-14 bg-primary/10 dark:bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-ruler-combined text-primary dark:text-primary-light text-2xl"></i></div>
+                        <h3 class="font-display text-xl mb-1 text-neutral-dark dark:text-white font-bold">slider / dolly</h3>
+                        <p class="text-sm text-neutral-dark/70 dark:text-gray-300 font-medium">Rhino, Dana</p>
+                    </div>
+                    <div class="bg-white dark:bg-dark-surface rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition border border-gray-100 dark:border-gray-700">
+                        <div class="w-14 h-14 bg-primary/10 dark:bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-crop-alt text-primary dark:text-primary-light text-2xl"></i></div>
+                        <h3 class="font-display text-xl mb-1 text-neutral-dark dark:text-white font-bold">grip package</h3>
+                        <p class="text-sm text-neutral-dark/70 dark:text-gray-300 font-medium">C-stands, flags</p>
+                    </div>
+                </div>
+                <!-- extra highlight -->
+                <div class="mt-12 bg-primary/5 dark:bg-gray-800 rounded-3xl p-8 flex flex-col md:flex-row justify-between items-center border border-primary/10 dark:border-gray-700">
+                    <div><span class="font-display text-2xl text-neutral-dark dark:text-white font-bold">All rentals include:</span> <span class="text-neutral-dark/80 dark:text-gray-300 ml-2 font-medium">ProRes recording, sandbags, 5″ monitor, follow focus.</span></div>
+                    <span class="text-primary dark:text-primary-light font-black text-xl mt-4 md:mt-0">+100 more items</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PHOTOGRAPHER PORTFOLIOS (CENTERED VERSION) -->
+        <section class="py-24 bg-white dark:bg-dark-card">
+            <div class="container mx-auto px-6">
+                <!-- centered heading -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-primary dark:text-primary-light uppercase tracking-[0.2em] text-sm font-bold">· the artists ·</span>
+                    <h2 class="font-display text-4xl md:text-5xl mt-2 text-neutral-dark dark:text-white font-bold">residents</h2>
+                    <p class="text-lg text-neutral-dark/80 dark:text-gray-300 mt-4 font-medium">work created inside our walls — a curated selection of contemporary vision.</p>
+                </div>
+
+                <!-- hero artist (large) + minimal grid -->
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- left: hero card (vertical / dominant) -->
+                    <div class="relative group overflow-hidden rounded-3xl bg-primary/5 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700">
+                        <div class="aspect-[4/5] lg:aspect-auto lg:h-full">
+                            <img src="/assest/per.jpg" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700" alt="Sofia Marr">
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 via-black/60 to-transparent text-white">
+                            <span class="text-sm font-bold tracking-widest uppercase text-white/90">fine art / nudes</span>
+                            <h3 class="font-display text-4xl mt-1 text-white font-bold">Sofia Marr</h3>
+                            <div class="flex gap-4 mt-3">
+                                <a href="#" class="text-white hover:text-primary-light"><i class="fab fa-instagram text-xl"></i></a>
+                                <a href="#" class="text-white hover:text-primary-light"><i class="fab fa-behance text-xl"></i></a>
+                                <a href="#" class="text-white hover:text-primary-light"><i class="fas fa-globe text-xl"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- right: two rows of minimal cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 content-start">
+                        <!-- artist card minimal 1 -->
+                        <div class="bg-bg-warm dark:bg-gray-800 rounded-3xl p-8 transition hover:shadow-xl border border-gray-200 dark:border-gray-700">
+                            <div class="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-camera text-primary dark:text-primary-light text-xl"></i></div>
+                            <span class="text-xs text-primary dark:text-primary-light tracking-wider font-bold">COMMERCIAL</span>
+                            <h3 class="font-display text-3xl mt-1 text-neutral-dark dark:text-white font-bold">Elias Voss</h3>
+                            <p class="text-sm text-neutral-dark/70 dark:text-gray-300 mt-1 mb-4 font-medium">automotive / tech</p>
+                            <div class="flex gap-3 text-neutral-dark dark:text-white"><i class="fab fa-instagram"></i><i class="fab fa-linkedin-in"></i></div>
+                        </div>
+                        <!-- artist card minimal 2 -->
+                        <div class="bg-bg-warm dark:bg-gray-800 rounded-3xl p-8 transition hover:shadow-xl border border-gray-200 dark:border-gray-700">
+                            <div class="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-paint-brush text-primary dark:text-primary-light text-xl"></i></div>
+                            <span class="text-xs text-primary dark:text-primary-light tracking-wider font-bold">FASHION</span>
+                            <h3 class="font-display text-3xl mt-1 text-neutral-dark dark:text-white font-bold">Rina Park</h3>
+                            <p class="text-sm text-neutral-dark/70 dark:text-gray-300 mt-1 mb-4 font-medium">editorial / beauty</p>
+                            <div class="flex gap-3 text-neutral-dark dark:text-white"><i class="fab fa-instagram"></i><i class="fab fa-pinterest"></i></div>
+                        </div>
+                        <!-- artist card minimal 3 -->
+                        <div class="bg-bg-warm dark:bg-gray-800 rounded-3xl p-8 transition hover:shadow-xl border border-gray-200 dark:border-gray-700">
+                            <div class="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-film text-primary dark:text-primary-light text-xl"></i></div>
+                            <span class="text-xs text-primary dark:text-primary-light tracking-wider font-bold">PORTRAIT</span>
+                            <h3 class="font-display text-3xl mt-1 text-neutral-dark dark:text-white font-bold">Jonas Wells</h3>
+                            <p class="text-sm text-neutral-dark/70 dark:text-gray-300 mt-1 mb-4 font-medium">environmental / bts</p>
+                            <div class="flex gap-3 text-neutral-dark dark:text-white"><i class="fab fa-instagram"></i><i class="fab fa-vimeo-v"></i></div>
+                        </div>
+                        <!-- artist card minimal 4 -->
+                        <div class="bg-bg-warm dark:bg-gray-800 rounded-3xl p-8 transition hover:shadow-xl border border-gray-200 dark:border-gray-700">
+                            <div class="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-cubes text-primary dark:text-primary-light text-xl"></i></div>
+                            <span class="text-xs text-primary dark:text-primary-light tracking-wider font-bold">STILL LIFE</span>
+                            <h3 class="font-display text-3xl mt-1 text-neutral-dark dark:text-white font-bold">Nina Kao</h3>
+                            <p class="text-sm text-neutral-dark/70 dark:text-gray-300 mt-1 mb-4 font-medium">product / sculpture</p>
+                            <div class="flex gap-3 text-neutral-dark dark:text-white"><i class="fab fa-instagram"></i><i class="fab fa-behance"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- centered footer link -->
+                <div class="text-center mt-12">
+                    <a href="portfolios.html" class="inline-flex items-center gap-3 text-primary dark:text-primary-light border-b-2 border-primary/50 dark:border-primary-light/50 pb-1 font-bold hover:gap-4 transition-all text-lg">see full artist directory <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: CREATIVE COMMUNITY & EVENTS -->
+        <section class="py-24 bg-bg-warm dark:bg-dark-bg">
+            <div class="container mx-auto px-6">
+                <!-- headline -->
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-primary dark:text-primary-light font-bold tracking-wider uppercase text-sm"> · beyond the rental ·</span>
+                    <h2 class="font-display text-4xl md:text-5xl mt-3 mb-4 text-neutral-dark dark:text-white font-bold">where creators connect</h2>
+                    <p class="text-lg text-neutral-dark/80 dark:text-gray-300 font-medium">Workshops, portfolio reviews, and edit rooms — your creative home in NYC.</p>
+                </div>
+
+                <!-- featured event / community grid -->
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- left card: masterclass -->
+                    <div class="lg:col-span-2 relative rounded-3xl overflow-hidden bg-primary/5 dark:bg-gray-800 group border-2 border-gray-200 dark:border-gray-700">
+                        <div class="absolute inset-0 bg-[url('assest/url1.jpg')] bg-cover bg-center opacity-20 dark:opacity-30 group-hover:scale-105 transition duration-700"></div>
+                        <div class="relative p-10 md:p-12">
+                            <div class="flex items-center gap-3 text-primary dark:text-primary-light mb-4 font-bold">
+                                <i class="fas fa-calendar-alt text-xl"></i>
+                                <span class="font-bold">APR 12–13, 2026</span>
+                            </div>
+                            <h3 class="font-display text-3xl md:text-4xl mb-3 text-neutral-dark dark:text-white font-bold">lighting masterclass <br>with Mira D.</h3>
+                            <p class="text-lg text-neutral-dark/80 dark:text-gray-300 max-w-xl mb-6 font-medium">Hands-on session using ARRI & Aputure. only 8 seats — includes studio time.</p>
+                            <div class="flex flex-wrap items-center gap-5">
+                                <span class="bg-primary/20 dark:bg-primary/30 text-primary dark:text-white px-4 py-2 rounded-full text-sm font-bold border border-primary/20 dark:border-primary/40"><i class="far fa-clock mr-1"></i> 2 days · $450</span>
+                                <a href="#" class="text-primary dark:text-primary-light border-b-2 border-primary dark:border-primary-light pb-0.5 font-bold hover:opacity-80 transition">reserve spot →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- right side: two stacked community cards -->
+                    <div class="space-y-6">
+                        <!-- card 1: friday edit room -->
+                        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 flex items-start gap-5 border-2 border-gray-200 dark:border-gray-700 shadow-lg">
+                            <div class="w-12 h-12 bg-primary/20 dark:bg-primary/30 rounded-2xl flex items-center justify-center flex-shrink-0"><i class="fas fa-laptop text-primary dark:text-primary-light text-xl"></i></div>
+                            <div>
+                                <h4 class="font-display text-2xl mb-1 text-neutral-dark dark:text-white font-bold">friday edit room</h4>
+                                <p class="text-neutral-dark/70 dark:text-gray-300 text-sm mb-3 font-medium">DaVinci / Lightroom meetup. bring your work, get feedback.</p>
+                                <span class="text-xs bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light px-3 py-1 rounded-full font-bold border border-primary/20 dark:border-primary/30">every fri 6pm · free</span>
+                            </div>
+                        </div>
+                        <!-- card 2: portfolio walkthrough -->
+                        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 flex items-start gap-5 border-2 border-gray-200 dark:border-gray-700 shadow-lg">
+                            <div class="w-12 h-12 bg-primary/20 dark:bg-primary/30 rounded-2xl flex items-center justify-center flex-shrink-0"><i class="fas fa-images text-primary dark:text-primary-light text-xl"></i></div>
+                            <div>
+                                <h4 class="font-display text-2xl mb-1 text-neutral-dark dark:text-white font-bold">portfolio walkthrough</h4>
+                                <p class="text-neutral-dark/70 dark:text-gray-300 text-sm mb-3 font-medium">monthly session with art buyers & editors.</p>
+                                <span class="text-xs bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light px-3 py-1 rounded-full font-bold border border-primary/20 dark:border-primary/30">next: may 3 · $25</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA join community -->
+                <div class="text-center mt-16">
+                    <a href="#" class="inline-flex items-center gap-3 bg-primary dark:bg-primary-light text-white dark:text-dark-bg px-10 py-4 rounded-full font-bold hover:bg-primary-dark dark:hover:bg-primary-dark transition shadow-xl hover:shadow-2xl text-lg"><i class="fab fa-slack"></i> join creator community <i class="fas fa-arrow-right text-sm"></i></a>
+                    <p class="text-sm text-neutral-dark/70 dark:text-gray-400 mt-4 font-medium">700+ members · weekly updates</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="py-16 bg-white dark:bg-dark-card border-t-2 border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-6">
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center"><i class="fas fa-camera-retro text-white"></i></div>
+                        <span class="font-display text-2xl font-bold"><span class="text-neutral-dark dark:text-white">GROWW</span><span class="text-primary dark:text-primary-light ml-1">RENTAL</span></span>
+                    </div>
+                    <p class="text-base text-neutral-dark/80 dark:text-gray-300 mb-6 font-medium">Premier photography studio in NYC. Bright, versatile, fully equipped.</p>
+                    <div class="flex justify-center md:justify-start gap-4">
+                        <a href="#" class="social-icon dark:bg-gray-700 dark:text-primary-light"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon dark:bg-gray-700 dark:text-primary-light"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon dark:bg-gray-700 dark:text-primary-light"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+               <div class="text-center md:text-left">
+                    <h3 class="text-neutral-dark dark:text-white text-2xl font-display font-bold mb-6">Links</h3>
+                    <ul class="space-y-3 text-base">
+                        <li><a href="index.html" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">Home</a></li>
+                        <li><a href="about.html" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">About</a></li>
+                        <li><a href="service.html" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">Services</a></li>
+                        <li><a href="book.html" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">Book Now</a></li>
+                        <li><a href="contact.html" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="text-center md:text-left">
+                    <h3 class="text-neutral-dark dark:text-white text-2xl font-display font-bold mb-6">Rental</h3>
+                    <ul class="space-y-3 text-base">
+                        <li><a href="#" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">Hourly</a></li>
+                        <li><a href="#" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">Full day</a></li>
+                        <li><a href="#" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">Monthly</a></li>
+                        <li><a href="#" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">Equipment only</a></li>
+                    </ul>
+                </div>
+                <div class="text-center md:text-left">
+                    <h3 class="text-neutral-dark dark:text-white text-2xl font-display font-bold mb-6">Contact</h3>
+                    <ul class="space-y-3 text-base">
+                        <li class="flex items-center justify-center md:justify-start gap-2 text-neutral-dark/80 dark:text-gray-300 font-medium"><i class="fas fa-map-marker-alt text-primary dark:text-primary-light"></i><span>451 W 15th St, NYC</span></li>
+                        <li class="flex items-center justify-center md:justify-start gap-2 text-neutral-dark/80 dark:text-gray-300 font-medium"><i class="fas fa-phone-alt text-primary dark:text-primary-light"></i><span>+1 (212) 555-7890</span></li>
+                        <li class="flex items-center justify-center md:justify-start gap-2 text-neutral-dark/80 dark:text-gray-300 font-medium"><i class="fas fa-envelope text-primary dark:text-primary-light"></i><span>book@growwr.com</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t-2 border-primary/10 dark:border-gray-700 mt-12 pt-8 text-center">
+                <p class="text-sm text-neutral-dark/70 dark:text-gray-400 font-medium">© 2026 GROWW RENTAL. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle?.querySelector('.fa-moon');
+            const themeIconSun = themeToggle?.querySelector('.fa-sun');
+            const mobileThemeToggle = document.getElementById('theme-toggle-mobile');
+            const mobileThemeIcon = mobileThemeToggle?.querySelector('.fa-moon');
+            const mobileThemeIconSun = mobileThemeToggle?.querySelector('.fa-sun');
+            
+            function toggleTheme() {
+                document.documentElement.classList.toggle('dark');
+                const dark = document.documentElement.classList.contains('dark');
+                
+                if (themeIcon) themeIcon.classList.toggle('hidden', dark);
+                if (themeIconSun) themeIconSun.classList.toggle('hidden', !dark);
+                if (themeToggle) themeToggle.classList.toggle('active', dark);
+                if (mobileThemeIcon) mobileThemeIcon.classList.toggle('hidden', dark);
+                if (mobileThemeIconSun) mobileThemeIconSun.classList.toggle('hidden', !dark);
+                if (mobileThemeToggle) mobileThemeToggle.classList.toggle('active', dark);
+                
+                localStorage.setItem('theme', dark ? 'dark' : 'light');
+            }
+            
+            if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+            if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+            
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                if (themeIcon) themeIcon.classList.add('hidden');
+                if (themeIconSun) themeIconSun.classList.remove('hidden');
+                if (themeToggle) themeToggle.classList.add('active');
+                if (mobileThemeIcon) mobileThemeIcon.classList.add('hidden');
+                if (mobileThemeIconSun) mobileThemeIconSun.classList.remove('hidden');
+                if (mobileThemeToggle) mobileThemeToggle.classList.add('active');
+            }
+            
+            // RTL Toggle
+            const rtlToggle = document.getElementById('rtl-toggle');
+            const mobileRtlToggle = document.getElementById('rtl-toggle-mobile');
+            
+            function toggleRTL() {
+                const rtl = document.documentElement.dir === 'rtl';
+                document.documentElement.dir = rtl ? 'ltr' : 'rtl';
+                document.documentElement.lang = rtl ? 'en' : 'ar';
+                
+                if (rtlToggle) {
+                    rtlToggle.textContent = '⇄';
+                    rtlToggle.classList.toggle('active', !rtl);
+                }
+                if (mobileRtlToggle) {
+                    mobileRtlToggle.textContent = '⇄';
+                    mobileRtlToggle.classList.toggle('active', !rtl);
+                }
+                
+                localStorage.setItem('dir', rtl ? 'ltr' : 'rtl');
+            }
+            
+            if (rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
+            if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
+            
+            if (localStorage.getItem('dir') === 'rtl') { 
+                document.documentElement.dir = 'rtl'; 
+                document.documentElement.lang = 'ar'; 
+                if (rtlToggle) { 
+                    rtlToggle.textContent = '⇄'; 
+                    rtlToggle.classList.add('active'); 
+                } 
+                if (mobileRtlToggle) { 
+                    mobileRtlToggle.textContent = '⇄'; 
+                    mobileRtlToggle.classList.add('active'); 
+                } 
+            }
+            
+            // Mobile menu toggle
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileToggleIcon = document.querySelector('#mobile-toggle i');
+            
+            if (mobileToggle && mobileMenu) {
+                mobileToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isOpening = !mobileMenu.classList.contains('open');
+                    
+                    if (isOpening) { 
+                        mobileMenu.classList.add('open'); 
+                        if (mobileToggleIcon) {
+                            mobileToggleIcon.classList.remove('fa-bars'); 
+                            mobileToggleIcon.classList.add('fa-times'); 
+                        }
+                        document.body.style.overflow = 'hidden'; 
+                    } else { 
+                        mobileMenu.classList.remove('open'); 
+                        if (mobileToggleIcon) {
+                            mobileToggleIcon.classList.remove('fa-times'); 
+                            mobileToggleIcon.classList.add('fa-bars'); 
+                        }
+                        document.body.style.overflow = ''; 
+                        document.querySelectorAll('.mobile-dropdown-content').forEach(function(c) { 
+                            c.classList.remove('show'); 
+                        }); 
+                    }
+                });
+                
+                // Mobile dropdown toggles
+                const dropdownBtns = document.querySelectorAll('.mobile-dropdown-btn');
+                
+                dropdownBtns.forEach(function(button) {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const dropdown = this.closest('.mobile-dropdown');
+                        if (!dropdown) return;
+                        
+                        const content = dropdown.querySelector('.mobile-dropdown-content');
+                        const icon = this.querySelector('.fa-chevron-down');
+                        
+                        if (!content) return;
+                        
+                        const isOpen = content.classList.contains('show');
+                        
+                        document.querySelectorAll('.mobile-dropdown-content').forEach(function(c) {
+                            c.classList.remove('show');
+                        });
+                        
+                        document.querySelectorAll('.mobile-dropdown-btn .fa-chevron-down').forEach(function(i) {
+                            i.style.transform = 'rotate(0deg)';
+                        });
+                        
+                        if (!isOpen) {
+                            content.classList.add('show');
+                            if (icon) {
+                                icon.style.transform = 'rotate(180deg)';
+                            }
+                        }
+                    });
+                });
+                
+                const menuLinks = document.querySelectorAll('.mobile-menu-item, .mobile-dropdown-item');
+                
+                menuLinks.forEach(function(link) {
+                    link.addEventListener('click', function(e) {
+                        if (e.target.closest('.mobile-dropdown-btn')) {
+                            return;
+                        }
+                        
+                        mobileMenu.classList.remove('open'); 
+                        if (mobileToggleIcon) { 
+                            mobileToggleIcon.classList.remove('fa-times'); 
+                            mobileToggleIcon.classList.add('fa-bars'); 
+                        } 
+                        document.body.style.overflow = ''; 
+                        
+                        document.querySelectorAll('.mobile-dropdown-content').forEach(function(c) {
+                            c.classList.remove('show');
+                        });
+                    });
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('#mobile-menu') && !e.target.closest('#mobile-toggle')) {
+                        if (mobileMenu && mobileMenu.classList.contains('open')) {
+                            mobileMenu.classList.remove('open'); 
+                            if (mobileToggleIcon) { 
+                                mobileToggleIcon.classList.remove('fa-times'); 
+                                mobileToggleIcon.classList.add('fa-bars'); 
+                            } 
+                            document.body.style.overflow = ''; 
+                            
+                            document.querySelectorAll('.mobile-dropdown-content').forEach(function(c) {
+                                c.classList.remove('show');
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

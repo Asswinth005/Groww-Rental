@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | GROWW RENTAL – Photography Studio</title>
+    <link rel="icon" type="asset/jpeg" href="assest/growwpark_logo.jpg">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5A0E24',
+                        'primary-light': '#B24C6B',
+                        'primary-dark': '#3F081B',
+                        'bg-warm': '#FAF8F6',
+                        'neutral-dark': '#2A2A2A',
+                        'neutral-light': '#EEEAE6',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#1e1e1e',
+                        'dark-surface': '#2a2a2a',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'system-ui', 'sans-serif'],
+                        display: ['Cormorant Garamond', 'serif'],
+                        alt: ['Source Sans Pro', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===== EXACT SAME STYLES AS REFERENCE ===== */
+        body {
+            background-color: #FAF8F6;
+            color: #1a1a1a;
+            font-family: 'Poppins', system-ui, sans-serif;
+            font-weight: 400;
+        }
+        .dark body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        body::-webkit-scrollbar { display: none; }
+        body { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .nav-item {
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 600;
+            color: #1a1a1a;
+            transition: color 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+        }
+        .dark .nav-item { color: #ffffff; font-weight: 500; }
+        .nav-item:hover { color: #5A0E24; }
+        .dark .nav-item:hover { color: #B24C6B; }
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #5A0E24;
+            transition: width 0.3s ease;
+        }
+        .dark .nav-item::after { background: #B24C6B; }
+        [dir="rtl"] .nav-item::after { left: auto; right: 0; }
+        .nav-item:hover::after { width: 100%; }
+        
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 220px;
+            background: white;
+            border-radius: 16px;
+            padding: 0.5rem 0;
+            box-shadow: 0 20px 40px rgba(90,14,36,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid rgba(90,14,36,0.1);
+        }
+        .dark .dropdown-menu { background: #1e1e1e; border-color: #404040; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        [dir="rtl"] .dropdown-menu { left: auto; right: 0; }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 1.5rem;
+            color: #1a1a1a;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .dark .dropdown-item { color: #ffffff; }
+        .dropdown-item:hover {
+            background: rgba(90,14,36,0.08);
+            color: #5A0E24;
+            padding-left: 2rem;
+        }
+        .dark .dropdown-item:hover { background: rgba(178,76,107,0.2); color: #B24C6B; }
+        [dir="rtl"] .dropdown-item:hover { padding-left:1.5rem; padding-right:2rem; }
+        .dropdown-item i { margin-right:0.75rem; width:20px; color:#5A0E24; }
+        .dark .dropdown-item i { color: #B24C6B; }
+        [dir="rtl"] .dropdown-item i { margin-right:0; margin-left:0.75rem; }
+        
+        .auth-icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            border: 1px solid #D0C9C4;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            font-size: 1.1rem;
+        }
+        .dark .auth-icon-btn { border-color: #666666; color: #ffffff; }
+        .auth-icon-btn:hover {
+            background: #5A0E24;
+            border-color: #5A0E24;
+            color: white;
+            transform: scale(1.05);
+        }
+        .dark .auth-icon-btn:hover { background: #B24C6B; border-color: #B24C6B; }
+        
+        .toggle-btn {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #E8E2DC;
+            color: #2A2A2A;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .dark .toggle-btn { background: #2a2a2a; color: #ffffff; }
+        .toggle-btn:hover { background: #5A0E24; color: white; }
+        .dark .toggle-btn:hover { background: #B24C6B; }
+        .toggle-btn.active { background: #5A0E24; color: white; }
+        .dark .toggle-btn.active { background: #B24C6B; }
+        @media (max-width: 1279px) { .desktop-toggle-group { display: none !important; } }
+        
+        .mobile-menu {
+            background: white;
+            border-top: 1px solid #E0D9D2;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            width: 100%;
+        }
+        .dark .mobile-menu { background: #1a1a1a; border-color: #333333; }
+        .mobile-menu.open { max-height: 85vh; overflow-y: auto; }
+        .mobile-menu-item {
+            display: block;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            border-bottom: 1px solid #E8E2DC;
+            transition: all 0.2s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        .dark .mobile-menu-item { color: #ffffff; border-bottom-color: #333333; }
+        .mobile-menu-item:hover { background-color: #F5F0EB; color: #5A0E24; }
+        .dark .mobile-menu-item:hover { background-color: #2a2a2a; color: #B24C6B; }
+        
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: #F9F6F2;
+            padding-left: 1rem;
+        }
+        .dark .mobile-dropdown-content { background: #2a2a2a; }
+        .mobile-dropdown-content.show { max-height: 300px; }
+        .mobile-dropdown-item {
+            display: block;
+            padding: 0.75rem 2rem;
+            font-size: 0.95rem;
+            color: #1a1a1a;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #E8E2DC;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+        }
+        .dark .mobile-dropdown-item { color: #e0e0e0; border-bottom-color:#333333; }
+        .mobile-dropdown-item:hover { color:#5A0E24; background:#E8E2DC; }
+        .dark .mobile-dropdown-item:hover { color:#B24C6B; background:#3a3a3a; }
+        
+        .mobile-auth-icon {
+            width: 44px; height:44px; border-radius:50%; border:1px solid #D0C9C4; display:flex; align-items:center; justify-content:center; margin:0 auto; color:#1a1a1a;
+        }
+        .dark .mobile-auth-icon { border-color:#666666; color:#ffffff; }
+        .mobile-auth-icon:hover { background:#5A0E24; color:white; border-color:#5A0E24; }
+        .dark .mobile-auth-icon:hover { background:#B24C6B; border-color:#B24C6B; }
+        
+        .desktop-nav-container { display: flex; align-items: center; gap: 2rem; }
+        
+        .social-icon {
+            width:40px; height:40px; border-radius:50%; background:#E8E2DC; color:#5A0E24; display:inline-flex; align-items:center; justify-content:center; transition:0.2s;
+        }
+        .dark .social-icon { background:#2a2a2a; color:#B24C6B; }
+        .social-icon:hover { background:#5A0E24; color:white; transform:translateY(-3px); }
+        .dark .social-icon:hover { background:#B24C6B; color:white; }
+        
+        footer {
+            background: white;
+            color: #1a1a1a;
+            border-top: 1px solid rgba(90,14,36,0.1);
+        }
+        .dark footer { background:#0f0f0f; color:#ffffff; border-color:#333333; }
+
+        /* --- Contact page specific styles --- */
+        .contact-info-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(90,14,36,0.08);
+            height: 100%;
+        }
+        .dark .contact-info-card {
+            background: #1e1e1e;
+            border-color: #333;
+        }
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -10px rgba(90,14,36,0.15);
+            border-color: #5A0E24;
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(90,14,36,0.1);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #5A0E24;
+            margin-bottom: 1.5rem;
+        }
+        .dark .contact-icon {
+            background: rgba(178,76,107,0.15);
+            color: #B24C6B;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 1px solid rgba(90,14,36,0.15);
+            border-radius: 16px;
+            background: white;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        .dark .form-input {
+            background: #1e1e1e;
+            border-color: #404040;
+            color: white;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #5A0E24;
+            box-shadow: 0 0 0 3px rgba(90,14,36,0.1);
+        }
+        .dark .form-input:focus {
+            border-color: #B24C6B;
+            box-shadow: 0 0 0 3px rgba(178,76,107,0.2);
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+        .dark .form-label {
+            color: #e5e5e5;
+        }
+        
+        .btn-primary {
+            background: #5A0E24;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn-primary:hover {
+            background: #3F081B;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(90,14,36,0.3);
+        }
+        .dark .btn-primary {
+            background: #B24C6B;
+        }
+        .dark .btn-primary:hover {
+            background: #8B364F;
+        }
+        
+        .map-container {
+            border-radius: 24px;
+            overflow: hidden;
+            height: 400px;
+            border: 1px solid rgba(90,14,36,0.1);
+        }
+        .dark .map-container {
+            border-color: #404040;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid rgba(90,14,36,0.1);
+            padding: 1.5rem 0;
+        }
+        .dark .faq-item {
+            border-bottom-color: #333;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .office-hours-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.75rem 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-bg-warm dark:bg-dark-bg">
+
+    <!-- ========== HEADER (exact copy from reference) ========== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-neutral-light dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-2 group">
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform duration-300">
+                        <i class="fas fa-camera-retro text-white text-lg"></i>
+                    </div>
+                    <div class="font-display text-2xl font-bold tracking-tight">
+                        <span class="text-neutral-dark dark:text-white">GROWW</span>
+                        <span class="text-primary dark:text-primary-light ml-1">RENTAL</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden xl:flex items-center">
+                    <div class="desktop-nav-container">
+                        <div class="flex items-center gap-8">
+                            <div class="dropdown">
+                                <button class="nav-item font-medium flex items-center">
+                                    Home <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a href="index.html" class="dropdown-item" style="background: rgba(90,14,36,0.04); color:#5A0E24;"><i class="fas fa-home"></i> Home 1</a>
+                                    <a href="home2.html" class="dropdown-item"><i class="fas fa-home"></i> Home 2</a>
+                                </div>
+                            </div>
+                            <a href="about.html" class="nav-item">About</a>
+                            <a href="studio.html" class="nav-item">Studio</a>
+                            <a href="service.html" class="nav-item">Services</a>
+                            <a href="portfolios.html" class="nav-item">Portfolios</a>
+                            <a href="book.html" class="nav-item">Book Now</a>
+                            <a href="contact.html" class="nav-item" style="color: #5A0E24; font-weight: 700;">Contact</a>
+                            <div class="dropdown">
+                                <button class="nav-item flex items-center">
+                                    Dashboard <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a href="admin.html" class="dropdown-item"><i class="fas fa-user-shield"></i> Admin</a>
+                                    <a href="client.html" class="dropdown-item"><i class="fas fa-user"></i> Client</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="register.html" class="auth-icon-btn" title="Login / Register">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                    <div class="flex gap-2 ml-4 desktop-toggle-group">
+                        <button id="theme-toggle" class="toggle-btn" title="Toggle theme"><i class="fas fa-moon"></i><i class="fas fa-sun hidden"></i></button>
+                        <button id="rtl-toggle" class="toggle-btn" title="Toggle RTL/LTR">⇄</button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-toggle" class="xl:hidden text-neutral-dark dark:text-white p-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu xl:hidden fixed top-20 left-0 right-0 z-40 bg-white dark:bg-dark-card shadow-lg">
+        <div class="container mx-auto px-6">
+            <div class="mobile-dropdown">
+                <button class="mobile-dropdown-btn flex items-center justify-between w-full mobile-menu-item">
+                    <span>Home</span>
+                    <i class="fas fa-chevron-down text-xs transition-transform"></i>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="index.html" class="mobile-dropdown-item"><i class="fas fa-home mr-2"></i>Home 1</a>
+                    <a href="home2.html" class="mobile-dropdown-item"><i class="fas fa-home mr-2"></i>Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="mobile-menu-item">About</a>
+            <a href="studio.html" class="mobile-menu-item">Studio</a>
+            <a href="service.html" class="mobile-menu-item">Services</a>
+            <a href="portfolios.html" class="mobile-menu-item">Portfolios</a>
+            <a href="book.html" class="mobile-menu-item">Book Now</a>
+            <a href="contact.html" class="mobile-menu-item"style="background: rgba(90,14,36,0.1); color: #5A0E24; border-left: 3px solid #5A0E24; font-weight: 600;">Contact</a>
+            <div class="mobile-dropdown">
+                <button class="mobile-dropdown-btn flex items-center justify-between w-full mobile-menu-item">
+                    <span>Dashboard</span>
+                    <i class="fas fa-chevron-down text-xs transition-transform"></i>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="admin.html" class="mobile-dropdown-item"><i class="fas fa-user-shield mr-2"></i>Admin</a>
+                    <a href="client.html" class="mobile-dropdown-item"><i class="fas fa-user mr-2"></i>Client</a>
+                </div>
+            </div>
+            <div class="flex justify-center p-6">
+                <a href="register.html" class="mobile-auth-icon">
+                    <i class="fas fa-user text-xl"></i>
+                </a>
+            </div>
+            <div class="flex justify-center gap-3 p-6 border-t border-gray-200 dark:border-gray-800">
+                <button id="theme-toggle-mobile" class="toggle-btn"><i class="fas fa-moon"></i><i class="fas fa-sun hidden"></i></button>
+                <button id="rtl-toggle-mobile" class="toggle-btn">⇄</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== CONTACT PAGE CONTENT ========== -->
+    <main class="mt-20">
+        
+        <!-- HERO SECTION -->
+        <section class="relative py-28 overflow-hidden bg-gradient-to-br from-primary/5 to-transparent dark:from-primary-light/5">
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="max-w-4xl mx-auto text-center">
+                    <span class="text-primary dark:text-primary-light font-bold tracking-[0.3em] uppercase text-sm">"get in touch"</span>
+                    <h1 class="font-display text-5xl md:text-7xl font-bold mt-6 mb-8 text-neutral-dark dark:text-white">Contact <span class="text-primary dark:text-primary-light">Us</span></h1>
+                    <p class="text-xl text-neutral-dark/70 dark:text-gray-300 max-w-2xl mx-auto font-alt">
+                        Have a question about our studio, equipment, or services? We're here to help.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT INFO CARDS -->
+        <section class="py-16 bg-white dark:bg-dark-card">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Address Card -->
+                    <div class="contact-info-card text-center md:text-left">
+                        <div class="contact-icon mx-auto md:mx-0">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold mb-3 dark:text-white">Visit Us</h3>
+                        <p class="text-neutral-dark/70 dark:text-gray-400 mb-2">451 West 15th Street</p>
+                        <p class="text-neutral-dark/70 dark:text-gray-400">New York, NY 10011</p>
+                        <p class="text-xs text-primary dark:text-primary-light mt-4 font-medium">Chelsea Arts District</p>
+                    </div>
+                    
+                    <!-- Phone Card -->
+                    <div class="contact-info-card text-center md:text-left">
+                        <div class="contact-icon mx-auto md:mx-0">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold mb-3 dark:text-white">Call Us</h3>
+                        <p class="text-neutral-dark/70 dark:text-gray-400 mb-2">Studio: <a href="tel:+12125557890" class="hover:text-primary dark:hover:text-primary-light transition">+1 (212) 555-7890</a></p>
+                        <p class="text-neutral-dark/70 dark:text-gray-400">Bookings: <a href="tel:+12125557891" class="hover:text-primary dark:hover:text-primary-light transition">+1 (212) 555-7891</a></p>
+                        <p class="text-xs text-primary dark:text-primary-light mt-4 font-medium">24/7 voicemail</p>
+                    </div>
+                    
+                    <!-- Email Card -->
+                    <div class="contact-info-card text-center md:text-left">
+                        <div class="contact-icon mx-auto md:mx-0">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold mb-3 dark:text-white">Email Us</h3>
+                        <p class="text-neutral-dark/70 dark:text-gray-400 mb-2">General: <a href="mailto:info@growwr.com" class="hover:text-primary dark:hover:text-primary-light transition">info@growwr.com</a></p>
+                        <p class="text-neutral-dark/70 dark:text-gray-400">Bookings: <a href="mailto:book@growwr.com" class="hover:text-primary dark:hover:text-primary-light transition">book@growwr.com</a></p>
+                        <p class="text-xs text-primary dark:text-primary-light mt-4 font-medium">Response within 4 hours</p>
+                    </div>
+                    
+                    <!-- Hours Card -->
+                    <div class="contact-info-card text-center md:text-left">
+                        <div class="contact-icon mx-auto md:mx-0">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold mb-3 dark:text-white">Studio Hours</h3>
+                        <div class="office-hours-grid">
+                            <span class="text-neutral-dark/70 dark:text-gray-400">Mon-Fri:</span>
+                            <span class="text-neutral-dark/70 dark:text-gray-400">9am - 10pm</span>
+                            <span class="text-neutral-dark/70 dark:text-gray-400">Sat-Sun:</span>
+                            <span class="text-neutral-dark/70 dark:text-gray-400">10am - 8pm</span>
+                        </div>
+                        <p class="text-xs text-primary dark:text-primary-light mt-4 font-medium">24/7 access for members</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT FORM & MAP SECTION -->
+        <section class="py-20 bg-bg-warm dark:bg-dark-bg">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-12">
+                    
+                    <!-- CONTACT FORM -->
+                    <div>
+                        <span class="text-primary dark:text-primary-light font-bold tracking-[0.2em] uppercase text-sm">"send message"</span>
+                        <h2 class="text-3xl md:text-4xl font-display font-bold mt-4 mb-8 text-neutral-dark dark:text-white">Let's <span class="text-primary dark:text-primary-light">talk</span></h2>
+                        
+                        <form id="contactForm" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-input" placeholder="John" required>
+                                </div>
+                                <div>
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-input" placeholder="Doe" required>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-input" placeholder="john@example.com" required>
+                            </div>
+                            
+                            <div>
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-input" placeholder="+1 (212) 555-1234">
+                            </div>
+                            
+                            <div>
+                                <label class="form-label">Subject</label>
+                                <select class="form-input">
+                                    <option>General Inquiry</option>
+                                    <option>Studio Rental</option>
+                                    <option>Equipment Rental</option>
+                                    <option>Production Support</option>
+                                    <option>Post-Production Services</option>
+                                    <option>Membership Information</option>
+                                    <option>Partnership Opportunities</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="form-label">Message</label>
+                                <textarea rows="5" class="form-input" placeholder="Tell us about your project or question..." required></textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="flex items-center gap-3 cursor-pointer">
+                                    <input type="checkbox" class="w-5 h-5 accent-primary dark:accent-primary-light">
+                                    <span class="text-sm text-neutral-dark/70 dark:text-gray-400">I'd like to receive updates about studio events and special offers</span>
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary text-lg">
+                                <i class="fas fa-paper-plane mr-2"></i> Send Message
+                            </button>
+                            
+                            <p class="text-xs text-center text-neutral-dark/50 dark:text-gray-500 mt-4">
+                                By submitting this form, you agree to our <a href="#" class="text-primary dark:text-primary-light hover:underline">Privacy Policy</a>.
+                            </p>
+                        </form>
+                    </div>
+                    
+                    <!-- MAP & QUICK INFO -->
+                    <div>
+                        <span class="text-primary dark:text-primary-light font-bold tracking-[0.2em] uppercase text-sm">"find us"</span>
+                        <h2 class="text-3xl md:text-4xl font-display font-bold mt-4 mb-8 text-neutral-dark dark:text-white">Our <span class="text-primary dark:text-primary-light">location</span></h2>
+                        
+                        <!-- Map (Google Maps embed placeholder) -->
+                        <div class="map-container mb-8">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.948281808684!2d-74.00667768459422!3d40.74109597932855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259c0b1f3b7b5%3A0x9b9f5b9e9b9f5b9e!2s451%20W%2015th%20St%2C%20New%20York%2C%20NY%2010011!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                        
+                        <!-- Quick Directions -->
+                        <div class="bg-white dark:bg-dark-card rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
+                            <h3 class="font-display text-xl font-bold mb-4 dark:text-white">Getting Here</h3>
+                            
+                            <div class="space-y-4">
+                                <div class="flex gap-3">
+                                    <div class="w-8 h-8 bg-primary/10 dark:bg-primary-light/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-subway text-primary dark:text-primary-light text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium dark:text-white">Subway</p>
+                                        <p class="text-sm text-neutral-dark/70 dark:text-gray-400">A, C, E to 14th St (8th Ave) · 5 min walk</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex gap-3">
+                                    <div class="w-8 h-8 bg-primary/10 dark:bg-primary-light/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-car text-primary dark:text-primary-light text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium dark:text-white">Parking</p>
+                                        <p class="text-sm text-neutral-dark/70 dark:text-gray-400">Street parking available · Validated garage nearby</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex gap-3">
+                                    <div class="w-8 h-8 bg-primary/10 dark:bg-primary-light/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-bicycle text-primary dark:text-primary-light text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium dark:text-white">Bike</p>
+                                        <p class="text-sm text-neutral-dark/70 dark:text-gray-400">Citi Bike station at 15th St & 9th Ave</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section class="py-20 bg-white dark:bg-dark-card">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-primary dark:text-primary-light font-bold tracking-[0.2em] uppercase text-sm">"faq"</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mt-4 mb-4 dark:text-white">
+                        Frequently Asked <span class="text-primary dark:text-primary-light">Questions</span>
+                    </h2>
+                    <p class="text-neutral-dark/70 dark:text-gray-300">
+                        Quick answers to common questions. Can't find what you're looking for? Contact us directly.
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item">
+                        <button class="faq-question w-full text-left flex justify-between items-center font-display text-xl font-bold dark:text-white hover:text-primary dark:hover:text-primary-light transition">
+                            <span>How do I book the studio?</span>
+                            <i class="fas fa-chevron-down text-primary dark:text-primary-light"></i>
+                        </button>
+                        <div class="faq-answer mt-4 text-neutral-dark/70 dark:text-gray-400 hidden">
+                            You can book through our website, call us at +1 (212) 555-7890, or email bookings@growwr.com. For first-time clients, we recommend scheduling a tour before your first booking.
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item">
+                        <button class="faq-question w-full text-left flex justify-between items-center font-display text-xl font-bold dark:text-white hover:text-primary dark:hover:text-primary-light transition">
+                            <span>What equipment is included with studio rental?</span>
+                            <i class="fas fa-chevron-down text-primary dark:text-primary-light"></i>
+                        </button>
+                        <div class="faq-answer mt-4 text-neutral-dark/70 dark:text-gray-400 hidden">
+                            All studio rentals include access to our Profoto D3 lighting system (8 heads), full grip package, C-stands, sandbags, and basic modifiers. Camera packages, lenses, and specialty gear can be added for an additional fee.
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item">
+                        <button class="faq-question w-full text-left flex justify-between items-center font-display text-xl font-bold dark:text-white hover:text-primary dark:hover:text-primary-light transition">
+                            <span>Can I bring my own equipment?</span>
+                            <i class="fas fa-chevron-down text-primary dark:text-primary-light"></i>
+                        </button>
+                        <div class="faq-answer mt-4 text-neutral-dark/70 dark:text-gray-400 hidden">
+                            Absolutely! You're welcome to bring your own gear. Our studio is equipped with power distribution and tethered workstations compatible with all major camera systems.
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 4 -->
+                    <div class="faq-item">
+                        <button class="faq-question w-full text-left flex justify-between items-center font-display text-xl font-bold dark:text-white hover:text-primary dark:hover:text-primary-light transition">
+                            <span>What's your cancellation policy?</span>
+                            <i class="fas fa-chevron-down text-primary dark:text-primary-light"></i>
+                        </button>
+                        <div class="faq-answer mt-4 text-neutral-dark/70 dark:text-gray-400 hidden">
+                            Free cancellation up to 48 hours before your booking. Cancellations within 48 hours are subject to 50% of the booking fee. No-shows are charged in full.
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 5 -->
+                    <div class="faq-item">
+                        <button class="faq-question w-full text-left flex justify-between items-center font-display text-xl font-bold dark:text-white hover:text-primary dark:hover:text-primary-light transition">
+                            <span>Do you offer parking?</span>
+                            <i class="fas fa-chevron-down text-primary dark:text-primary-light"></i>
+                        </button>
+                        <div class="faq-answer mt-4 text-neutral-dark/70 dark:text-gray-400 hidden">
+                            Street parking is available, and we have a partnership with a nearby garage for discounted rates. Ask our team for details when booking.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="py-20 bg-primary dark:bg-primary-light">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">Ready to book?</h2>
+                <p class="text-xl text-white/90 max-w-2xl mx-auto mb-10 font-alt">
+                    Check studio availability or schedule a tour of our space.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#" class="bg-white text-primary dark:text-primary-light px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition">
+                        <i class="fas fa-calendar-check mr-2"></i> Check Availability
+                    </a>
+                    <a href="#" class="bg-transparent border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition">
+                        <i class="fas fa-calendar-alt mr-2"></i> Schedule Tour
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER (exact copy) ========== -->
+    <footer class="py-16 bg-white dark:bg-dark-card border-t-2 border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-6">
+                        <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center"><i class="fas fa-camera-retro text-white"></i></div>
+                        <span class="font-display text-2xl font-bold"><span class="text-neutral-dark dark:text-white">GROWW</span><span class="text-primary dark:text-primary-light ml-1">RENTAL</span></span>
+                    </div>
+                    <p class="text-base text-neutral-dark/80 dark:text-gray-300 mb-6 font-medium">Premier photography studio in NYC. Bright, versatile, fully equipped.</p>
+                    <div class="flex justify-center md:justify-start gap-4">
+                        <a href="#" class="social-icon dark:bg-gray-700 dark:text-primary-light"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon dark:bg-gray-700 dark:text-primary-light"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon dark:bg-gray-700 dark:text-primary-light"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="text-center md:text-left">
+                    <h3 class="text-neutral-dark dark:text-white text-2xl font-display font-bold mb-6">Links</h3>
+                    <ul class="space-y-3 text-base">
+                        <li><a href="index.html" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">Home</a></li>
+                        <li><a href="about.html" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">About</a></li>
+                        <li><a href="service.html" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">Services</a></li>
+                        <li><a href="book.html" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">Book Now</a></li>
+                        <li><a href="contact.html" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="text-center md:text-left">
+                    <h3 class="text-neutral-dark dark:text-white text-2xl font-display font-bold mb-6">Rental</h3>
+                    <ul class="space-y-3 text-base">
+                        <li><a href="#" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">Hourly</a></li>
+                        <li><a href="#" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">Full day</a></li>
+                        <li><a href="#" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">Monthly</a></li>
+                        <li><a href="#" class="hover:text-primary dark:hover:text-primary-light transition text-neutral-dark/80 dark:text-gray-300 font-medium">Equipment only</a></li>
+                    </ul>
+                </div>
+                <div class="text-center md:text-left">
+                    <h3 class="text-neutral-dark dark:text-white text-2xl font-display font-bold mb-6">Contact</h3>
+                    <ul class="space-y-3 text-base">
+                        <li class="flex items-center justify-center md:justify-start gap-2 text-neutral-dark/80 dark:text-gray-300 font-medium"><i class="fas fa-map-marker-alt text-primary dark:text-primary-light"></i><span>451 W 15th St, NYC</span></li>
+                        <li class="flex items-center justify-center md:justify-start gap-2 text-neutral-dark/80 dark:text-gray-300 font-medium"><i class="fas fa-phone-alt text-primary dark:text-primary-light"></i><span>+1 (212) 555-7890</span></li>
+                        <li class="flex items-center justify-center md:justify-start gap-2 text-neutral-dark/80 dark:text-gray-300 font-medium"><i class="fas fa-envelope text-primary dark:text-primary-light"></i><span>book@growwr.com</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t-2 border-primary/10 dark:border-gray-700 mt-12 pt-8 text-center">
+                <p class="text-sm text-neutral-dark/70 dark:text-gray-400 font-medium">© 2026 GROWW RENTAL. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ============ THEME TOGGLE ============
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle?.querySelector('.fa-moon');
+            const themeIconSun = themeToggle?.querySelector('.fa-sun');
+            const mobileThemeToggle = document.getElementById('theme-toggle-mobile');
+            const mobileThemeIcon = mobileThemeToggle?.querySelector('.fa-moon');
+            const mobileThemeIconSun = mobileThemeToggle?.querySelector('.fa-sun');
+            
+            function toggleTheme() {
+                document.documentElement.classList.toggle('dark');
+                const dark = document.documentElement.classList.contains('dark');
+                
+                if (themeIcon) themeIcon.classList.toggle('hidden', dark);
+                if (themeIconSun) themeIconSun.classList.toggle('hidden', !dark);
+                if (themeToggle) themeToggle.classList.toggle('active', dark);
+                if (mobileThemeIcon) mobileThemeIcon.classList.toggle('hidden', dark);
+                if (mobileThemeIconSun) mobileThemeIconSun.classList.toggle('hidden', !dark);
+                if (mobileThemeToggle) mobileThemeToggle.classList.toggle('active', dark);
+                
+                localStorage.setItem('theme', dark ? 'dark' : 'light');
+            }
+            
+            if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+            if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+            
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                if (themeIcon) themeIcon.classList.add('hidden');
+                if (themeIconSun) themeIconSun.classList.remove('hidden');
+                if (themeToggle) themeToggle.classList.add('active');
+                if (mobileThemeIcon) mobileThemeIcon.classList.add('hidden');
+                if (mobileThemeIconSun) mobileThemeIconSun.classList.remove('hidden');
+                if (mobileThemeToggle) mobileThemeToggle.classList.add('active');
+            }
+            
+            // ============ RTL TOGGLE ============
+            const rtlToggle = document.getElementById('rtl-toggle');
+            const mobileRtlToggle = document.getElementById('rtl-toggle-mobile');
+            
+            function toggleRTL() {
+                const rtl = document.documentElement.dir === 'rtl';
+                document.documentElement.dir = rtl ? 'ltr' : 'rtl';
+                document.documentElement.lang = rtl ? 'en' : 'ar';
+                
+                if (rtlToggle) {
+                    rtlToggle.textContent = '⇄';
+                    rtlToggle.classList.toggle('active', !rtl);
+                }
+                if (mobileRtlToggle) {
+                    mobileRtlToggle.textContent = '⇄';
+                    mobileRtlToggle.classList.toggle('active', !rtl);
+                }
+                
+                localStorage.setItem('dir', rtl ? 'ltr' : 'rtl');
+            }
+            
+            if (rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
+            if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
+            
+            if (localStorage.getItem('dir') === 'rtl') { 
+                document.documentElement.dir = 'rtl'; 
+                document.documentElement.lang = 'ar'; 
+                if (rtlToggle) { 
+                    rtlToggle.textContent = '⇄'; 
+                    rtlToggle.classList.add('active'); 
+                } 
+                if (mobileRtlToggle) { 
+                    mobileRtlToggle.textContent = '⇄'; 
+                    mobileRtlToggle.classList.add('active'); 
+                } 
+            }
+            
+            // ============ MOBILE MENU ============
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileToggleIcon = document.querySelector('#mobile-toggle i');
+            
+            if (mobileToggle && mobileMenu) {
+                mobileToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isOpening = !mobileMenu.classList.contains('open');
+                    
+                    if (isOpening) { 
+                        mobileMenu.classList.add('open'); 
+                        if (mobileToggleIcon) {
+                            mobileToggleIcon.classList.remove('fa-bars'); 
+                            mobileToggleIcon.classList.add('fa-times'); 
+                        }
+                        document.body.style.overflow = 'hidden'; 
+                    } else { 
+                        mobileMenu.classList.remove('open'); 
+                        if (mobileToggleIcon) {
+                            mobileToggleIcon.classList.remove('fa-times'); 
+                            mobileToggleIcon.classList.add('fa-bars'); 
+                        }
+                        document.body.style.overflow = ''; 
+                        document.querySelectorAll('.mobile-dropdown-content').forEach(function(c) { 
+                            c.classList.remove('show'); 
+                        }); 
+                    }
+                });
+                
+                // Mobile dropdown toggles
+                const dropdownBtns = document.querySelectorAll('.mobile-dropdown-btn');
+                
+                dropdownBtns.forEach(function(button) {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const dropdown = this.closest('.mobile-dropdown');
+                        if (!dropdown) return;
+                        
+                        const content = dropdown.querySelector('.mobile-dropdown-content');
+                        const icon = this.querySelector('.fa-chevron-down');
+                        
+                        if (!content) return;
+                        
+                        const isOpen = content.classList.contains('show');
+                        
+                        document.querySelectorAll('.mobile-dropdown-content').forEach(function(c) {
+                            c.classList.remove('show');
+                        });
+                        
+                        document.querySelectorAll('.mobile-dropdown-btn .fa-chevron-down').forEach(function(i) {
+                            i.style.transform = 'rotate(0deg)';
+                        });
+                        
+                        if (!isOpen) {
+                            content.classList.add('show');
+                            if (icon) {
+                                icon.style.transform = 'rotate(180deg)';
+                            }
+                        }
+                    });
+                });
+                
+                const menuLinks = document.querySelectorAll('.mobile-menu-item, .mobile-dropdown-item');
+                
+                menuLinks.forEach(function(link) {
+                    link.addEventListener('click', function(e) {
+                        if (e.target.closest('.mobile-dropdown-btn')) {
+                            return;
+                        }
+                        
+                        mobileMenu.classList.remove('open'); 
+                        if (mobileToggleIcon) { 
+                            mobileToggleIcon.classList.remove('fa-times'); 
+                            mobileToggleIcon.classList.add('fa-bars'); 
+                        } 
+                        document.body.style.overflow = ''; 
+                        
+                        document.querySelectorAll('.mobile-dropdown-content').forEach(function(c) {
+                            c.classList.remove('show');
+                        });
+                    });
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('#mobile-menu') && !e.target.closest('#mobile-toggle')) {
+                        if (mobileMenu && mobileMenu.classList.contains('open')) {
+                            mobileMenu.classList.remove('open'); 
+                            if (mobileToggleIcon) { 
+                                mobileToggleIcon.classList.remove('fa-times'); 
+                                mobileToggleIcon.classList.add('fa-bars'); 
+                            } 
+                            document.body.style.overflow = ''; 
+                            
+                            document.querySelectorAll('.mobile-dropdown-content').forEach(function(c) {
+                                c.classList.remove('show');
+                            });
+                        }
+                    }
+                });
+            }
+            
+            // ============ FAQ ACCORDION ============
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Toggle current answer
+                    answer.classList.toggle('hidden');
+                    
+                    // Rotate icon
+                    if (answer.classList.contains('hidden')) {
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+            
+            // ============ FORM SUBMISSION (demo) ============
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! This is a demo form. In production, this would send an email.');
+                    this.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

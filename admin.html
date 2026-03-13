@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GROWW RENTAL · admin dashboard</title>
+    <title>Groww Rent · admin dashboard</title>
     <link rel="icon" type="asset/jpeg" href="assest/growwpark_logo.jpg">
 
     <!-- Tailwind CSS -->
@@ -40,7 +40,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Chart.js (optional but nice) -->
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     
     <style>
@@ -64,7 +64,7 @@
         body::-webkit-scrollbar { display: none; }
         body { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* dashboard card – same premium feel */
+        /* dashboard card */
         .dashboard-card {
             background: white;
             border-radius: 32px;
@@ -113,7 +113,7 @@
         [dir="rtl"] .sidebar-item:hover { transform: translateX(-6px); }
         .sidebar-item i { width: 28px; font-size: 1.25rem; }
         
-        /* toggle button from reference */
+        /* toggle button */
         .toggle-btn {
             width: 40px; height: 40px;
             border-radius: 50%;
@@ -132,7 +132,7 @@
         .toggle-btn.active { background: #5A0E24; color: white; }
         .dark .toggle-btn.active { background: #B24C6B; }
         
-        /* status badges – keep refined */
+        /* status badges */
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -159,7 +159,7 @@
         .table-row { border-bottom: 1px solid rgba(90,14,36,0.08); transition: 0.2s; }
         .table-row:hover { background: rgba(90,14,36,0.02); }
         
-        /* inputs – subtle luxury */
+        /* inputs */
         .admin-input {
             width: 100%;
             padding: 0.8rem 1.2rem;
@@ -173,7 +173,7 @@
         .dark .admin-input { background: #2a2a2a; border-color: #444; color: #fff; }
         .admin-input:focus { outline: none; border-color: #5A0E24; background: white; box-shadow: 0 0 0 4px rgba(90,14,36,0.1); }
         
-        /* primary button (refined) */
+        /* primary button */
         .admin-btn {
             background: #5A0E24;
             color: white;
@@ -201,40 +201,47 @@
         .dark input:checked + .toggle-slider { background-color: #B24C6B; }
         
         /* chart container */
-        .chart-container { position: relative; height: 260px; width:100%; }
+        .chart-container { position: relative; width: 100%; min-height: 200px; height: auto; }
         
         /* RTL tweaks */
         [dir="rtl"] .sidebar-item i { margin-left: 12px; margin-right: 0; }
         [dir="rtl"] .ml-2 { margin-left: 0; margin-right: 0.5rem; }
         [dir="rtl"] .mr-2 { margin-right: 0; margin-left: 0.5rem; }
+        
+        /* Logo text - force single line */
+        .logo-text {
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+        }
     </style>
 </head>
 <body class="bg-bg-warm dark:bg-dark-bg p-4 sm:p-6 md:p-8">
 
-    <!-- ========== HEADER ========== (matches rental theme) -->
+    <!-- ========== HEADER ========== (logo in single line) -->
     <div class="flex justify-between items-center mb-8">
-        <a href="index.html" class="flex items-center space-x-2 group">
-            <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform">
+        <a href="index.html" class="flex items-center space-x-2 rtl:space-x-reverse group">
+            <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform flex-shrink-0">
                 <i class="fas fa-camera-retro text-white text-lg"></i>
             </div>
-            <div class="font-display text-2xl font-bold tracking-tight">
+             <div class="font-display text-2xl font-bold tracking-tight">
                 <span class="text-neutral-dark dark:text-white">GROWW</span>
-                <span class="text-primary dark:text-primary-light ml-1">RENTAL</span>
+                <span class="text-primary dark:text-primary-light ml-1">RENT</span>
             </div>
         </a>
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 flex-shrink-0">
             <button id="theme-toggle" class="toggle-btn" title="Theme"><i class="fas fa-moon"></i><i class="fas fa-sun hidden"></i></button>
             <button id="rtl-toggle" class="toggle-btn" title="RTL/LTR">⇄</button>
         </div>
     </div>
 
-    <!-- Dashboard title (premium) -->
+    <!-- Dashboard title -->
     <div class="mb-10">
         <h1 class="text-4xl md:text-5xl font-display font-bold dark:text-white">admin <span class="text-primary dark:text-primary-light">dashboard</span></h1>
         <p class="text-base text-neutral-dark/70 dark:text-gray-400 mt-1 font-medium">manage studio, equipment, bookings & community</p>
     </div>
 
-    <!-- MAIN GRID: sidebar + content (exactly 7 sections) -->
+    <!-- MAIN GRID: sidebar + content -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         <!-- SIDEBAR (7 items) -->
@@ -252,10 +259,10 @@
                 <!-- admin profile card -->
                 <div class="mt-8 pt-6 border-t border-primary/10 dark:border-gray-700">
                     <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center"><i class="fas fa-user-tie text-primary text-xl"></i></div>
-                        <div>
-                            <p class="font-bold dark:text-white text-base">Alex Rivera</p>
-                            <p class="text-xs text-neutral-dark/70 dark:text-gray-400">studio manager</p>
+                        <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0"><i class="fas fa-user-tie text-primary text-xl"></i></div>
+                        <div class="min-w-0">
+                            <p class="font-bold dark:text-white text-base truncate">Alex Rivera</p>
+                            <p class="text-xs text-neutral-dark/70 dark:text-gray-400 truncate">studio manager</p>
                             <span class="text-xs text-primary font-semibold">full access</span>
                         </div>
                     </div>
@@ -269,23 +276,35 @@
             <!-- 1. OVERVIEW -->
             <div id="overview-section" class="dashboard-section block">
                 <div class="dashboard-card">
-                    <h2 class="text-2xl font-display font-bold mb-6 flex items-center"><i class="fas fa-chart-pie text-primary mr-3 text-2xl"></i>Overview & statistics</h2>
+                    <h2 class="text-2xl font-display font-bold mb-6 flex items-center"><i class="fas fa-chart-pie text-primary mr-3 text-2xl flex-shrink-0"></i><span>Overview & statistics</span></h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
                         <div class="stat-card"><div class="flex justify-between"><div><p class="text-sm text-neutral-dark/60">studio bookings</p><p class="text-3xl font-bold dark:text-white">342</p><p class="text-xs text-green-600 mt-2">↑ 12%</p></div><i class="fas fa-camera text-primary text-2xl"></i></div></div>
                         <div class="stat-card"><div class="flex justify-between"><div><p class="text-sm text-neutral-dark/60">active renters</p><p class="text-3xl font-bold dark:text-white">187</p><p class="text-xs text-green-600 mt-2">↑ 8%</p></div><i class="fas fa-user text-primary text-2xl"></i></div></div>
                         <div class="stat-card"><div class="flex justify-between"><div><p class="text-sm text-neutral-dark/60">equipment rented</p><p class="text-3xl font-bold dark:text-white">96</p><p class="text-xs text-green-600 mt-2">+23 items</p></div><i class="fas fa-film text-primary text-2xl"></i></div></div>
                         <div class="stat-card"><div class="flex justify-between"><div><p class="text-sm text-neutral-dark/60">revenue (MTD)</p><p class="text-3xl font-bold dark:text-white">$48.2k</p><p class="text-xs text-green-600 mt-2">↑ 19%</p></div><i class="fas fa-dollar-sign text-primary text-2xl"></i></div></div>
                     </div>
-                    <!-- mini charts (placeholder) -->
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="bg-neutral-light/30 dark:bg-gray-800/30 p-5 rounded-2xl"><h3 class="font-bold mb-3">weekly bookings</h3><div class="chart-container"><canvas id="bookingsChart"></canvas></div></div>
-                        <div class="bg-neutral-light/30 dark:bg-gray-800/30 p-5 rounded-2xl"><h3 class="font-bold mb-3">revenue by category</h3><div class="chart-container"><canvas id="revenueChart"></canvas></div></div>
+                    
+                    <!-- mini charts - FIXED ALIGNMENT -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-neutral-light/30 dark:bg-gray-800/30 p-4 sm:p-5 rounded-2xl w-full">
+                            <h3 class="font-bold mb-3 text-center sm:text-left">weekly bookings</h3>
+                            <div class="chart-container w-full">
+                                <canvas id="bookingsChart" class="w-full h-full"></canvas>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-light/30 dark:bg-gray-800/30 p-4 sm:p-5 rounded-2xl w-full">
+                            <h3 class="font-bold mb-3 text-center sm:text-left">revenue by category</h3>
+                            <div class="chart-container w-full">
+                                <canvas id="revenueChart" class="w-full h-full"></canvas>
+                            </div>
+                        </div>
                     </div>
+                    
                     <!-- recent activity -->
                     <div class="mt-8"><h3 class="font-bold text-lg mb-4">recent activity</h3><div class="space-y-3">
-                        <div class="flex items-center justify-between p-4 bg-neutral-light/30 dark:bg-gray-800/30 rounded-xl"><div class="flex items-center gap-3"><i class="fas fa-calendar-check text-primary"></i><div><p class="font-semibold">new booking #AV-432</p><p class="text-xs text-neutral-dark/60">10 min ago · full day</p></div></div><span class="text-primary text-sm">view</span></div>
-                        <div class="flex items-center justify-between p-4 bg-neutral-light/30 dark:bg-gray-800/30 rounded-xl"><div class="flex items-center gap-3"><i class="fas fa-user-plus text-primary"></i><div><p class="font-semibold">photographer joined</p><p class="text-xs text-neutral-dark/60">Elena Moss · 2h ago</p></div></div><span class="text-primary text-sm">view</span></div>
-                        <div class="flex items-center justify-between p-4 bg-neutral-light/30 dark:bg-gray-800/30 rounded-xl"><div class="flex items-center gap-3"><i class="fas fa-tools text-primary"></i><div><p class="font-semibold">equipment returned</p><p class="text-xs text-neutral-dark/60">ARRI Alexa · 5h ago</p></div></div><span class="text-primary text-sm">view</span></div>
+                        <div class="flex items-center justify-between p-4 bg-neutral-light/30 dark:bg-gray-800/30 rounded-xl"><div class="flex items-center gap-3 min-w-0"><i class="fas fa-calendar-check text-primary flex-shrink-0"></i><div class="min-w-0"><p class="font-semibold truncate">new booking #AV-432</p><p class="text-xs text-neutral-dark/60">10 min ago · full day</p></div></div><span class="text-primary text-sm flex-shrink-0">view</span></div>
+                        <div class="flex items-center justify-between p-4 bg-neutral-light/30 dark:bg-gray-800/30 rounded-xl"><div class="flex items-center gap-3 min-w-0"><i class="fas fa-user-plus text-primary flex-shrink-0"></i><div class="min-w-0"><p class="font-semibold truncate">photographer joined</p><p class="text-xs text-neutral-dark/60">Elena Moss · 2h ago</p></div></div><span class="text-primary text-sm flex-shrink-0">view</span></div>
+                        <div class="flex items-center justify-between p-4 bg-neutral-light/30 dark:bg-gray-800/30 rounded-xl"><div class="flex items-center gap-3 min-w-0"><i class="fas fa-tools text-primary flex-shrink-0"></i><div class="min-w-0"><p class="font-semibold truncate">equipment returned</p><p class="text-xs text-neutral-dark/60">ARRI Alexa · 5h ago</p></div></div><span class="text-primary text-sm flex-shrink-0">view</span></div>
                     </div></div>
                 </div>
             </div>
@@ -293,15 +312,24 @@
             <!-- 2. USER MANAGEMENT -->
             <div id="users-section" class="dashboard-section hidden">
                 <div class="dashboard-card">
-                    <h2 class="text-2xl font-display font-bold mb-6 flex items-center"><i class="fas fa-users text-primary mr-3 text-2xl"></i>user management</h2>
-                    <div class="flex flex-wrap gap-3 mb-6"><button class="px-5 py-2 rounded-full bg-primary text-white font-bold">all</button><button class="px-5 py-2 rounded-full border border-primary/30 hover:bg-primary/10">admins</button><button class="px-5 py-2 rounded-full border border-primary/30 hover:bg-primary/10">photographers</button><button class="px-5 py-2 rounded-full border border-primary/30 hover:bg-primary/10">clients</button><input type="text" placeholder="search users..." class="admin-input max-w-xs ml-auto"></div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full"><thead class="table-header"><tr><th class="text-left p-3">user</th><th class="text-left p-3">role</th><th class="text-left p-3">status</th><th class="text-left p-3 hidden md:table-cell">joined</th><th class="text-left p-3">action</th></tr></thead>
-                        <tbody><tr class="table-row"><td class="p-3"><div><p class="font-semibold">James Carter</p><span class="text-xs text-neutral-dark/60">james@edit.com</span></div></td><td class="p-3">editor</td><td class="p-3"><span class="status-badge status-active">active</span></td><td class="p-3 hidden md:table-cell">jan 2026</td><td class="p-3"><button class="text-primary text-sm hover:underline">manage</button></td></tr>
-                        <tr class="table-row"><td class="p-3"><div><p class="font-semibold">Lena Park</p><span class="text-xs text-neutral-dark/60">lena@studio.kr</span></div></td><td class="p-3">photographer</td><td class="p-3"><span class="status-badge status-active">active</span></td><td class="p-3 hidden md:table-cell">feb 2026</td><td class="p-3"><button class="text-primary text-sm hover:underline">manage</button></td></tr>
-                        <tr class="table-row"><td class="p-3"><div><p class="font-semibold">Marcus Velez</p><span class="text-xs text-neutral-dark/60">marcus@nyc</span></div></td><td class="p-3">admin</td><td class="p-3"><span class="status-badge status-active">active</span></td><td class="p-3 hidden md:table-cell">mar 2026</td><td class="p-3"><button class="text-primary text-sm hover:underline">manage</button></td></tr>
-                        <tr class="table-row"><td class="p-3"><div><p class="font-semibold">Sophia Reed</p><span class="text-xs text-neutral-dark/60">sophia.r@creative</span></div></td><td class="p-3">client</td><td class="p-3"><span class="status-badge status-pending">pending</span></td><td class="p-3 hidden md:table-cell">apr 2026</td><td class="p-3"><button class="text-primary text-sm hover:underline">verify</button></td></tr>
-                        </tbody></table>
+                    <h2 class="text-2xl font-display font-bold mb-6 flex items-center"><i class="fas fa-users text-primary mr-3 text-2xl flex-shrink-0"></i><span>user management</span></h2>
+                    <div class="flex flex-wrap gap-3 mb-6 items-center">
+                        <button class="px-5 py-2 rounded-full bg-primary text-white font-bold whitespace-nowrap">all</button>
+                        <button class="px-5 py-2 rounded-full border border-primary/30 hover:bg-primary/10 whitespace-nowrap">admins</button>
+                        <button class="px-5 py-2 rounded-full border border-primary/30 hover:bg-primary/10 whitespace-nowrap">photographers</button>
+                        <button class="px-5 py-2 rounded-full border border-primary/30 hover:bg-primary/10 whitespace-nowrap">clients</button>
+                        <input type="text" placeholder="search users..." class="admin-input max-w-xs w-full sm:w-auto">
+                    </div>
+                    <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+                        <table class="w-full min-w-[600px] sm:min-w-0">
+                            <thead class="table-header"><tr><th class="text-left p-3">user</th><th class="text-left p-3">role</th><th class="text-left p-3">status</th><th class="text-left p-3 hidden md:table-cell">joined</th><th class="text-left p-3">action</th></tr></thead>
+                            <tbody>
+                                <tr class="table-row"><td class="p-3"><div><p class="font-semibold">James Carter</p><span class="text-xs text-neutral-dark/60">james@edit.com</span></div></td><td class="p-3">editor</td><td class="p-3"><span class="status-badge status-active">active</span></td><td class="p-3 hidden md:table-cell">jan 2026</td><td class="p-3"><button class="text-primary text-sm hover:underline">manage</button></td></tr>
+                                <tr class="table-row"><td class="p-3"><div><p class="font-semibold">Lena Park</p><span class="text-xs text-neutral-dark/60">lena@studio.kr</span></div></td><td class="p-3">photographer</td><td class="p-3"><span class="status-badge status-active">active</span></td><td class="p-3 hidden md:table-cell">feb 2026</td><td class="p-3"><button class="text-primary text-sm hover:underline">manage</button></td></tr>
+                                <tr class="table-row"><td class="p-3"><div><p class="font-semibold">Marcus Velez</p><span class="text-xs text-neutral-dark/60">marcus@nyc</span></div></td><td class="p-3">admin</td><td class="p-3"><span class="status-badge status-active">active</span></td><td class="p-3 hidden md:table-cell">mar 2026</td><td class="p-3"><button class="text-primary text-sm hover:underline">manage</button></td></tr>
+                                <tr class="table-row"><td class="p-3"><div><p class="font-semibold">Sophia Reed</p><span class="text-xs text-neutral-dark/60">sophia.r@creative</span></div></td><td class="p-3">client</td><td class="p-3"><span class="status-badge status-pending">pending</span></td><td class="p-3 hidden md:table-cell">apr 2026</td><td class="p-3"><button class="text-primary text-sm hover:underline">verify</button></td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -309,8 +337,8 @@
             <!-- 3. CONTENT MANAGEMENT -->
             <div id="content-section" class="dashboard-section hidden">
                 <div class="dashboard-card">
-                    <h2 class="text-2xl font-display font-bold mb-6 flex items-center"><i class="fas fa-file-alt text-primary mr-3 text-2xl"></i>content</h2>
-                    <div class="grid md:grid-cols-2 gap-6">
+                    <h2 class="text-2xl font-display font-bold mb-6 flex items-center"><i class="fas fa-file-alt text-primary mr-3 text-2xl flex-shrink-0"></i><span>content</span></h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div class="bg-neutral-light/30 p-6 rounded-2xl"><h3 class="font-bold text-lg mb-3">tours / showcases</h3><div class="space-y-2"><div class="flex justify-between"><span>virtual tours</span><span class="font-semibold">6</span></div><div class="flex justify-between"><span>studio highlights</span><span class="font-semibold">12</span></div><div class="flex justify-between"><span>equipment demos</span><span class="font-semibold">8</span></div></div><button class="w-full mt-5 py-2 bg-primary/10 text-primary rounded-full font-semibold hover:bg-primary hover:text-white">manage tours</button></div>
                         <div class="bg-neutral-light/30 p-6 rounded-2xl"><h3 class="font-bold text-lg mb-3">artist portfolios</h3><div class="space-y-2"><div class="flex justify-between"><span>featured</span><span class="font-semibold">14</span></div><div class="flex justify-between"><span>pending</span><span class="font-semibold">3</span></div></div><button class="w-full mt-5 py-2 bg-primary/10 text-primary rounded-full font-semibold hover:bg-primary hover:text-white">manage artists</button></div>
                         <div class="bg-neutral-light/30 p-6 rounded-2xl"><h3 class="font-bold text-lg mb-3">blog / news</h3><div class="space-y-2"><div class="flex justify-between"><span>published</span><span class="font-semibold">24</span></div><div class="flex justify-between"><span>drafts</span><span class="font-semibold">5</span></div></div><button class="w-full mt-5 py-2 bg-primary/10 text-primary rounded-full font-semibold hover:bg-primary hover:text-white">manage blog</button></div>
@@ -319,67 +347,67 @@
                 </div>
             </div>
 
-          <!-- 4. ORDERS / BOOKINGS -->
-<div id="orders-section" class="dashboard-section hidden">
-    <div class="dashboard-card">
-        <h2 class="text-2xl font-display font-bold mb-6 flex items-center"><i class="fas fa-shopping-cart text-primary mr-3 text-2xl"></i>orders & bookings</h2>
-        
-        <!-- Filter buttons - centered and wrap on mobile -->
-        <div class="flex flex-wrap gap-2 mb-4 justify-center sm:justify-start">
-            <button class="px-5 py-2 rounded-full bg-primary text-white whitespace-nowrap">all</button>
-            <button class="px-5 py-2 rounded-full border whitespace-nowrap">confirmed</button>
-            <button class="px-5 py-2 rounded-full border whitespace-nowrap">pending</button>
-            <button class="px-5 py-2 rounded-full border whitespace-nowrap">completed</button>
-        </div>
-        
-        <!-- Table with horizontal scroll on mobile -->
-        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
-            <table class="w-full min-w-[600px] sm:min-w-0">
-                <thead class="table-header">
-                    <tr>
-                        <th class="p-3 text-left">ID</th>
-                        <th class="p-3 text-left">customer</th>
-                        <th class="p-3 text-left hidden sm:table-cell">service</th>
-                        <th class="p-3 text-left">amount</th>
-                        <th class="p-3 text-left">status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="table-row">
-                        <td class="p-3">#GW-102</td>
-                        <td class="p-3">John Doe</td>
-                        <td class="p-3 hidden sm:table-cell">full day studio</td>
-                        <td class="p-3">$850</td>
-                        <td class="p-3"><span class="status-badge status-active">confirmed</span></td>
-                    </tr>
-                    <tr class="table-row">
-                        <td class="p-3">#GW-109</td>
-                        <td class="p-3">Nina K.</td>
-                        <td class="p-3 hidden sm:table-cell">equipment package</td>
-                        <td class="p-3">$420</td>
-                        <td class="p-3"><span class="status-badge status-active">confirmed</span></td>
-                    </tr>
-                    <tr class="table-row">
-                        <td class="p-3">#GW-115</td>
-                        <td class="p-3">Marcus V.</td>
-                        <td class="p-3 hidden sm:table-cell">virtual tour shoot</td>
-                        <td class="p-3">$1,200</td>
-                        <td class="p-3"><span class="status-badge status-pending">pending</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+            <!-- 4. ORDERS / BOOKINGS -->
+            <div id="orders-section" class="dashboard-section hidden">
+                <div class="dashboard-card">
+                    <h2 class="text-2xl font-display font-bold mb-6 flex items-center"><i class="fas fa-shopping-cart text-primary mr-3 text-2xl flex-shrink-0"></i><span>orders & bookings</span></h2>
+                    
+                    <!-- Filter buttons -->
+                    <div class="flex flex-wrap gap-2 mb-4 justify-center sm:justify-start">
+                        <button class="px-5 py-2 rounded-full bg-primary text-white whitespace-nowrap">all</button>
+                        <button class="px-5 py-2 rounded-full border whitespace-nowrap">confirmed</button>
+                        <button class="px-5 py-2 rounded-full border whitespace-nowrap">pending</button>
+                        <button class="px-5 py-2 rounded-full border whitespace-nowrap">completed</button>
+                    </div>
+                    
+                    <!-- Table with horizontal scroll -->
+                    <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+                        <table class="w-full min-w-[600px] sm:min-w-0">
+                            <thead class="table-header">
+                                <tr>
+                                    <th class="p-3 text-left">ID</th>
+                                    <th class="p-3 text-left">customer</th>
+                                    <th class="p-3 text-left hidden sm:table-cell">service</th>
+                                    <th class="p-3 text-left">amount</th>
+                                    <th class="p-3 text-left">status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-row">
+                                    <td class="p-3">#GW-102</td>
+                                    <td class="p-3">John Doe</td>
+                                    <td class="p-3 hidden sm:table-cell">full day studio</td>
+                                    <td class="p-3">$850</td>
+                                    <td class="p-3"><span class="status-badge status-active">confirmed</span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="p-3">#GW-109</td>
+                                    <td class="p-3">Nina K.</td>
+                                    <td class="p-3 hidden sm:table-cell">equipment package</td>
+                                    <td class="p-3">$420</td>
+                                    <td class="p-3"><span class="status-badge status-active">confirmed</span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="p-3">#GW-115</td>
+                                    <td class="p-3">Marcus V.</td>
+                                    <td class="p-3 hidden sm:table-cell">virtual tour shoot</td>
+                                    <td class="p-3">$1,200</td>
+                                    <td class="p-3"><span class="status-badge status-pending">pending</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
             <!-- 5. MESSAGES / NOTIFICATIONS -->
             <div id="messages-section" class="dashboard-section hidden">
                 <div class="dashboard-card">
-                    <h2 class="text-2xl font-display font-bold mb-6 flex items-center"><i class="fas fa-envelope text-primary mr-3 text-2xl"></i>inbox <span class="ml-4 bg-primary text-white text-sm px-3 py-1 rounded-full">5 unread</span></h2>
+                    <h2 class="text-2xl font-display font-bold mb-6 flex items-center"><i class="fas fa-envelope text-primary mr-3 text-2xl flex-shrink-0"></i><span>inbox</span> <span class="ml-4 bg-primary text-white text-sm px-3 py-1 rounded-full">5 unread</span></h2>
                     <div class="space-y-3">
-                        <div class="flex items-start gap-3 p-4 bg-neutral-light/30 rounded-xl"><i class="fas fa-user-circle text-primary text-xl"></i><div><p class="font-semibold">James Carter</p><p class="text-sm">booking extension request</p><span class="text-xs text-neutral-dark/60">2h ago</span></div></div>
-                        <div class="flex items-start gap-3 p-4 bg-neutral-light/30 rounded-xl"><i class="fas fa-user-circle text-primary text-xl"></i><div><p class="font-semibold">Lena Park</p><p class="text-sm">portfolio review application</p><span class="text-xs text-neutral-dark/60">yesterday</span></div></div>
-                        <div class="flex items-start gap-3 p-4 bg-neutral-light/30 rounded-xl"><i class="fas fa-user-circle text-primary text-xl"></i><div><p class="font-semibold">Support</p><p class="text-sm">new ticket #212</p><span class="text-xs text-neutral-dark/60">3d ago</span></div></div>
+                        <div class="flex items-start gap-3 p-4 bg-neutral-light/30 rounded-xl"><i class="fas fa-user-circle text-primary text-xl flex-shrink-0"></i><div class="min-w-0"><p class="font-semibold">James Carter</p><p class="text-sm truncate">booking extension request</p><span class="text-xs text-neutral-dark/60">2h ago</span></div></div>
+                        <div class="flex items-start gap-3 p-4 bg-neutral-light/30 rounded-xl"><i class="fas fa-user-circle text-primary text-xl flex-shrink-0"></i><div class="min-w-0"><p class="font-semibold">Lena Park</p><p class="text-sm truncate">portfolio review application</p><span class="text-xs text-neutral-dark/60">yesterday</span></div></div>
+                        <div class="flex items-start gap-3 p-4 bg-neutral-light/30 rounded-xl"><i class="fas fa-user-circle text-primary text-xl flex-shrink-0"></i><div class="min-w-0"><p class="font-semibold">Support</p><p class="text-sm truncate">new ticket #212</p><span class="text-xs text-neutral-dark/60">3d ago</span></div></div>
                     </div>
                 </div>
             </div>
@@ -387,11 +415,11 @@
             <!-- 6. SETTINGS -->
             <div id="settings-section" class="dashboard-section hidden">
                 <div class="dashboard-card">
-                    <h2 class="text-2xl font-display font-bold mb-6 flex items-center"><i class="fas fa-cog text-primary mr-3 text-2xl"></i>settings</h2>
+                    <h2 class="text-2xl font-display font-bold mb-6 flex items-center"><i class="fas fa-cog text-primary mr-3 text-2xl flex-shrink-0"></i><span>settings</span></h2>
                     <div class="space-y-6">
-                        <div><h3 class="font-bold text-lg mb-3">general</h3><div class="grid md:grid-cols-2 gap-4"><input class="admin-input" value="GROWW RENTAL"><input class="admin-input" value="admin@growwr.com"></div></div>
-                        <div><h3 class="font-bold text-lg mb-3">payment</h3><div class="bg-neutral-light/30 p-4 rounded-2xl space-y-3"><div class="flex justify-between"><span>stripe</span><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div><div class="flex justify-between"><span>paypal</span><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div></div></div>
-                        <button class="admin-btn">save changes</button>
+                        <div><h3 class="font-bold text-lg mb-3">general</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><input class="admin-input" value="Groww Rent"><input class="admin-input" value="admin@growwr.com"></div></div>
+                        <div><h3 class="font-bold text-lg mb-3">payment</h3><div class="bg-neutral-light/30 p-4 rounded-2xl space-y-3"><div class="flex justify-between items-center"><span>stripe</span><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div><div class="flex justify-between items-center"><span>paypal</span><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div></div></div>
+                        <button class="admin-btn w-full sm:w-auto">save changes</button>
                     </div>
                 </div>
             </div>
@@ -399,19 +427,29 @@
             <!-- 7. REPORTS -->
             <div id="reports-section" class="dashboard-section hidden">
                 <div class="dashboard-card">
-                    <h2 class="text-2xl font-display font-bold mb-6 flex items-center"><i class="fas fa-chart-line text-primary mr-3 text-2xl"></i>reports</h2>
-                    <div class="flex gap-2 mb-6"><button class="px-5 py-2 rounded-full bg-primary text-white">7d</button><button class="px-5 py-2 rounded-full border">30d</button><button class="px-5 py-2 rounded-full border">custom</button></div>
-                    <div class="grid sm:grid-cols-2 gap-4"><div class="stat-card p-4"><p class="text-sm">revenue</p><p class="text-2xl font-bold">$48.2k</p><span class="text-green-600 text-xs">+14%</span></div><div class="stat-card p-4"><p class="text-sm">bookings</p><p class="text-2xl font-bold">342</p><span class="text-green-600 text-xs">+9%</span></div></div>
-                    <div class="mt-6 space-y-2"><div class="flex justify-between p-4 bg-neutral-light/30 rounded-xl"><span>monthly report jan 2026</span><button class="text-primary">download PDF</button></div><div class="flex justify-between p-4 bg-neutral-light/30 rounded-xl"><span>equipment usage q1</span><button class="text-primary">download CSV</button></div></div>
+                    <h2 class="text-2xl font-display font-bold mb-6 flex items-center"><i class="fas fa-chart-line text-primary mr-3 text-2xl flex-shrink-0"></i><span>reports</span></h2>
+                    <div class="flex flex-wrap gap-2 mb-6 justify-center sm:justify-start">
+                        <button class="px-5 py-2 rounded-full bg-primary text-white whitespace-nowrap">7d</button>
+                        <button class="px-5 py-2 rounded-full border whitespace-nowrap">30d</button>
+                        <button class="px-5 py-2 rounded-full border whitespace-nowrap">custom</button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="stat-card p-4"><p class="text-sm">revenue</p><p class="text-2xl font-bold">$48.2k</p><span class="text-green-600 text-xs">+14%</span></div>
+                        <div class="stat-card p-4"><p class="text-sm">bookings</p><p class="text-2xl font-bold">342</p><span class="text-green-600 text-xs">+9%</span></div>
+                    </div>
+                    <div class="mt-6 space-y-2">
+                        <div class="flex flex-col sm:flex-row justify-between items-center p-4 bg-neutral-light/30 rounded-xl gap-3"><span>monthly report jan 2026</span><button class="text-primary">download PDF</button></div>
+                        <div class="flex flex-col sm:flex-row justify-between items-center p-4 bg-neutral-light/30 rounded-xl gap-3"><span>equipment usage q1</span><button class="text-primary">download CSV</button></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- FOOTER note (optional) -->
-    <div class="mt-12 text-center text-sm text-neutral-dark/50 dark:text-gray-500 border-t border-primary/10 pt-6">GROWW RENTAL · studio management dashboard</div>
+    <!-- FOOTER note -->
+    <div class="mt-12 text-center text-sm text-neutral-dark/50 dark:text-gray-500 border-t border-primary/10 pt-6">Groww Rent · studio management dashboard</div>
 
-    <!-- JavaScript (theme, rtl, sections, charts) -->
+    <!-- JavaScript -->
     <script>
         (function() {
             // theme toggle
@@ -479,11 +517,93 @@
                 });
             });
 
-            // charts
+            // charts with responsive options
             if (document.getElementById('bookingsChart')) {
-                new Chart(document.getElementById('bookingsChart'), { type:'line', data:{ labels:['M','T','W','T','F','S','S'], datasets:[{ label:'bookings', data:[8,12,9,15,18,22,17], borderColor:'#5A0E24', backgroundColor:'rgba(90,14,36,0.05)', tension:0.4, fill:true }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} } } });
-                new Chart(document.getElementById('revenueChart'), { type:'doughnut', data:{ labels:['studio','equipment','events'], datasets:[{ data:[55,30,15], backgroundColor:['#5A0E24','#B24C6B','#EEEAE6'] }] }, options:{ responsive:true, maintainAspectRatio:false } });
+                const isMobile = window.innerWidth < 640;
+                
+                new Chart(document.getElementById('bookingsChart'), { 
+                    type: 'line', 
+                    data: { 
+                        labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'], 
+                        datasets: [{ 
+                            label: 'bookings', 
+                            data: [8, 12, 9, 15, 18, 22, 17], 
+                            borderColor: '#5A0E24', 
+                            backgroundColor: 'rgba(90,14,36,0.05)', 
+                            tension: 0.4, 
+                            fill: true,
+                            pointRadius: isMobile ? 2 : 3,
+                            pointHoverRadius: 5,
+                            borderWidth: isMobile ? 1.5 : 2
+                        }] 
+                    }, 
+                    options: { 
+                        responsive: true, 
+                        maintainAspectRatio: true,
+                        aspectRatio: isMobile ? 1.2 : 1.8,
+                        plugins: { 
+                            legend: { display: false } 
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { display: !isMobile },
+                                ticks: {
+                                    font: { size: isMobile ? 8 : 10 },
+                                    maxTicksLimit: isMobile ? 5 : 8
+                                }
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: {
+                                    font: { size: isMobile ? 8 : 10 }
+                                }
+                            }
+                        }
+                    } 
+                });
+                
+                new Chart(document.getElementById('revenueChart'), { 
+                    type: 'doughnut', 
+                    data: { 
+                        labels: ['studio', 'equipment', 'events'], 
+                        datasets: [{ 
+                            data: [55, 30, 15], 
+                            backgroundColor: ['#5A0E24', '#B24C6B', '#EEEAE6'],
+                            borderWidth: isMobile ? 1 : 2,
+                            borderColor: 'transparent'
+                        }] 
+                    }, 
+                    options: { 
+                        responsive: true, 
+                        maintainAspectRatio: true,
+                        aspectRatio: isMobile ? 1 : 1.5,
+                        plugins: { 
+                            legend: { 
+                                position: isMobile ? 'bottom' : 'top',
+                                labels: { 
+                                    font: { size: isMobile ? 9 : 11 },
+                                    boxWidth: isMobile ? 10 : 12,
+                                    padding: isMobile ? 8 : 12
+                                } 
+                            } 
+                        },
+                        cutout: isMobile ? '65%' : '60%',
+                        layout: {
+                            padding: {
+                                bottom: isMobile ? 10 : 0
+                            }
+                        }
+                    } 
+                });
             }
+
+            // handle window resize for charts
+            window.addEventListener('resize', function() {
+                // Simple approach - reload charts on resize
+                // In production, you'd want to update chart options instead
+                location.reload();
+            });
 
             // dummy save button
             document.querySelectorAll('.admin-btn').forEach(b => b.addEventListener('click', ()=>alert('saved (demo)')));

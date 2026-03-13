@@ -371,45 +371,166 @@
                     </div>
                 </div>
 
-                <!-- 2. ORDER HISTORY -->
-                <div id="orders-section" class="dashboard-section hidden">
-                    <div class="dashboard-card">
-                        <h2 class="text-2xl font-display font-bold mb-7 flex items-center"><i class="fas fa-suitcase text-primary mr-3 text-2xl"></i>order history</h2>
-                        <div class="flex gap-3 mb-6"><button class="px-5 py-2 rounded-full bg-primary text-white">all</button><button class="px-5 py-2 rounded-full border border-primary/30">upcoming</button><button class="px-5 py-2 rounded-full border border-primary/30">completed</button></div>
-                        <div class="space-y-5">
-                            <!-- order 1 -->
-                            <div class="order-item"><div class="flex flex-col md:flex-row justify-between">
-                                <div class="flex items-center gap-5 mt-4 md:mt-0"><span class="font-bold text-xl text-primary">$650</span><button class="text-primary hover:underline">details</button></div>
-                            </div><div class="flex gap-5 mt-3 text-sm text-neutral-dark/60"><span><i class="fas fa-calendar mr-1"></i>May 12, 2026</span><span><i class="fas fa-user mr-1"></i>pilot James</span></div></div>
-                            <!-- order 2 -->
-                            <div class="order-item"><div class="flex flex-col md:flex-row justify-between">
-                                <div class="flex items-center gap-5 mt-4 md:mt-0"><span class="font-bold text-xl text-primary">$1,200</span><button class="text-primary hover:underline">details</button></div>
-                            </div><div class="flex gap-5 mt-3 text-sm text-neutral-dark/60"><span><i class="fas fa-calendar mr-1"></i>Jun 3, 2026</span><span><i class="fas fa-user mr-1"></i>pilot Lena</span></div></div>
-                            <!-- order 3 pending -->
-                            <div class="order-item"><div class="flex flex-col md:flex-row justify-between">
-                                <div class="flex items-center gap-5 mt-4 md:mt-0"><span class="font-bold text-xl text-primary">$890</span><button class="text-primary hover:underline">details</button></div>
-                            </div><div class="flex gap-5 mt-3 text-sm text-neutral-dark/60"><span><i class="fas fa-calendar mr-1"></i>Jun 18, 2026</span><span><i class="fas fa-user mr-1"></i>pilot Marcus</span></div></div>
+               <!-- 2. ORDER HISTORY -->
+<div id="orders-section" class="dashboard-section hidden">
+    <div class="dashboard-card">
+        <h2 class="text-2xl font-display font-bold mb-7 flex items-center"><i class="fas fa-suitcase text-primary mr-3 text-2xl"></i>order history</h2>
+        
+        <!-- Filter buttons - centered on mobile, left on desktop -->
+        <div class="flex flex-wrap gap-3 mb-6 justify-center sm:justify-start">
+            <button class="px-5 py-2 rounded-full bg-primary text-white whitespace-nowrap">all</button>
+            <button class="px-5 py-2 rounded-full border border-primary/30 whitespace-nowrap">upcoming</button>
+            <button class="px-5 py-2 rounded-full border border-primary/30 whitespace-nowrap">completed</button>
+        </div>
+        
+        <div class="space-y-5">
+            <!-- order 1 -->
+            <div class="order-item p-4 md:p-5">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div class="w-full">
+                        <!-- Order details (you'll need to add these) -->
+                        <div class="flex flex-wrap items-center gap-3">
+                            <span class="font-semibold">Order #GW-102</span>
+                            <span class="text-sm bg-primary/10 px-3 py-1 rounded-full">confirmed</span>
                         </div>
-                        <div class="mt-7 text-center"><button class="text-primary font-semibold hover:underline">view all 8 bookings →</button></div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-5 w-full md:w-auto justify-between md:justify-end">
+                        <span class="font-bold text-xl text-primary">$650</span>
+                        <button class="text-primary hover:underline text-sm">details →</button>
                     </div>
                 </div>
-
-                <!-- 3. SAVED ITEMS -->
-                <div id="saved-section" class="dashboard-section hidden">
-                    <div class="dashboard-card">
-                        <h2 class="text-2xl font-display font-bold mb-7 flex items-center"><i class="fas fa-heart text-primary mr-3 text-2xl"></i>saved items</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-    <div class="saved-item-card"><img src="/assest/lig.jpg" class="w-24 h-24 rounded-xl object-cover"><div><h4 class="font-bold text-lg">natural light studio</h4><p class="text-xs text-neutral-dark/60">San Diego · 2hr</p><div class="flex items-center justify-between mt-3"><span class="font-bold text-primary text-xl">$399<span class="text-sm font-normal text-neutral-dark/60 ml-1">/hr</span></span><div class="flex gap-2"><button class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white"><i class="fas fa-shopping-cart"></i></button><button class="w-9 h-9 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white"><i class="fas fa-trash-alt"></i></button></div></div></div></div>
-    
-    <div class="saved-item-card"><img src="/assest/eq.jpg" class="w-24 h-24 rounded-xl object-cover"><div><h4 class="font-bold text-lg">cyclorama (infinity) wall</h4><p class="text-xs text-neutral-dark/60">Austin · full day</p><div class="flex items-center justify-between mt-3"><span class="font-bold text-primary text-xl">$799<span class="text-sm font-normal text-neutral-dark/60 ml-1">/day</span></span><div class="flex gap-2"><button class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white"><i class="fas fa-shopping-cart"></i></button><button class="w-9 h-9 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white"><i class="fas fa-trash-alt"></i></button></div></div></div></div>
-    
-    <div class="saved-item-card"><img src="/assest/eq2.jpg" class="w-24 h-24 rounded-xl object-cover"><div><h4 class="font-bold text-lg">professional lighting kit</h4><p class="text-xs text-neutral-dark/60">San Jose</p><div class="flex items-center justify-between mt-3"><span class="font-bold text-primary text-xl">$1,150<span class="text-sm font-normal text-neutral-dark/60 ml-1">/hr</span></span><div class="flex gap-2"><button class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white"><i class="fas fa-shopping-cart"></i></button><button class="w-9 h-9 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white"><i class="fas fa-trash-alt"></i></button></div></div></div></div>
-    
-    <div class="saved-item-card"><img src="/assest/main.jpg" class="w-24 h-24 rounded-xl object-cover"><div><h4 class="font-bold text-lg">full day studio pass</h4><p class="text-xs text-neutral-dark/60">Napa · full day</p><div class="flex items-center justify-between mt-3"><span class="font-bold text-primary text-xl">$2,400<span class="text-sm font-normal text-neutral-dark/60 ml-1">/day</span></span><div class="flex gap-2"><button class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white"><i class="fas fa-shopping-cart"></i></button><button class="w-9 h-9 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white"><i class="fas fa-trash-alt"></i></button></div></div></div></div>
+                <div class="flex flex-wrap gap-4 mt-4 text-sm text-neutral-dark/60">
+                    <span><i class="fas fa-calendar mr-1"></i>May 12, 2026</span>
+                    <span><i class="fas fa-user mr-1"></i>pilot James</span>
+                    <span><i class="fas fa-clock mr-1"></i>10:00 AM - 4:00 PM</span>
+                </div>
+            </div>
+            
+            <!-- order 2 -->
+            <div class="order-item p-4 md:p-5">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div class="w-full">
+                        <div class="flex flex-wrap items-center gap-3">
+                            <span class="font-semibold">Order #GW-109</span>
+                            <span class="text-sm bg-primary/10 px-3 py-1 rounded-full">confirmed</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-5 w-full md:w-auto justify-between md:justify-end">
+                        <span class="font-bold text-xl text-primary">$1,200</span>
+                        <button class="text-primary hover:underline text-sm">details →</button>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-4 mt-4 text-sm text-neutral-dark/60">
+                    <span><i class="fas fa-calendar mr-1"></i>Jun 3, 2026</span>
+                    <span><i class="fas fa-user mr-1"></i>pilot Lena</span>
+                    <span><i class="fas fa-clock mr-1"></i>9:00 AM - 3:00 PM</span>
+                </div>
+            </div>
+            
+            <!-- order 3 pending -->
+            <div class="order-item p-4 md:p-5">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div class="w-full">
+                        <div class="flex flex-wrap items-center gap-3">
+                            <span class="font-semibold">Order #GW-115</span>
+                            <span class="text-sm bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">pending</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-5 w-full md:w-auto justify-between md:justify-end">
+                        <span class="font-bold text-xl text-primary">$890</span>
+                        <button class="text-primary hover:underline text-sm">details →</button>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-4 mt-4 text-sm text-neutral-dark/60">
+                    <span><i class="fas fa-calendar mr-1"></i>Jun 18, 2026</span>
+                    <span><i class="fas fa-user mr-1"></i>pilot Marcus</span>
+                    <span><i class="fas fa-clock mr-1"></i>2:00 PM - 8:00 PM</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-7 text-center">
+            <button class="text-primary font-semibold hover:underline">view all 8 bookings →</button>
+        </div>
+    </div>
 </div>
-                        <div class="mt-7 text-center"><button class="text-primary font-semibold hover:underline">browse more services →</button></div>
+
+<!-- 3. SAVED ITEMS -->
+<div id="saved-section" class="dashboard-section hidden">
+    <div class="dashboard-card">
+        <h2 class="text-2xl font-display font-bold mb-7 flex items-center"><i class="fas fa-heart text-primary mr-3 text-2xl"></i>saved items</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <!-- Saved item 1 -->
+            <div class="saved-item-card flex flex-col sm:flex-row gap-4 p-4">
+                <img src="/assest/lig.jpg" class="w-full sm:w-24 h-48 sm:h-24 rounded-xl object-cover">
+                <div class="flex-1">
+                    <h4 class="font-bold text-lg">natural light studio</h4>
+                    <p class="text-xs text-neutral-dark/60 mb-2">San Diego · 2hr</p>
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <span class="font-bold text-primary text-xl">$399<span class="text-sm font-normal text-neutral-dark/60 ml-1">/hr</span></span>
+                        <div class="flex gap-2">
+                            <button class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="w-9 h-9 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white"><i class="fas fa-trash-alt"></i></button>
+                        </div>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Saved item 2 -->
+            <div class="saved-item-card flex flex-col sm:flex-row gap-4 p-4">
+                <img src="/assest/eq.jpg" class="w-full sm:w-24 h-48 sm:h-24 rounded-xl object-cover">
+                <div class="flex-1">
+                    <h4 class="font-bold text-lg">cyclorama (infinity) wall</h4>
+                    <p class="text-xs text-neutral-dark/60 mb-2">Austin · full day</p>
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <span class="font-bold text-primary text-xl">$799<span class="text-sm font-normal text-neutral-dark/60 ml-1">/day</span></span>
+                        <div class="flex gap-2">
+                            <button class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="w-9 h-9 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Saved item 3 -->
+            <div class="saved-item-card flex flex-col sm:flex-row gap-4 p-4">
+                <img src="/assest/eq2.jpg" class="w-full sm:w-24 h-48 sm:h-24 rounded-xl object-cover">
+                <div class="flex-1">
+                    <h4 class="font-bold text-lg">professional lighting kit</h4>
+                    <p class="text-xs text-neutral-dark/60 mb-2">San Jose</p>
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <span class="font-bold text-primary text-xl">$1,150<span class="text-sm font-normal text-neutral-dark/60 ml-1">/hr</span></span>
+                        <div class="flex gap-2">
+                            <button class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="w-9 h-9 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Saved item 4 -->
+            <div class="saved-item-card flex flex-col sm:flex-row gap-4 p-4">
+                <img src="/assest/main.jpg" class="w-full sm:w-24 h-48 sm:h-24 rounded-xl object-cover">
+                <div class="flex-1">
+                    <h4 class="font-bold text-lg">full day studio pass</h4>
+                    <p class="text-xs text-neutral-dark/60 mb-2">Napa · full day</p>
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <span class="font-bold text-primary text-xl">$2,400<span class="text-sm font-normal text-neutral-dark/60 ml-1">/day</span></span>
+                        <div class="flex gap-2">
+                            <button class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="w-9 h-9 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-7 text-center">
+            <button class="text-primary font-semibold hover:underline">browse more services →</button>
+        </div>
+    </div>
+</div>
 
                 <!-- 4. MESSAGES -->
                 <div id="messages-section" class="dashboard-section hidden">

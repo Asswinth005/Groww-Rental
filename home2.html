@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Groww Rent | High‑End Photography Studio</title>
+    <title>Elite Studio | High‑End Photography Studio</title>
     <link rel="icon" type="asset/jpeg" href="assest/growwpark_logo.jpg">
     <meta name="description" content="Rent a high-end photography studio in the heart of the city. Virtual tours, pro equipment, natural light, and creative community.">
     
@@ -184,7 +184,7 @@
         
         .toggle-btn {
             width: 36px; height: 36px;
-            border-radius: 10px;
+            border-radius: 8px; /* Changed to match other pages */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -253,6 +253,53 @@
         .dark .mobile-auth-icon { border-color:#666666; color:#ffffff; }
         .mobile-auth-icon:hover { background:#5A0E24; color:white; border-color:#5A0E24; }
         .dark .mobile-auth-icon:hover { background:#B24C6B; border-color:#B24C6B; }
+        
+        /* Mobile Auth Buttons - Like Services page */
+        .mobile-auth-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: 0.3s;
+            text-align: center;
+            margin: 0.25rem;
+            border: 1px solid transparent;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+        }
+        .mobile-auth-btn.login {
+            background: transparent;
+            border-color: #D0C9C4;
+            color: #1a1a1a;
+        }
+        .dark .mobile-auth-btn.login {
+            border-color: #666666;
+            color: #ffffff;
+        }
+        .mobile-auth-btn.login:hover {
+            background: #5A0E24;
+            color: white;
+            border-color: #5A0E24;
+        }
+        .dark .mobile-auth-btn.login:hover {
+            background: #B24C6B;
+            color: #1a1a1a;
+            border-color: #B24C6B;
+        }
+        .mobile-auth-btn.signup {
+            background: #5A0E24;
+            color: white;
+        }
+        .dark .mobile-auth-btn.signup {
+            background: #B24C6B;
+            color: #1a1a1a;
+        }
+        .mobile-auth-btn.signup:hover {
+            background: #3F081B;
+        }
+        .dark .mobile-auth-btn.signup:hover {
+            background: #8A3A55;
+        }
         
         .desktop-nav-container { display: flex; align-items: center; gap: 2rem; }
         
@@ -399,14 +446,14 @@
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-neutral-light dark:border-gray-800">
         <div class="container mx-auto px-6">
             <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
+                <!-- Logo - Updated to ELITE STUDIO -->
                 <a href="index.html" class="flex items-center space-x-2 group">
                   <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform duration-300">
                     <i class="fas fa-camera-retro text-white text-lg"></i>
                 </div>
                     <div class="font-display text-2xl font-bold tracking-tight">
-                        <span class="text-neutral-dark dark:text-white">GROWW</span>
-                        <span class="text-primary dark:text-primary-light ml-1">RENT</span>
+                        <span class="text-neutral-dark dark:text-white">ELITE</span>
+                        <span class="text-primary dark:text-primary-light ml-1">STUDIO</span>
                     </div>
                 </a>
 
@@ -439,9 +486,15 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="register.html" class="auth-icon-btn" title="Login / Register">
-                            <i class="fas fa-user"></i>
-                        </a>
+                        <!-- Desktop Auth Icons - Two separate icons -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <a href="login.html" class="auth-icon-btn" title="Login">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </a>
+                            <a href="signup.html" class="auth-icon-btn" title="Sign Up">
+                                <i class="fas fa-user-plus"></i>
+                            </a>
+                        </div>
                     </div>
                     <div class="flex gap-2 ml-4 desktop-toggle-group">
                         <button id="theme-toggle" class="toggle-btn" title="Toggle theme"><i class="fas fa-moon"></i><i class="fas fa-sun hidden"></i></button>
@@ -457,7 +510,7 @@
         </div>
     </nav>
     
-    <!-- Mobile Menu - placed OUTSIDE nav but INSIDE body -->
+    <!-- Mobile Menu - Updated with Login/Sign Up buttons -->
     <div id="mobile-menu" class="mobile-menu xl:hidden fixed top-20 left-0 right-0 z-40 bg-white dark:bg-dark-card shadow-lg">
         <div class="container mx-auto px-6">
             <div class="mobile-dropdown">
@@ -486,10 +539,10 @@
                     <a href="client.html" class="mobile-dropdown-item"><i class="fas fa-user mr-2"></i>Client</a>
                 </div>
             </div>
-            <div class="flex justify-center p-6">
-                <a href="register.html" class="mobile-auth-icon">
-                    <i class="fas fa-user text-xl"></i>
-                </a>
+            <!-- Mobile Auth Buttons - Updated to Login and Sign Up buttons -->
+            <div class="flex flex-col sm:flex-row gap-3 p-6">
+                <a href="login.html" class="mobile-auth-btn login flex-1 text-center">Login</a>
+                <a href="signup.html" class="mobile-auth-btn signup flex-1 text-center">Sign Up</a>
             </div>
             <div class="flex justify-center gap-3 p-6 border-t border-gray-200 dark:border-gray-800">
                 <button id="theme-toggle-mobile" class="toggle-btn"><i class="fas fa-moon"></i><i class="fas fa-sun hidden"></i></button>
@@ -740,7 +793,7 @@
                 <div class="text-center md:text-left">
                     <div class="flex items-center justify-center md:justify-start gap-2 mb-6">
                     <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center"><i class="fas fa-camera-retro text-white text-lg"></i></div>
-                        <span class="font-display text-2xl font-bold"><span class="text-neutral-dark dark:text-white">GROWW</span><span class="text-primary dark:text-primary-light ml-1">RENT</span></span>
+                        <span class="font-display text-2xl font-bold"><span class="text-neutral-dark dark:text-white">ELITE</span><span class="text-primary dark:text-primary-light ml-1">STUDIO</span></span>
                     </div>
                     <p class="text-base opacity-80 mb-6 text-neutral-dark/80 dark:text-gray-300 font-alt">Premier photography studio in NYC. Bright, versatile, fully equipped.</p>
                     <div class="flex justify-center md:justify-start gap-4">
@@ -773,12 +826,12 @@
                     <ul class="space-y-3 text-base font-alt">
                         <li class="flex items-center justify-center md:justify-start gap-2 text-neutral-dark/80 dark:text-gray-300"><i class="fas fa-map-marker-alt text-primary dark:text-primary-light"></i><span>451 W 15th St, NYC</span></li>
                         <li class="flex items-center justify-center md:justify-start gap-2 text-neutral-dark/80 dark:text-gray-300"><i class="fas fa-phone-alt text-primary dark:text-primary-light"></i><span>+1 (212) 555-7890</span></li>
-                        <li class="flex items-center justify-center md:justify-start gap-2 text-neutral-dark/80 dark:text-gray-300"><i class="fas fa-envelope text-primary dark:text-primary-light"></i><span>book@groww.com</span></li>
+                        <li class="flex items-center justify-center md:justify-start gap-2 text-neutral-dark/80 dark:text-gray-300"><i class="fas fa-envelope text-primary dark:text-primary-light"></i><span>book@elitestudio.com</span></li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-primary/10 dark:border-gray-700 mt-12 pt-8 text-center">
-                <p class="text-sm opacity-70 text-neutral-dark/70 dark:text-gray-400">© 2026 Groww Rent. All rights reserved.</p>
+                <p class="text-sm opacity-70 text-neutral-dark/70 dark:text-gray-400">© 2026 Elite Studio. All rights reserved.</p>
             </div>
         </div>
     </footer>

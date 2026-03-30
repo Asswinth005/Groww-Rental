@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Studio · admin dashboard</title>
+    <title>ELITE STUDIO · admin dashboard</title>
 <!-- Favicon - Using Font Awesome camera-retro icon -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23586C89' d='M220.6 121.2L271.1 96 448 96v96h48l0-144c0-26.5-21.5-48-48-48l-208 0c-12.4 0-24.1 4.8-32.9 13.3L131.5 48 48 48C21.5 48 0 69.5 0 96l0 288c0 26.5 21.5 48 48 48l192 0 0-48-192 0 0-288 60.3 0c5.5 0 10.8-2.2 14.7-6.1l25.6-25.6zM368 400c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80zm0-208c-70.7 0-128 57.3-128 128s57.3 128 128 128 128-57.3 128-128-57.3-128-128-128z'/></svg>">
     <!-- Tailwind CSS -->
@@ -132,6 +132,84 @@
         .toggle-btn.active { background: #5A0E24; color: white; }
         .dark .toggle-btn.active { background: #B24C6B; }
         
+        /* profile icon in header */
+        .profile-icon-header {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #5A0E24;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .dark .profile-icon-header {
+            background: #B24C6B;
+            color: white;
+        }
+        .profile-icon-header:hover {
+            transform: scale(1.05);
+            border-color: #5A0E24;
+            box-shadow: 0 0 0 2px rgba(90,14,36,0.2);
+        }
+        .dark .profile-icon-header:hover {
+            border-color: #B24C6B;
+            box-shadow: 0 0 0 2px rgba(178,76,107,0.3);
+        }
+        
+        /* dropdown menu for profile */
+        .profile-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.75rem;
+            min-width: 200px;
+            background: white;
+            border-radius: 20px;
+            padding: 0.5rem 0;
+            box-shadow: 0 20px 40px rgba(90,14,36,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid rgba(90,14,36,0.1);
+        }
+        .dark .profile-dropdown {
+            background: #1e1e1e;
+            border-color: #404040;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .profile-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            color: #1a1a1a;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .dark .dropdown-item { color: #ffffff; }
+        .dropdown-item:hover {
+            background: rgba(90,14,36,0.08);
+            color: #5A0E24;
+        }
+        .dark .dropdown-item:hover { background: rgba(178,76,107,0.2); color: #B24C6B; }
+        .dropdown-item i { margin-right: 0.75rem; width: 20px; color: #5A0E24; }
+        .dark .dropdown-item i { color: #B24C6B; }
+        
         /* status badges */
         .status-badge {
             display: inline-flex;
@@ -187,7 +265,7 @@
         }
         .admin-btn:hover { background: #3F081B; transform: translateY(-3px); box-shadow: 0 12px 28px rgba(90,14,36,0.3); }
         
-        /* logout button (matches client page) */
+        /* logout button */
         .logout-btn {
             display: flex;
             align-items: center;
@@ -226,13 +304,6 @@
         [dir="rtl"] .ml-2 { margin-left: 0; margin-right: 0.5rem; }
         [dir="rtl"] .mr-2 { margin-right: 0; margin-left: 0.5rem; }
         
-        /* Logo text - force single line */
-        .logo-text {
-            white-space: nowrap;
-            display: inline-flex;
-            align-items: center;
-        }
-        
         /* Sticky header */
         .sticky-header {
             position: sticky;
@@ -249,13 +320,6 @@
             background-color: #0a0a0a;
             border-bottom: 1px solid #333;
         }
-        /* ensure content doesn't hide behind sticky */
-        .main-content-offset {
-            scroll-margin-top: 80px;
-        }
-        body {
-            padding-top: 0;
-        }
         
         /* cancel button */
         .cancel-logout {
@@ -271,38 +335,71 @@
         .cancel-logout:hover { background: #5A0E24; color: white; }
         .dark .cancel-logout { border-color: #B24C6B; color: #B24C6B; }
         .dark .cancel-logout:hover { background: #B24C6B; color: white; }
+        
+        /* Responsive */
+        @media (max-width: 640px) {
+            .dashboard-card {
+                padding: 1.25rem;
+            }
+            .stat-card {
+                padding: 1rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-bg-warm dark:bg-dark-bg p-4 sm:p-6 md:p-8">
 
-    <!-- ========== STICKY HEADER NAV ========== (ELITE STUDIO) -->
+    <!-- ========== STICKY HEADER NAV WITH PROFILE ICON ========== -->
     <div class="sticky-header -mt-4 -mx-4 sm:-mt-6 sm:-mx-6 md:-mt-8 md:-mx-8 px-4 sm:px-6 md:px-8">
         <div class="flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-2 rtl:space-x-reverse group">
                 <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform flex-shrink-0">
                     <i class="fas fa-camera-retro text-white text-lg"></i>
                 </div>
-                 <div class="font-display text-2xl font-bold tracking-tight">
+                <div class="font-display text-2xl font-bold tracking-tight">
                     <span class="text-neutral-dark dark:text-white">ELITE</span>
                     <span class="text-primary dark:text-primary-light ml-1">STUDIO</span>
                 </div>
             </a>
+            
             <div class="flex items-center gap-3 flex-shrink-0">
                 <button id="theme-toggle" class="toggle-btn" title="Theme"><i class="fas fa-moon"></i><i class="fas fa-sun hidden"></i></button>
                 <button id="rtl-toggle" class="toggle-btn" title="RTL/LTR">⇄</button>
+                
+                <!-- Profile Icon with Dropdown -->
+                <div class="relative">
+                    <div id="profile-icon" class="profile-icon-header" title="Profile">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div id="profile-dropdown" class="profile-dropdown">
+                        <div class="dropdown-item" onclick="window.location.href='profile.html'">
+                            <i class="fas fa-user-circle"></i>
+                            <span>My Profile</span>
+                        </div>
+                        <div class="dropdown-item" onclick="window.location.href='settings.html'">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </div>
+                        <div class="dropdown-item" onclick="window.location.href='login.html'">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Dashboard title (ELITE) -->
+    <!-- Dashboard title with welcoming sentence -->
     <div class="mb-10">
-        <h1 class="text-2xl md:text-2xl font-display font-bold dark:text-white">Admin <span class="text-primary dark:text-primary-light">Dashboard</span></h1>
-<p class="text-neutral-dark/50 dark:text-gray-400 mt-1 text-xs">ELITE STUDIO · manage studio, equipment, bookings & community</p>    </div>
+        <h1 class="text-2xl md:text-2xl font-display font-bold dark:text-white">Welcome back, <span class="text-primary dark:text-primary-light">Alex</span> 👋</h1>
+        <p class="text-neutral-dark/60 dark:text-gray-400 mt-2 text-sm">Great to see you again. Here's what's happening at ELITE STUDIO today.</p>
+    </div>
 
     <!-- MAIN GRID: sidebar + content -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
-        <!-- SIDEBAR (8 items – added logout) -->
+        <!-- SIDEBAR (8 items) -->
         <div class="lg:col-span-3">
             <div class="dashboard-card p-6">
                 <div class="flex flex-col space-y-1">
@@ -313,8 +410,6 @@
                     <div class="sidebar-item" data-section="messages"><i class="fas fa-envelope w-6"></i><span class="ml-3">Inbox</span><span class="ml-auto bg-primary text-white text-xs px-2 py-1 rounded-full font-bold">5</span></div>
                     <div class="sidebar-item" data-section="settings"><i class="fas fa-cog w-6"></i><span class="ml-3">Settings</span></div>
                     <div class="sidebar-item" data-section="reports"><i class="fas fa-chart-line w-6"></i><span class="ml-3">Reports</span></div>
-                    <!-- NEW LOGOUT ITEM (like client page) -->
-                    <div class="sidebar-item" data-section="logout"><i class="fas fa-sign-out-alt w-6"></i><span class="ml-3">Logout</span></div>
                 </div>
                 <!-- admin profile card -->
                 <div class="mt-8 pt-6 border-t border-primary/10 dark:border-gray-700">
@@ -330,7 +425,7 @@
             </div>
         </div>
 
-        <!-- CONTENT PANELS (8 sections – added logout) -->
+        <!-- CONTENT PANELS (8 sections) -->
         <div class="lg:col-span-9 space-y-6">
 
             <!-- 1. OVERVIEW -->
@@ -382,7 +477,8 @@
                     </div>
                     <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
                         <table class="w-full min-w-[600px] sm:min-w-0">
-                            <thead class="table-header"><tr><th class="text-left p-3">user</th><th class="text-left p-3">role</th><th class="text-left p-3">status</th><th class="text-left p-3 hidden md:table-cell">joined</th><th class="text-left p-3">action</th></tr></thead>
+                            <thead class="table-header"><tr><th class="text-left p-3">user</th><th class="text-left p-3">role</th><th class="text-left p-3">status</th><th class="text-left p-3 hidden md:table-cell">joined</th><th class="text-left p-3">action</th></tr>
+                            </thead>
                             <tbody>
                                 <tr class="table-row"><td class="p-3"><div><p class="font-semibold">James Carter</p><span class="text-xs text-neutral-dark/60">james@edit.com</span></div></td><td class="p-3">editor</td><td class="p-3"><span class="status-badge status-active">active</span></td><td class="p-3 hidden md:table-cell">jan 2026</td><td class="p-3"><button class="text-primary text-sm hover:underline">manage</button></td></tr>
                                 <tr class="table-row"><td class="p-3"><div><p class="font-semibold">Lena Park</p><span class="text-xs text-neutral-dark/60">lena@studio.kr</span></div></td><td class="p-3">photographer</td><td class="p-3"><span class="status-badge status-active">active</span></td><td class="p-3 hidden md:table-cell">feb 2026</td><td class="p-3"><button class="text-primary text-sm hover:underline">manage</button></td></tr>
@@ -422,36 +518,12 @@
                     <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
                         <table class="w-full min-w-[600px] sm:min-w-0">
                             <thead class="table-header">
-                                <tr>
-                                    <th class="p-3 text-left">ID</th>
-                                    <th class="p-3 text-left">customer</th>
-                                    <th class="p-3 text-left hidden sm:table-cell">service</th>
-                                    <th class="p-3 text-left">amount</th>
-                                    <th class="p-3 text-left">status</th>
-                                </tr>
+                                <tr><th class="p-3 text-left">ID</th><th class="p-3 text-left">customer</th><th class="p-3 text-left hidden sm:table-cell">service</th><th class="p-3 text-left">amount</th><th class="p-3 text-left">status</th></tr>
                             </thead>
                             <tbody>
-                                <tr class="table-row">
-                                    <td class="p-3">#GW-102</td>
-                                    <td class="p-3">John Doe</td>
-                                    <td class="p-3 hidden sm:table-cell">full day studio</td>
-                                    <td class="p-3">$850</td>
-                                    <td class="p-3"><span class="status-badge status-active">confirmed</span></td>
-                                </tr>
-                                <tr class="table-row">
-                                    <td class="p-3">#GW-109</td>
-                                    <td class="p-3">Nina K.</td>
-                                    <td class="p-3 hidden sm:table-cell">equipment package</td>
-                                    <td class="p-3">$420</td>
-                                    <td class="p-3"><span class="status-badge status-active">confirmed</span></td>
-                                </tr>
-                                <tr class="table-row">
-                                    <td class="p-3">#GW-115</td>
-                                    <td class="p-3">Marcus V.</td>
-                                    <td class="p-3 hidden sm:table-cell">virtual tour shoot</td>
-                                    <td class="p-3">$1,200</td>
-                                    <td class="p-3"><span class="status-badge status-pending">pending</span></td>
-                                </tr>
+                                <tr class="table-row"><td class="p-3">#GW-102</td><td class="p-3">John Doe</td><td class="p-3 hidden sm:table-cell">full day studio</td><td class="p-3">$850</td><td class="p-3"><span class="status-badge status-active">confirmed</span></td></tr>
+                                <tr class="table-row"><td class="p-3">#GW-109</td><td class="p-3">Nina K.</td><td class="p-3 hidden sm:table-cell">equipment package</td><td class="p-3">$420</td><td class="p-3"><span class="status-badge status-active">confirmed</span></td></tr>
+                                <tr class="table-row"><td class="p-3">#GW-115</td><td class="p-3">Marcus V.</td><td class="p-3 hidden sm:table-cell">virtual tour shoot</td><td class="p-3">$1,200</td><td class="p-3"><span class="status-badge status-pending">pending</span></td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -502,29 +574,23 @@
                 </div>
             </div>
 
-            <!-- 8. LOGOUT SECTION (copied style from client page) -->
-            <div id="logout-section" class="dashboard-section hidden">
-                <div class="dashboard-card text-center py-12">
-                    <div class="w-28 h-28 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-sign-out-alt text-5xl text-primary"></i></div>
-                    <h2 class="text-4xl font-display font-bold mb-4 dark:text-white">logout</h2>
-                    <p class="text-neutral-dark/70 dark:text-gray-400 text-lg max-w-md mx-auto mb-10">are you sure you want to sign out? you'll need to log in again.</p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="login.html" class="logout-btn px-10 py-4 text-base inline-flex items-center justify-center"><i class="fas fa-sign-out-alt mr-2"></i> yes, Logout</a>
-                        <button class="cancel-logout px-10 py-4 border-2 border-primary text-primary rounded-full font-bold hover:bg-primary hover:text-white transition text-base">cancel</button>
-                    </div>
+           
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
+    <div class="mt-12 text-center text-sm text-neutral-dark/50 dark:text-gray-500 border-t border-primary/10 pt-6">© 2026 ELITE STUDIO · admin dashboard</div>
 
-    <!-- JavaScript (updated for logout section and cancel) -->
+    <!-- JavaScript -->
     <script>
         (function() {
-            // theme toggle
+            // Theme toggle
             const themeToggle = document.getElementById('theme-toggle');
             const themeIcon = themeToggle?.querySelector('.fa-moon');
             const themeIconSun = themeToggle?.querySelector('.fa-sun');
+            
             function toggleTheme() {
                 document.documentElement.classList.toggle('dark');
                 const isDark = document.documentElement.classList.contains('dark');
@@ -541,7 +607,7 @@
                 themeToggle?.classList.add('active');
             }
 
-            // rtl
+            // RTL toggle
             const rtlToggle = document.getElementById('rtl-toggle');
             function toggleRTL() {
                 const rtl = document.documentElement.dir === 'rtl';
@@ -557,7 +623,24 @@
                 rtlToggle?.classList.add('active');
             }
 
-            // sections – including logout
+            // Profile dropdown toggle
+            const profileIcon = document.getElementById('profile-icon');
+            const profileDropdown = document.getElementById('profile-dropdown');
+            
+            if (profileIcon && profileDropdown) {
+                profileIcon.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    profileDropdown.classList.toggle('show');
+                });
+                
+                document.addEventListener('click', (e) => {
+                    if (profileIcon && profileDropdown && !profileIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
+                        profileDropdown.classList.remove('show');
+                    }
+                });
+            }
+
+            // Section switching
             const sections = {
                 overview: document.getElementById('overview-section'),
                 users: document.getElementById('users-section'),
@@ -569,8 +652,10 @@
                 logout: document.getElementById('logout-section')
             };
             const sidebarItems = document.querySelectorAll('.sidebar-item');
+            
             function hideAll() { Object.values(sections).forEach(s => s?.classList.add('hidden')); }
             function removeActive() { sidebarItems.forEach(i => i.classList.remove('active')); }
+            
             sidebarItems.forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -588,7 +673,7 @@
                 });
             });
 
-            // cancel logout button: return to overview
+            // Cancel logout button
             const cancelBtn = document.querySelector('.cancel-logout');
             if (cancelBtn) cancelBtn.addEventListener('click', function() {
                 removeActive();
@@ -597,7 +682,7 @@
                 if (sections.overview) sections.overview.classList.remove('hidden');
             });
 
-            // charts (unchanged)
+            // Charts
             if (document.getElementById('bookingsChart')) {
                 const isMobile = window.innerWidth < 640;
                 new Chart(document.getElementById('bookingsChart'), { 
@@ -611,20 +696,14 @@
                             backgroundColor: 'rgba(90,14,36,0.05)', 
                             tension: 0.4, 
                             fill: true,
-                            pointRadius: isMobile ? 2 : 3,
-                            pointHoverRadius: 5,
-                            borderWidth: isMobile ? 1.5 : 2
+                            pointRadius: isMobile ? 2 : 3
                         }] 
                     }, 
                     options: { 
                         responsive: true, 
                         maintainAspectRatio: true,
                         aspectRatio: isMobile ? 1.2 : 1.8,
-                        plugins: { legend: { display: false } },
-                        scales: {
-                            y: { beginAtZero: true, grid: { display: !isMobile }, ticks: { font: { size: isMobile ? 8 : 10 }, maxTicksLimit: isMobile ? 5 : 8 } },
-                            x: { grid: { display: false }, ticks: { font: { size: isMobile ? 8 : 10 } } }
-                        }
+                        plugins: { legend: { display: false } }
                     } 
                 });
                 new Chart(document.getElementById('revenueChart'), { 
@@ -633,31 +712,19 @@
                         labels: ['studio', 'equipment', 'events'], 
                         datasets: [{ 
                             data: [55, 30, 15], 
-                            backgroundColor: ['#5A0E24', '#B24C6B', '#EEEAE6'],
-                            borderWidth: isMobile ? 1 : 2,
-                            borderColor: 'transparent'
+                            backgroundColor: ['#5A0E24', '#B24C6B', '#EEEAE6']
                         }] 
                     }, 
                     options: { 
                         responsive: true, 
                         maintainAspectRatio: true,
                         aspectRatio: isMobile ? 1 : 1.5,
-                        plugins: { 
-                            legend: { 
-                                position: isMobile ? 'bottom' : 'top',
-                                labels: { font: { size: isMobile ? 9 : 11 }, boxWidth: isMobile ? 10 : 12, padding: isMobile ? 8 : 12 } 
-                            } 
-                        },
-                        cutout: isMobile ? '65%' : '60%',
-                        layout: { padding: { bottom: isMobile ? 10 : 0 } }
+                        plugins: { legend: { position: isMobile ? 'bottom' : 'top' } }
                     } 
                 });
             }
 
-            // handle window resize for charts
-            window.addEventListener('resize', function() { location.reload(); });
-
-            // dummy save button
+            // Save button demo
             document.querySelectorAll('.admin-btn').forEach(b => b.addEventListener('click', ()=>alert('saved (demo)')));
         })();
     </script>

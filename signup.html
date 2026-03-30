@@ -252,6 +252,51 @@
             transform: rotate(8deg);
         }
 
+        /* Password eye icon styling - perfectly integrated for signup */
+        .password-eye {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: #5A0E24;
+            font-size: 1.1rem;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 5;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+        }
+        .dark .password-eye {
+            color: #B24C6B;
+        }
+        .password-eye:hover {
+            background: rgba(90,14,36,0.08);
+            transform: translateY(-50%) scale(1.05);
+        }
+        .dark .password-eye:hover {
+            background: rgba(178,76,107,0.15);
+        }
+        /* Ensure password field padding respects eye icon */
+        .password-wrapper .signup-input {
+            padding-right: 3rem;
+        }
+        /* RTL mirror for eye icon */
+        [dir="rtl"] .password-eye {
+            right: auto;
+            left: 1rem;
+        }
+        [dir="rtl"] .password-wrapper .signup-input {
+            padding-left: 3rem;
+            padding-right: 1.2rem;
+        }
+
         /* RTL adjustments */
         [dir="rtl"] .signup-input { padding: 0.85rem 3rem 0.85rem 1.2rem; }
         [dir="rtl"] .input-icon { left: auto; right: 1.1rem; }
@@ -402,22 +447,28 @@
                            class="signup-input text-sm md:text-base">
                 </div>
 
-                <!-- password field -->
-                <div class="relative">
+                <!-- password field WITH EYE ICON -->
+                <div class="relative password-wrapper">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-primary dark:text-primary-light input-icon">
                         <i class="fas fa-lock w-5 text-sm"></i>
                     </span>
-                    <input type="password" name="password" placeholder="Password" required
-                           class="signup-input text-sm md:text-base">
+                    <input type="password" name="password" id="signup-password" placeholder="Password" required
+                           class="signup-input text-sm md:text-base" autocomplete="new-password">
+                    <button type="button" id="toggle-signup-password" class="password-eye" aria-label="Show password">
+                        <i class="far fa-eye-slash" id="signup-password-icon"></i>
+                    </button>
                 </div>
 
-                <!-- confirm password field -->
-                <div class="relative">
+                <!-- confirm password field WITH EYE ICON -->
+                <div class="relative password-wrapper">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-primary dark:text-primary-light input-icon">
                         <i class="fas fa-lock w-5 text-sm"></i>
                     </span>
-                    <input type="password" name="confirm_password" placeholder="Confirm password" required
-                           class="signup-input text-sm md:text-base">
+                    <input type="password" name="confirm_password" id="signup-confirm-password" placeholder="Confirm password" required
+                           class="signup-input text-sm md:text-base" autocomplete="new-password">
+                    <button type="button" id="toggle-confirm-password" class="password-eye" aria-label="Show password">
+                        <i class="far fa-eye-slash" id="confirm-password-icon"></i>
+                    </button>
                 </div>
 
                 <!-- terms and conditions checkbox -->
@@ -460,7 +511,7 @@
         © 2026 ELITE STUDIO · <a href="index.html" class="text-primary dark:text-primary-light hover:underline">Home</a>
     </div>
 
-    <!-- ===== TOGGLE SCRIPT (same as admin) ===== -->
+    <!-- ===== TOGGLE SCRIPT + PASSWORD EYE TOGGLES (ADDED WITHOUT ALTERING OTHER FUNCTIONALITY) ===== -->
     <script>
         (function() {
             // ---------- THEME ----------
@@ -518,6 +569,66 @@
                 });
             }
 
+            // ---------- PASSWORD EYE TOGGLE FOR PASSWORD FIELD ----------
+            const passwordField = document.getElementById('signup-password');
+            const togglePasswordBtn = document.getElementById('toggle-signup-password');
+            const passwordEyeIcon = document.getElementById('signup-password-icon');
+            
+            if (passwordField && togglePasswordBtn && passwordEyeIcon) {
+                togglePasswordBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordField.setAttribute('type', type);
+                    
+                    if (type === 'text') {
+                        passwordEyeIcon.classList.remove('fa-eye-slash');
+                        passwordEyeIcon.classList.add('fa-eye');
+                        togglePasswordBtn.setAttribute('aria-label', 'Hide password');
+                    } else {
+                        passwordEyeIcon.classList.remove('fa-eye');
+                        passwordEyeIcon.classList.add('fa-eye-slash');
+                        togglePasswordBtn.setAttribute('aria-label', 'Show password');
+                    }
+                });
+                
+                togglePasswordBtn.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        togglePasswordBtn.click();
+                    }
+                });
+            }
+
+            // ---------- PASSWORD EYE TOGGLE FOR CONFIRM PASSWORD FIELD ----------
+            const confirmPasswordField = document.getElementById('signup-confirm-password');
+            const toggleConfirmBtn = document.getElementById('toggle-confirm-password');
+            const confirmEyeIcon = document.getElementById('confirm-password-icon');
+            
+            if (confirmPasswordField && toggleConfirmBtn && confirmEyeIcon) {
+                toggleConfirmBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const type = confirmPasswordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                    confirmPasswordField.setAttribute('type', type);
+                    
+                    if (type === 'text') {
+                        confirmEyeIcon.classList.remove('fa-eye-slash');
+                        confirmEyeIcon.classList.add('fa-eye');
+                        toggleConfirmBtn.setAttribute('aria-label', 'Hide password');
+                    } else {
+                        confirmEyeIcon.classList.remove('fa-eye');
+                        confirmEyeIcon.classList.add('fa-eye-slash');
+                        toggleConfirmBtn.setAttribute('aria-label', 'Show password');
+                    }
+                });
+                
+                toggleConfirmBtn.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleConfirmBtn.click();
+                    }
+                });
+            }
+
             // ---------- DEMO ALERTS (only for Terms/Privacy) ----------
             document.querySelectorAll('a[href="#"]').forEach(link => {
                 if (link.textContent.includes('Terms') || link.textContent.includes('Privacy')) {
@@ -528,8 +639,7 @@
                 }
             });
             
-            // optional social buttons demo if added later
-            console.log('Signup page — ELITE STUDIO theme loaded');
+            console.log('Signup page — ELITE STUDIO theme loaded with password visibility toggles for both password fields');
         })();
     </script>
 </body>

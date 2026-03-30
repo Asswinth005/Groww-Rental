@@ -159,6 +159,84 @@
         .toggle-btn.active { background: #5A0E24; color: white; }
         .dark .toggle-btn.active { background: #B24C6B; }
         
+        /* profile icon in header */
+        .profile-icon-header {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #5A0E24;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .dark .profile-icon-header {
+            background: #B24C6B;
+            color: white;
+        }
+        .profile-icon-header:hover {
+            transform: scale(1.05);
+            border-color: #5A0E24;
+            box-shadow: 0 0 0 2px rgba(90,14,36,0.2);
+        }
+        .dark .profile-icon-header:hover {
+            border-color: #B24C6B;
+            box-shadow: 0 0 0 2px rgba(178,76,107,0.3);
+        }
+        
+        /* dropdown menu */
+        .profile-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.75rem;
+            min-width: 200px;
+            background: white;
+            border-radius: 20px;
+            padding: 0.5rem 0;
+            box-shadow: 0 20px 40px rgba(90,14,36,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid rgba(90,14,36,0.1);
+        }
+        .dark .profile-dropdown {
+            background: #1e1e1e;
+            border-color: #404040;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .profile-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            color: #1a1a1a;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .dark .dropdown-item { color: #ffffff; }
+        .dropdown-item:hover {
+            background: rgba(90,14,36,0.08);
+            color: #5A0E24;
+        }
+        .dark .dropdown-item:hover { background: rgba(178,76,107,0.2); color: #B24C6B; }
+        .dropdown-item i { margin-right: 0.75rem; width: 20px; color: #5A0E24; }
+        .dark .dropdown-item i { color: #B24C6B; }
+        
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -245,6 +323,20 @@
         input:checked + .toggle-slider:before { transform: translateX(24px); }
         .dark input:checked + .toggle-slider { background-color: #B24C6B; }
         
+        .cancel-logout {
+            padding: 0.9rem 2rem;
+            border: 2px solid #5A0E24;
+            border-radius: 40px;
+            color: #5A0E24;
+            font-weight: 700;
+            transition: 0.2s;
+            background: transparent;
+            cursor: pointer;
+        }
+        .cancel-logout:hover { background: #5A0E24; color: white; }
+        .dark .cancel-logout { border-color: #B24C6B; color: #B24C6B; }
+        .dark .cancel-logout:hover { background: #B24C6B; color: white; }
+        
         /* RTL */
         [dir="rtl"] .ml-2 { margin-left: 0; margin-right: 0.5rem; }
         [dir="rtl"] .mr-2 { margin-right: 0; margin-left: 0.5rem; }
@@ -256,7 +348,7 @@
 </head>
 <body class="bg-bg-warm dark:bg-dark-bg">
 
-    <!-- STICKY HEADER (logo + toggles) - matching reference style -->
+    <!-- STICKY HEADER (logo + toggles + profile icon) -->
     <div class="sticky-header w-full px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center max-w-full mx-auto">
             <a href="index.html" class="flex items-center space-x-2 group">
@@ -271,25 +363,46 @@
             <div class="flex items-center gap-3">
                 <button id="theme-toggle" class="toggle-btn" title="Theme"><i class="fas fa-moon"></i><i class="fas fa-sun hidden"></i></button>
                 <button id="rtl-toggle" class="toggle-btn" title="RTL/LTR"><i class="fas fa-exchange-alt"></i></button>
+                
+                <!-- Profile Icon with Dropdown -->
+                <div class="relative">
+                    <div id="profile-icon" class="profile-icon-header" title="Profile">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div id="profile-dropdown" class="profile-dropdown">
+                        <div class="dropdown-item" onclick="document.querySelector('.sidebar-item[data-section=\'profile\']')?.click(); document.getElementById('profile-dropdown')?.classList.remove('show');">
+                            <i class="fas fa-user-circle"></i>
+                            <span>My Profile</span>
+                        </div>
+                        <div class="dropdown-item" onclick="document.querySelector('.sidebar-item[data-section=\'settings\']')?.click(); document.getElementById('profile-dropdown')?.classList.remove('show');">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </div>
+                       <div class="dropdown-item" onclick="window.location.href='login.html';">
+    <i class="fas fa-sign-out-alt"></i>
+    <span>Logout</span>
+</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- MAIN SCROLLABLE CONTAINER (full width cards) -->
+    <!-- MAIN SCROLLABLE CONTAINER -->
     <div class="dashboard-container">
         <div class="w-full px-4 sm:px-6 lg:px-8 max-w-full mx-auto">
 
-            <!-- welcome header (full width) -->
+            <!-- welcome header with welcoming sentence -->
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
                 <div>
                     <h1 class="text-2xl md:text-2xl font-display font-bold dark:text-white">
-                        Client <span class="text-primary dark:text-primary-light">Dashboard</span>
+                        Welcome back, <span class="text-primary dark:text-primary-light">Emma</span> 👋
                     </h1>
-                <p class="text-neutral-dark/80 dark:text-gray-400 mt-1 text-xs">manage your bookings, messages & preferences</p>
+                    <p class="text-neutral-dark/70 dark:text-gray-400 mt-1 text-sm">Great to see you again. Here's what's happening at ELITE STUDIO today.</p>
                 </div>
                 <div class="mt-4 md:mt-0 flex items-center gap-4 bg-white dark:bg-dark-card px-5 py-3 rounded-2xl shadow-sm border border-primary/10 dark:border-gray-700">
                     <div class="flex -space-x-2">
-                        <img src="/assest/ren3.jpg" alt="avatar" class="w-12 h-12 rounded-full border-2 border-white dark:border-dark-card object-cover">
+                        <img src="assest/68.jpg" alt="avatar" class="w-12 h-12 rounded-full border-2 border-white dark:border-dark-card object-cover">
                     </div>
                     <div>
                         <p class="font-semibold dark:text-white text-lg">Emma Watson</p>
@@ -298,7 +411,7 @@
                 </div>
             </div>
 
-            <!-- stats cards (full width) -->
+            <!-- stats cards -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-8">
                 <div class="stat-card flex items-center p-5">
                     <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mr-4"><i class="fas fa-suitcase text-primary text-xl"></i></div>
@@ -318,10 +431,10 @@
                 </div>
             </div>
 
-            <!-- main grid: left sidebar + right content (full width) -->
+            <!-- main grid: left sidebar + right content -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-8">
                 
-                <!-- left sidebar (full width card inside) -->
+                <!-- left sidebar -->
                 <div class="lg:col-span-4 xl:col-span-4">
                     <div class="dashboard-card p-6">
                         <div class="flex flex-col space-y-1">
@@ -330,11 +443,10 @@
                             <div class="sidebar-item" data-section="saved"><i class="fas fa-heart w-7"></i><span class="ml-4">Saved items</span></div>
                             <div class="sidebar-item" data-section="messages"><i class="fas fa-envelope w-7"></i><span class="ml-4">Messages</span><span class="ml-auto bg-primary text-white text-xs px-2.5 py-1.5 rounded-full">3</span></div>
                             <div class="sidebar-item" data-section="settings"><i class="fas fa-cog w-7"></i><span class="ml-4">Settings</span></div>
-                            <div class="sidebar-item" data-section="logout"><i class="fas fa-sign-out-alt w-7"></i><span class="ml-4">Logout</span></div>
                         </div>
                         <div class="mt-8 pt-6 border-t border-primary/10 dark:border-gray-700">
                             <div class="flex items-center">
-                                <img src="/assest/ren3.jpg" alt="user" class="w-16 h-16 rounded-full object-cover border-3 border-primary">
+                                <img src="/assest/68.jpg" alt="user" class="w-16 h-16 rounded-full object-cover border-3 border-primary">
                                 <div class="ml-4">
                                     <p class="font-bold dark:text-white text-xl">Emma Watson</p>
                                     <p class="text-sm text-neutral-dark/60 dark:text-gray-400">emma.w@studio.com</p>
@@ -349,7 +461,7 @@
                     </div>
                 </div>
 
-                <!-- right content sections (full width cards) -->
+                <!-- right content sections -->
                 <div class="lg:col-span-8 xl:col-span-8">
                     
                     <!-- PROFILE -->
@@ -358,7 +470,7 @@
                             <h2 class="text-2xl font-display font-bold mb-7 flex items-center"><i class="fas fa-user-circle text-primary mr-3 text-2xl"></i>Profile Management</h2>
                             <div class="grid md:grid-cols-12 gap-8">
                                 <div class="md:col-span-3 flex flex-col items-center">
-                                    <div class="relative"><img src="/assest/ren3.jpg" class="w-32 h-32 rounded-full object-cover border-4 border-primary/30"><button class="absolute bottom-0 right-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-opacity-90 transition shadow-lg"><i class="fas fa-camera"></i></button></div>
+                                    <div class="relative"><img src="/assest/68.jpg" class="w-32 h-32 rounded-full object-cover border-4 border-primary/30"><button class="absolute bottom-0 right-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-opacity-90 transition shadow-lg"><i class="fas fa-camera"></i></button></div>
                                     <p class="mt-4 font-bold text-xl dark:text-white">Emma Watson</p>
                                     <p class="text-sm text-neutral-dark/60 dark:text-gray-400">member 2025</p>
                                     <span class="mt-2 px-4 py-1.5 bg-primary/10 text-primary rounded-full text-xs font-semibold">verified</span>
@@ -422,10 +534,10 @@
                         <div class="dashboard-card">
                             <h2 class="text-2xl font-display font-bold mb-7 flex items-center"><i class="fas fa-heart text-primary mr-3 text-2xl"></i>Saved Items</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <div class="saved-item-card flex flex-col sm:flex-row gap-4 p-4"><img src="/assest/lig.jpg" class="w-full sm:w-24 h-48 sm:h-24 rounded-xl object-cover"><div class="flex-1"><h4 class="font-bold text-lg">natural light studio</h4><p class="text-xs text-neutral-dark/60 mb-2">San Diego · 2hr</p><div class="flex flex-wrap items-center justify-between gap-3"><span class="font-bold text-primary text-xl">$399<span class="text-sm font-normal text-neutral-dark/60 ml-1">/hr</span></span><div class="flex gap-2"><button class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white"><i class="fas fa-shopping-cart"></i></button><button class="w-9 h-9 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white"><i class="fas fa-trash-alt"></i></button></div></div></div></div>
-                                <div class="saved-item-card flex flex-col sm:flex-row gap-4 p-4"><img src="/assest/eq.jpg" class="w-full sm:w-24 h-48 sm:h-24 rounded-xl object-cover"><div class="flex-1"><h4 class="font-bold text-lg">cyclorama (infinity) wall</h4><p class="text-xs text-neutral-dark/60 mb-2">Austin · full day</p><div class="flex flex-wrap items-center justify-between gap-3"><span class="font-bold text-primary text-xl">$799<span class="text-sm font-normal text-neutral-dark/60 ml-1">/day</span></span><div class="flex gap-2"><button class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white"><i class="fas fa-shopping-cart"></i></button><button class="w-9 h-9 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white"><i class="fas fa-trash-alt"></i></button></div></div></div></div>
-                                <div class="saved-item-card flex flex-col sm:flex-row gap-4 p-4"><img src="/assest/eq2.jpg" class="w-full sm:w-24 h-48 sm:h-24 rounded-xl object-cover"><div class="flex-1"><h4 class="font-bold text-lg">professional lighting kit</h4><p class="text-xs text-neutral-dark/60 mb-2">San Jose</p><div class="flex flex-wrap items-center justify-between gap-3"><span class="font-bold text-primary text-xl">$1,150<span class="text-sm font-normal text-neutral-dark/60 ml-1">/hr</span></span><div class="flex gap-2"><button class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white"><i class="fas fa-shopping-cart"></i></button><button class="w-9 h-9 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white"><i class="fas fa-trash-alt"></i></button></div></div></div></div>
-                                <div class="saved-item-card flex flex-col sm:flex-row gap-4 p-4"><img src="/assest/main.jpg" class="w-full sm:w-24 h-48 sm:h-24 rounded-xl object-cover"><div class="flex-1"><h4 class="font-bold text-lg">full day studio pass</h4><p class="text-xs text-neutral-dark/60 mb-2">Napa · full day</p><div class="flex flex-wrap items-center justify-between gap-3"><span class="font-bold text-primary text-xl">$2,400<span class="text-sm font-normal text-neutral-dark/60 ml-1">/day</span></span><div class="flex gap-2"><button class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white"><i class="fas fa-shopping-cart"></i></button><button class="w-9 h-9 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white"><i class="fas fa-trash-alt"></i></button></div></div></div></div>
+                                <div class="saved-item-card flex flex-col sm:flex-row gap-4 p-4"><img src="https://placehold.co/200x150/5A0E24/white?text=Studio" class="w-full sm:w-24 h-48 sm:h-24 rounded-xl object-cover"><div class="flex-1"><h4 class="font-bold text-lg">natural light studio</h4><p class="text-xs text-neutral-dark/60 mb-2">San Diego · 2hr</p><div class="flex flex-wrap items-center justify-between gap-3"><span class="font-bold text-primary text-xl">$399<span class="text-sm font-normal text-neutral-dark/60 ml-1">/hr</span></span><div class="flex gap-2"><button class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white"><i class="fas fa-shopping-cart"></i></button><button class="w-9 h-9 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white"><i class="fas fa-trash-alt"></i></button></div></div></div></div>
+                                <div class="saved-item-card flex flex-col sm:flex-row gap-4 p-4"><img src="https://placehold.co/200x150/B24C6B/white?text=Cyclorama" class="w-full sm:w-24 h-48 sm:h-24 rounded-xl object-cover"><div class="flex-1"><h4 class="font-bold text-lg">cyclorama (infinity) wall</h4><p class="text-xs text-neutral-dark/60 mb-2">Austin · full day</p><div class="flex flex-wrap items-center justify-between gap-3"><span class="font-bold text-primary text-xl">$799<span class="text-sm font-normal text-neutral-dark/60 ml-1">/day</span></span><div class="flex gap-2"><button class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white"><i class="fas fa-shopping-cart"></i></button><button class="w-9 h-9 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white"><i class="fas fa-trash-alt"></i></button></div></div></div></div>
+                                <div class="saved-item-card flex flex-col sm:flex-row gap-4 p-4"><img src="https://placehold.co/200x150/EEEAE6/5A0E24?text=Lighting" class="w-full sm:w-24 h-48 sm:h-24 rounded-xl object-cover"><div class="flex-1"><h4 class="font-bold text-lg">professional lighting kit</h4><p class="text-xs text-neutral-dark/60 mb-2">San Jose</p><div class="flex flex-wrap items-center justify-between gap-3"><span class="font-bold text-primary text-xl">$1,150<span class="text-sm font-normal text-neutral-dark/60 ml-1">/hr</span></span><div class="flex gap-2"><button class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white"><i class="fas fa-shopping-cart"></i></button><button class="w-9 h-9 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white"><i class="fas fa-trash-alt"></i></button></div></div></div></div>
+                                <div class="saved-item-card flex flex-col sm:flex-row gap-4 p-4"><img src="https://placehold.co/200x150/2A2A2A/white?text=Full+Day" class="w-full sm:w-24 h-48 sm:h-24 rounded-xl object-cover"><div class="flex-1"><h4 class="font-bold text-lg">full day studio pass</h4><p class="text-xs text-neutral-dark/60 mb-2">Napa · full day</p><div class="flex flex-wrap items-center justify-between gap-3"><span class="font-bold text-primary text-xl">$2,400<span class="text-sm font-normal text-neutral-dark/60 ml-1">/day</span></span><div class="flex gap-2"><button class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white"><i class="fas fa-shopping-cart"></i></button><button class="w-9 h-9 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white"><i class="fas fa-trash-alt"></i></button></div></div></div></div>
                             </div>
                             <div class="mt-7 text-center"><button class="text-primary font-semibold hover:underline">browse more services →</button></div>
                         </div>
@@ -463,16 +575,7 @@
                         </div>
                     </div>
 
-                    <!-- LOGOUT -->
-                    <div id="logout-section" class="dashboard-section hidden">
-                        <div class="dashboard-card text-center py-12">
-                            <div class="w-28 h-28 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-sign-out-alt text-5xl text-primary"></i></div>
-                            <h2 class="text-4xl font-display font-bold mb-4 dark:text-white">Logout</h2>
-                            <p class="text-neutral-dark/70 dark:text-gray-400 text-lg max-w-md mx-auto mb-10">are you sure you want to sign out? you'll need to log in again.</p>
-                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                                <a href="login.html" class="logout-btn px-10 py-4 text-base inline-flex items-center justify-center"><i class="fas fa-sign-out-alt mr-2"></i> yes, Logout</a>
-                                <button class="cancel-logout px-10 py-4 border-2 border-primary text-primary rounded-full font-bold hover:bg-primary hover:text-white transition text-base">cancel</button>
-                            </div>
+                    
                         </div>
                     </div>
                 </div>
@@ -483,7 +586,7 @@
 
     <script>
         (function() {
-            // theme
+            // theme toggle
             const themeToggle = document.getElementById('theme-toggle');
             const themeIcon = themeToggle?.querySelector('.fa-moon');
             const themeIconSun = themeToggle?.querySelector('.fa-sun');
@@ -503,7 +606,7 @@
                 themeToggle?.classList.add('active');
             }
 
-            // rtl
+            // rtl toggle
             const rtlToggle = document.getElementById('rtl-toggle');
             function toggleRTL() {
                 const rtl = document.documentElement.dir === 'rtl';
@@ -517,6 +620,21 @@
                 document.documentElement.dir = 'rtl';
                 document.documentElement.lang = 'ar';
                 rtlToggle?.classList.add('active');
+            }
+
+            // profile dropdown
+            const profileIcon = document.getElementById('profile-icon');
+            const profileDropdown = document.getElementById('profile-dropdown');
+            if (profileIcon && profileDropdown) {
+                profileIcon.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    profileDropdown.classList.toggle('show');
+                });
+                document.addEventListener('click', (e) => {
+                    if (profileIcon && profileDropdown && !profileIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
+                        profileDropdown.classList.remove('show');
+                    }
+                });
             }
 
             // sections
@@ -536,7 +654,6 @@
                     e.preventDefault();
                     const section = item.dataset.section;
                     if (section === 'logout') {
-                        // direct logout? we show logout section
                         removeActive(); item.classList.add('active');
                         hideAll();
                         if (sections.logout) sections.logout.classList.remove('hidden');

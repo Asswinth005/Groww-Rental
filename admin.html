@@ -2,10 +2,10 @@
 <html lang="en" dir="ltr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>ELITE STUDIO · admin dashboard</title>
-<!-- Favicon - Using Font Awesome camera-retro icon -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23586C89' d='M220.6 121.2L271.1 96 448 96v96h48l0-144c0-26.5-21.5-48-48-48l-208 0c-12.4 0-24.1 4.8-32.9 13.3L131.5 48 48 48C21.5 48 0 69.5 0 96l0 288c0 26.5 21.5 48 48 48l192 0 0-48-192 0 0-288 60.3 0c5.5 0 10.8-2.2 14.7-6.1l25.6-25.6zM368 400c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80zm0-208c-70.7 0-128 57.3-128 128s57.3 128 128 128 128-57.3 128-128-57.3-128-128-128z'/></svg>">
+    <!-- Favicon - Font Awesome camera-retro icon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23586C89' d='M220.6 121.2L271.1 96 448 96v96h48l0-144c0-26.5-21.5-48-48-48l-208 0c-12.4 0-24.1 4.8-32.9 13.3L131.5 48 48 48C21.5 48 0 69.5 0 96l0 288c0 26.5 21.5 48 48 48l192 0 0-48-192 0 0-288 60.3 0c5.5 0 10.8-2.2 14.7-6.1l25.6-25.6zM368 400c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80zm0-208c-70.7 0-128 57.3-128 128s57.3 128 128 128 128-57.3 128-128-57.3-128-128-128z'/></svg>">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -132,7 +132,7 @@
         .toggle-btn.active { background: #5A0E24; color: white; }
         .dark .toggle-btn.active { background: #B24C6B; }
         
-        /* profile icon in header */
+        /* profile icon in header - hidden on mobile, visible on desktop */
         .profile-icon-header {
             width: 42px;
             height: 42px;
@@ -159,6 +159,13 @@
         .dark .profile-icon-header:hover {
             border-color: #B24C6B;
             box-shadow: 0 0 0 2px rgba(178,76,107,0.3);
+        }
+        
+        /* HIDE profile icon on mobile view only */
+        @media (max-width: 1023px) {
+            .desktop-profile-wrapper {
+                display: none !important;
+            }
         }
         
         /* dropdown menu for profile */
@@ -336,20 +343,88 @@
         .dark .cancel-logout { border-color: #B24C6B; color: #B24C6B; }
         .dark .cancel-logout:hover { background: #B24C6B; color: white; }
         
-        /* Responsive */
-        @media (max-width: 640px) {
+        /* Mobile specific styles - logout button at bottom of sidebar */
+        @media (max-width: 1023px) {
             .dashboard-card {
                 padding: 1.25rem;
             }
             .stat-card {
                 padding: 1rem;
             }
+            /* Mobile sidebar logout button container */
+            .mobile-logout-container {
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+                border-top: 1px solid rgba(90,14,36,0.15);
+            }
+            .dark .mobile-logout-container {
+                border-top-color: rgba(178,76,107,0.3);
+            }
+            .mobile-logout-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.75rem;
+                width: 100%;
+                padding: 0.85rem 1rem;
+                border-radius: 100px;
+                background: rgba(90,14,36,0.08);
+                color: #5A0E24;
+                font-weight: 600;
+                transition: all 0.2s ease;
+                cursor: pointer;
+                border: 1px solid rgba(90,14,36,0.2);
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.95rem;
+            }
+            .dark .mobile-logout-btn {
+                background: rgba(178,76,107,0.15);
+                color: #B24C6B;
+                border-color: rgba(178,76,107,0.3);
+            }
+            .mobile-logout-btn:hover {
+                background: #5A0E24;
+                color: white;
+                transform: translateY(-2px);
+            }
+            .dark .mobile-logout-btn:hover {
+                background: #B24C6B;
+                color: white;
+            }
+            .mobile-logout-btn i {
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Desktop styles - ensure everything remains unchanged */
+        @media (min-width: 1024px) {
+            .mobile-only-logout {
+                display: none;
+            }
+        }
+        
+        /* Ensure mobile logout is hidden on desktop */
+        .mobile-only-logout {
+            display: none;
+        }
+        @media (max-width: 1023px) {
+            .mobile-only-logout {
+                display: block;
+            }
+        }
+        
+        /* Adjust sidebar items spacing for mobile */
+        @media (max-width: 1023px) {
+            .sidebar-item {
+                padding: 0.85rem 1.25rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body class="bg-bg-warm dark:bg-dark-bg p-4 sm:p-6 md:p-8">
 
-    <!-- ========== STICKY HEADER NAV WITH PROFILE ICON ========== -->
+    <!-- ========== STICKY HEADER NAV WITH PROFILE ICON (hidden on mobile) ========== -->
     <div class="sticky-header -mt-4 -mx-4 sm:-mt-6 sm:-mx-6 md:-mt-8 md:-mx-8 px-4 sm:px-6 md:px-8">
         <div class="flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-2 rtl:space-x-reverse group">
@@ -366,8 +441,8 @@
                 <button id="theme-toggle" class="toggle-btn" title="Theme"><i class="fas fa-moon"></i><i class="fas fa-sun hidden"></i></button>
                 <button id="rtl-toggle" class="toggle-btn" title="RTL/LTR">⇄</button>
                 
-                <!-- Profile Icon with Dropdown -->
-                <div class="relative">
+                <!-- Profile Icon with Dropdown - HIDDEN ON MOBILE (desktop only) -->
+                <div class="relative desktop-profile-wrapper">
                     <div id="profile-icon" class="profile-icon-header" title="Profile">
                         <i class="fas fa-user-circle"></i>
                     </div>
@@ -399,10 +474,10 @@
     <!-- MAIN GRID: sidebar + content -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
-        <!-- SIDEBAR (8 items) -->
+        <!-- SIDEBAR (8 items) - with mobile logout button at bottom -->
         <div class="lg:col-span-3">
-            <div class="dashboard-card p-6">
-                <div class="flex flex-col space-y-1">
+            <div class="dashboard-card p-6 flex flex-col h-full">
+                <div class="flex flex-col space-y-1 flex-grow">
                     <div class="sidebar-item active" data-section="overview"><i class="fas fa-chart-pie w-6"></i><span class="ml-3">Overview</span></div>
                     <div class="sidebar-item" data-section="users"><i class="fas fa-users w-6"></i><span class="ml-3">User management</span></div>
                     <div class="sidebar-item" data-section="content"><i class="fas fa-file-alt w-6"></i><span class="ml-3">Content</span></div>
@@ -411,7 +486,7 @@
                     <div class="sidebar-item" data-section="settings"><i class="fas fa-cog w-6"></i><span class="ml-3">Settings</span></div>
                     <div class="sidebar-item" data-section="reports"><i class="fas fa-chart-line w-6"></i><span class="ml-3">Reports</span></div>
                 </div>
-                <!-- admin profile card -->
+                <!-- admin profile card (desktop only - visible on all, but we keep it) -->
                 <div class="mt-8 pt-6 border-t border-primary/10 dark:border-gray-700">
                     <div class="flex items-center gap-3">
                         <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0"><i class="fas fa-user-tie text-primary text-xl"></i></div>
@@ -422,10 +497,18 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- LOGOUT BUTTON - MOBILE ONLY (appears at bottom of sidebar on mobile devices) -->
+                <div class="mobile-only-logout mobile-logout-container mt-4">
+    <button id="mobile-logout-btn" class="mobile-logout-btn" onclick="window.location.href='login.html'">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+    </button>
+</div>
             </div>
         </div>
 
-        <!-- CONTENT PANELS (8 sections) -->
+        <!-- CONTENT PANELS (8 sections) - unchanged -->
         <div class="lg:col-span-9 space-y-6">
 
             <!-- 1. OVERVIEW -->
@@ -477,8 +560,7 @@
                     </div>
                     <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
                         <table class="w-full min-w-[600px] sm:min-w-0">
-                            <thead class="table-header"><tr><th class="text-left p-3">user</th><th class="text-left p-3">role</th><th class="text-left p-3">status</th><th class="text-left p-3 hidden md:table-cell">joined</th><th class="text-left p-3">action</th></tr>
-                            </thead>
+                            <thead class="table-header"><tr><th class="text-left p-3">user</th><th class="text-left p-3">role</th><th class="text-left p-3">status</th><th class="text-left p-3 hidden md:table-cell">joined</th><th class="text-left p-3">action</th></tr></thead>
                             <tbody>
                                 <tr class="table-row"><td class="p-3"><div><p class="font-semibold">James Carter</p><span class="text-xs text-neutral-dark/60">james@edit.com</span></div></td><td class="p-3">editor</td><td class="p-3"><span class="status-badge status-active">active</span></td><td class="p-3 hidden md:table-cell">jan 2026</td><td class="p-3"><button class="text-primary text-sm hover:underline">manage</button></td></tr>
                                 <tr class="table-row"><td class="p-3"><div><p class="font-semibold">Lena Park</p><span class="text-xs text-neutral-dark/60">lena@studio.kr</span></div></td><td class="p-3">photographer</td><td class="p-3"><span class="status-badge status-active">active</span></td><td class="p-3 hidden md:table-cell">feb 2026</td><td class="p-3"><button class="text-primary text-sm hover:underline">manage</button></td></tr>
@@ -507,19 +589,15 @@
             <div id="orders-section" class="dashboard-section hidden">
                 <div class="dashboard-card">
                     <h2 class="text-2xl font-display font-bold mb-6 flex items-center"><i class="fas fa-shopping-cart text-primary mr-3 text-2xl flex-shrink-0"></i><span>Orders & Bookings</span></h2>
-                    
                     <div class="flex flex-wrap gap-2 mb-4 justify-center sm:justify-start">
                         <button class="px-5 py-2 rounded-full bg-primary text-white whitespace-nowrap">all</button>
                         <button class="px-5 py-2 rounded-full border whitespace-nowrap">confirmed</button>
                         <button class="px-5 py-2 rounded-full border whitespace-nowrap">pending</button>
                         <button class="px-5 py-2 rounded-full border whitespace-nowrap">completed</button>
                     </div>
-                    
                     <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
                         <table class="w-full min-w-[600px] sm:min-w-0">
-                            <thead class="table-header">
-                                <tr><th class="p-3 text-left">ID</th><th class="p-3 text-left">customer</th><th class="p-3 text-left hidden sm:table-cell">service</th><th class="p-3 text-left">amount</th><th class="p-3 text-left">status</th></tr>
-                            </thead>
+                            <thead class="table-header"><tr><th class="p-3 text-left">ID</th><th class="p-3 text-left">customer</th><th class="p-3 text-left hidden sm:table-cell">service</th><th class="p-3 text-left">amount</th><th class="p-3 text-left">status</th></tr></thead>
                             <tbody>
                                 <tr class="table-row"><td class="p-3">#GW-102</td><td class="p-3">John Doe</td><td class="p-3 hidden sm:table-cell">full day studio</td><td class="p-3">$850</td><td class="p-3"><span class="status-badge status-active">confirmed</span></td></tr>
                                 <tr class="table-row"><td class="p-3">#GW-109</td><td class="p-3">Nina K.</td><td class="p-3 hidden sm:table-cell">equipment package</td><td class="p-3">$420</td><td class="p-3"><span class="status-badge status-active">confirmed</span></td></tr>
@@ -535,9 +613,9 @@
                 <div class="dashboard-card">
                     <h2 class="text-2xl font-display font-bold mb-6 flex items-center"><i class="fas fa-envelope text-primary mr-3 text-2xl flex-shrink-0"></i><span>Inbox</span> <span class="ml-4 bg-primary text-white text-sm px-3 py-1 rounded-full">5 unread</span></h2>
                     <div class="space-y-3">
-                        <div class="flex items-start gap-3 p-4 bg-neutral-light/30 rounded-xl"><i class="fas fa-user-circle text-primary text-xl flex-shrink-0"></i><div class="min-w-0"><p class="font-semibold">James Carter</p><p class="text-sm truncate">booking extension request</p><span class="text-xs text-neutral-dark/60">2h ago</span></div></div>
-                        <div class="flex items-start gap-3 p-4 bg-neutral-light/30 rounded-xl"><i class="fas fa-user-circle text-primary text-xl flex-shrink-0"></i><div class="min-w-0"><p class="font-semibold">Lena Park</p><p class="text-sm truncate">portfolio review application</p><span class="text-xs text-neutral-dark/60">yesterday</span></div></div>
-                        <div class="flex items-start gap-3 p-4 bg-neutral-light/30 rounded-xl"><i class="fas fa-user-circle text-primary text-xl flex-shrink-0"></i><div class="min-w-0"><p class="font-semibold">Support</p><p class="text-sm truncate">new ticket #212</p><span class="text-xs text-neutral-dark/60">3d ago</span></div></div>
+                        <div class="flex items-start gap-3 p-4 bg-neutral-light/30 rounded-xl"><i class="fas fa-user-circle text-primary text-xl flex-shrink-0"></i><div><p class="font-semibold">James Carter</p><p class="text-sm truncate">booking extension request</p><span class="text-xs text-neutral-dark/60">2h ago</span></div></div>
+                        <div class="flex items-start gap-3 p-4 bg-neutral-light/30 rounded-xl"><i class="fas fa-user-circle text-primary text-xl flex-shrink-0"></i><div><p class="font-semibold">Lena Park</p><p class="text-sm truncate">portfolio review application</p><span class="text-xs text-neutral-dark/60">yesterday</span></div></div>
+                        <div class="flex items-start gap-3 p-4 bg-neutral-light/30 rounded-xl"><i class="fas fa-user-circle text-primary text-xl flex-shrink-0"></i><div><p class="font-semibold">Support</p><p class="text-sm truncate">new ticket #212</p><span class="text-xs text-neutral-dark/60">3d ago</span></div></div>
                     </div>
                 </div>
             </div>
@@ -571,10 +649,6 @@
                         <div class="flex flex-col sm:flex-row justify-between items-center p-4 bg-neutral-light/30 rounded-xl gap-3"><span>monthly report jan 2026</span><button class="text-primary">download PDF</button></div>
                         <div class="flex flex-col sm:flex-row justify-between items-center p-4 bg-neutral-light/30 rounded-xl gap-3"><span>equipment usage q1</span><button class="text-primary">download CSV</button></div>
                     </div>
-                </div>
-            </div>
-
-           
                 </div>
             </div>
         </div>
@@ -623,7 +697,7 @@
                 rtlToggle?.classList.add('active');
             }
 
-            // Profile dropdown toggle
+            // Profile dropdown toggle (desktop only - but code remains)
             const profileIcon = document.getElementById('profile-icon');
             const profileDropdown = document.getElementById('profile-dropdown');
             
@@ -637,6 +711,15 @@
                     if (profileIcon && profileDropdown && !profileIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
                         profileDropdown.classList.remove('show');
                     }
+                });
+            }
+
+            // Mobile logout button functionality
+            const mobileLogoutBtn = document.getElementById('mobile-logout-btn');
+            if (mobileLogoutBtn) {
+                mobileLogoutBtn.addEventListener('click', () => {
+                    alert('Logout clicked (mobile)');
+                    // window.location.href = 'login.html';
                 });
             }
 

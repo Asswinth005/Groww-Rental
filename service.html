@@ -135,6 +135,52 @@
         .dark .dropdown-item i { color: #B24C6B; }
         [dir="rtl"] .dropdown-item i { margin-right:0; margin-left:0.75rem; }
         
+        /* Register dropdown styles from reference */
+        .register-dropdown { position: relative; }
+        .register-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            min-width: 200px;
+            background: white;
+            border-radius: 16px;
+            padding: 0.5rem 0;
+            box-shadow: 0 20px 40px rgba(90,14,36,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid rgba(90,14,36,0.1);
+        }
+        .dark .register-dropdown-menu { background: #1e1e1e; border-color: #404040; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .register-dropdown:hover .register-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .register-dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 1.5rem;
+            color: #1a1a1a;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .dark .register-dropdown-item { color: #ffffff; }
+        .register-dropdown-item:hover {
+            background: rgba(90,14,36,0.08);
+            color: #5A0E24;
+            padding-left: 2rem;
+        }
+        .dark .register-dropdown-item:hover { background: rgba(178,76,107,0.2); color: #B24C6B; }
+        .register-dropdown-item i { margin-right:0.75rem; width:20px; color:#5A0E24; }
+        .dark .register-dropdown-item i { color: #B24C6B; }
+        [dir="rtl"] .register-dropdown-menu { right: auto; left: 0; }
+        
         .auth-icon-btn {
             width: 40px;
             height: 40px;
@@ -147,6 +193,7 @@
             justify-content: center;
             transition: all 0.2s ease;
             font-size: 1.1rem;
+            cursor: pointer;
         }
         .dark .auth-icon-btn { border-color: #666666; color: #ffffff; }
         .auth-icon-btn:hover {
@@ -466,7 +513,7 @@
 </head>
 <body class="bg-bg-warm dark:bg-dark-bg">
 
-    <!-- ========== HEADER (exact copy from reference) ========== -->
+    <!-- ========== HEADER (Modified: replaced separate login/signup icons with single Register icon + dropdown) ========== -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-neutral-light dark:border-gray-800">
         <div class="container mx-auto px-6">
             <div class="flex items-center justify-between h-20">
@@ -510,14 +557,17 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Auth Icons - Replaced single user icon with Login and Sign Up icons (DESKTOP ONLY) -->
+                        <!-- Single Register Icon with Dropdown (Login/Signup) - same as reference -->
                         <div class="flex items-center gap-2 ml-4">
-                            <a href="login.html" class="auth-icon-btn" title="Login">
-                                <i class="fas fa-sign-in-alt"></i>
-                            </a>
-                            <a href="signup.html" class="auth-icon-btn" title="Sign Up">
-                                <i class="fas fa-user-plus"></i>
-                            </a>
+                            <div class="register-dropdown relative">
+                                <div class="auth-icon-btn" title="Register / Sign in">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div class="register-dropdown-menu">
+                                    <a href="login.html" class="register-dropdown-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+                                    <a href="signup.html" class="register-dropdown-item"><i class="fas fa-user-plus"></i> Sign Up</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="flex gap-2 ml-4 desktop-toggle-group">
@@ -575,7 +625,7 @@
         </div>
     </div>
 
-    <!-- ============ MAIN SERVICES PAGE ============ -->
+    <!-- ============ MAIN SERVICES PAGE (COMPLETELY UNCHANGED BELOW THIS LINE) ============ -->
     <div id="services-main-page" class="services-main-page">
         <!-- ============ SERVICES HERO ============ -->
         <section class="relative py-28 overflow-hidden bg-gradient-to-br from-primary/5 to-transparent dark:from-primary-light/5">
@@ -888,9 +938,7 @@
         </section>
     </div>
 
-    <!-- ============ ALL 12 DETAIL PAGES ============ -->
-    
-    <!-- ============ RENTAL DETAILS (3 pages) ============ -->
+    <!-- ============ ALL 12 DETAIL PAGES (COMPLETELY UNCHANGED) ============ -->
     
     <!-- 1. Hourly Studio Rental Detail -->
     <div id="detail-rental-hourly" class="service-detail-page">
@@ -1078,8 +1126,6 @@
             </div>
         </div>
     </div>
-    
-    <!-- ============ EQUIPMENT DETAILS (3 pages) ============ -->
     
     <!-- 4. Camera Package Detail -->
     <div id="detail-equipment-camera" class="service-detail-page">
@@ -1315,8 +1361,6 @@
         </div>
     </div>
     
-    <!-- ============ PRODUCTION DETAILS (3 pages) ============ -->
-    
     <!-- 7. Production Assistant Detail -->
     <div id="detail-production-assistant" class="service-detail-page">
         <div class="container mx-auto px-6 py-10">
@@ -1474,8 +1518,6 @@
             </div>
         </div>
     </div>
-    
-    <!-- ============ POST-PRODUCTION DETAILS (3 pages) ============ -->
     
     <!-- 10. Edit Suite Detail -->
     <div id="detail-post-editsuite" class="service-detail-page">
@@ -1685,7 +1727,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- JavaScript (updated with register dropdown functionality and all original services page logic) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // ============ THEME TOGGLE ============

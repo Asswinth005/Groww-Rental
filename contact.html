@@ -135,6 +135,52 @@
         .dark .dropdown-item i { color: #B24C6B; }
         [dir="rtl"] .dropdown-item i { margin-right:0; margin-left:0.75rem; }
         
+        /* Register dropdown styles from reference */
+        .register-dropdown { position: relative; }
+        .register-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            min-width: 200px;
+            background: white;
+            border-radius: 16px;
+            padding: 0.5rem 0;
+            box-shadow: 0 20px 40px rgba(90,14,36,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid rgba(90,14,36,0.1);
+        }
+        .dark .register-dropdown-menu { background: #1e1e1e; border-color: #404040; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .register-dropdown:hover .register-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .register-dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 1.5rem;
+            color: #1a1a1a;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .dark .register-dropdown-item { color: #ffffff; }
+        .register-dropdown-item:hover {
+            background: rgba(90,14,36,0.08);
+            color: #5A0E24;
+            padding-left: 2rem;
+        }
+        .dark .register-dropdown-item:hover { background: rgba(178,76,107,0.2); color: #B24C6B; }
+        .register-dropdown-item i { margin-right:0.75rem; width:20px; color:#5A0E24; }
+        .dark .register-dropdown-item i { color: #B24C6B; }
+        [dir="rtl"] .register-dropdown-menu { right: auto; left: 0; }
+        
         .auth-icon-btn {
             width: 40px;
             height: 40px;
@@ -147,6 +193,7 @@
             justify-content: center;
             transition: all 0.2s ease;
             font-size: 1.1rem;
+            cursor: pointer;
         }
         .dark .auth-icon-btn { border-color: #666666; color: #ffffff; }
         .auth-icon-btn:hover {
@@ -159,7 +206,7 @@
         
         .toggle-btn {
             width: 36px; height: 36px;
-            border-radius: 8px; /* Changed to match other pages */
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -292,7 +339,7 @@
         }
         .dark footer { background:#0f0f0f; color:#ffffff; border-color:#333333; }
 
-        /* --- Contact page specific styles --- */
+        /* --- Contact page specific styles (unchanged) --- */
         .contact-info-card {
             background: white;
             border-radius: 24px;
@@ -419,7 +466,7 @@
 </head>
 <body class="bg-bg-warm dark:bg-dark-bg">
 
-    <!-- ========== HEADER (exact copy from reference) ========== -->
+    <!-- ========== HEADER (Modified: replaced separate login/signup icons with single Register icon + dropdown, matching reference) ========== -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-neutral-light dark:border-gray-800">
         <div class="container mx-auto px-6">
             <div class="flex items-center justify-between h-20">
@@ -463,14 +510,17 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Desktop Auth Icons - Two separate icons -->
+                        <!-- Single Register Icon with Dropdown (Login/Signup) - same as reference -->
                         <div class="flex items-center gap-2 ml-4">
-                            <a href="login.html" class="auth-icon-btn" title="Login">
-                                <i class="fas fa-sign-in-alt"></i>
-                            </a>
-                            <a href="signup.html" class="auth-icon-btn" title="Sign Up">
-                                <i class="fas fa-user-plus"></i>
-                            </a>
+                            <div class="register-dropdown relative">
+                                <div class="auth-icon-btn" title="Register / Sign in">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div class="register-dropdown-menu">
+                                    <a href="login.html" class="register-dropdown-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+                                    <a href="signup.html" class="register-dropdown-item"><i class="fas fa-user-plus"></i> Sign Up</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="flex gap-2 ml-4 desktop-toggle-group">
@@ -487,7 +537,7 @@
         </div>
     </nav>
     
-    <!-- Mobile Menu - Updated with Login/Sign Up buttons -->
+    <!-- Mobile Menu - Updated with Login/Sign Up buttons (unchanged) -->
     <div id="mobile-menu" class="mobile-menu xl:hidden fixed top-20 left-0 right-0 z-40 bg-white dark:bg-dark-card shadow-lg">
         <div class="container mx-auto px-6">
             <div class="mobile-dropdown">
@@ -505,7 +555,7 @@
             <a href="service.html" class="mobile-menu-item">Services</a>
             <a href="portfolios.html" class="mobile-menu-item">Portfolios</a>
             <a href="book.html" class="mobile-menu-item">Book Now</a>
-            <a href="contact.html" class="mobile-menu-item"style="background: rgba(90,14,36,0.1); color: #5A0E24; border-left: 3px solid #5A0E24; font-weight: 600;">Contact</a>
+            <a href="contact.html" class="mobile-menu-item" style="background: rgba(90,14,36,0.1); color: #5A0E24; border-left: 3px solid #5A0E24; font-weight: 600;">Contact</a>
             <div class="mobile-dropdown">
                 <button class="mobile-dropdown-btn flex items-center justify-between w-full mobile-menu-item">
                     <span>Dashboard</span>
@@ -528,7 +578,7 @@
         </div>
     </div>
 
-    <!-- ========== CONTACT PAGE CONTENT ========== -->
+    <!-- ========== CONTACT PAGE CONTENT (completely unchanged from original) ========== -->
     <main class="mt-20">
         
         <!-- HERO SECTION -->
@@ -866,7 +916,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- JavaScript (updated with register dropdown functionality and all original contact page logic) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // ============ THEME TOGGLE ============

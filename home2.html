@@ -160,6 +160,52 @@
         .dark .dropdown-item i { color: #B24C6B; }
         [dir="rtl"] .dropdown-item i { margin-right:0; margin-left:0.75rem; }
         
+        /* Register dropdown styles from reference */
+        .register-dropdown { position: relative; }
+        .register-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            min-width: 200px;
+            background: white;
+            border-radius: 16px;
+            padding: 0.5rem 0;
+            box-shadow: 0 20px 40px rgba(90,14,36,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid rgba(90,14,36,0.1);
+        }
+        .dark .register-dropdown-menu { background: #1e1e1e; border-color: #404040; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .register-dropdown:hover .register-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .register-dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 1.5rem;
+            color: #1a1a1a;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .dark .register-dropdown-item { color: #ffffff; }
+        .register-dropdown-item:hover {
+            background: rgba(90,14,36,0.08);
+            color: #5A0E24;
+            padding-left: 2rem;
+        }
+        .dark .register-dropdown-item:hover { background: rgba(178,76,107,0.2); color: #B24C6B; }
+        .register-dropdown-item i { margin-right:0.75rem; width:20px; color:#5A0E24; }
+        .dark .register-dropdown-item i { color: #B24C6B; }
+        [dir="rtl"] .register-dropdown-menu { right: auto; left: 0; }
+        
         .auth-icon-btn {
             width: 40px;
             height: 40px;
@@ -172,6 +218,7 @@
             justify-content: center;
             transition: all 0.2s ease;
             font-size: 1.1rem;
+            cursor: pointer;
         }
         .dark .auth-icon-btn { border-color: #666666; color: #ffffff; }
         .auth-icon-btn:hover {
@@ -184,7 +231,7 @@
         
         .toggle-btn {
             width: 36px; height: 36px;
-            border-radius: 8px; /* Changed to match other pages */
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -442,7 +489,7 @@
 </head>
 <body class="bg-bg-warm dark:bg-dark-bg">
 
-    <!-- ========== HEADER ========== -->
+    <!-- ========== HEADER (Modified: replaced separate login/signup icons with single Register icon + dropdown, matching reference) ========== -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-neutral-light dark:border-gray-800">
         <div class="container mx-auto px-6">
             <div class="flex items-center justify-between h-20">
@@ -486,14 +533,17 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Desktop Auth Icons - Two separate icons -->
+                        <!-- Single Register Icon with Dropdown (Login/Signup) - same as reference -->
                         <div class="flex items-center gap-2 ml-4">
-                            <a href="login.html" class="auth-icon-btn" title="Login">
-                                <i class="fas fa-sign-in-alt"></i>
-                            </a>
-                            <a href="signup.html" class="auth-icon-btn" title="Sign Up">
-                                <i class="fas fa-user-plus"></i>
-                            </a>
+                            <div class="register-dropdown relative">
+                                <div class="auth-icon-btn" title="Register / Sign in">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div class="register-dropdown-menu">
+                                    <a href="login.html" class="register-dropdown-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+                                    <a href="signup.html" class="register-dropdown-item"><i class="fas fa-user-plus"></i> Sign Up</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="flex gap-2 ml-4 desktop-toggle-group">
@@ -510,7 +560,7 @@
         </div>
     </nav>
     
-    <!-- Mobile Menu - Updated with Login/Sign Up buttons -->
+    <!-- Mobile Menu - Updated with Login/Sign Up buttons (unchanged) -->
     <div id="mobile-menu" class="mobile-menu xl:hidden fixed top-20 left-0 right-0 z-40 bg-white dark:bg-dark-card shadow-lg">
         <div class="container mx-auto px-6">
             <div class="mobile-dropdown">
@@ -551,7 +601,7 @@
         </div>
     </div>
 
-    <!-- ========== HERO ========== -->
+    <!-- ========== HERO (unchanged) ========== -->
     <section class="pt-40 pb-20 md:pt-48 md:pb-32 bg-bg-warm dark:bg-dark-bg overflow-hidden">
         <div class="container mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -577,7 +627,7 @@
         </div>
     </section>
 
-    <!-- ========== STUDIO FEATURES ========== -->
+    <!-- ========== STUDIO FEATURES (unchanged) ========== -->
     <section class="py-28 bg-white dark:bg-dark-card">
         <div class="container mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
@@ -605,10 +655,9 @@
         </div>
     </section>
 
-   <!-- ========== ALTERNATIVE EQUIPMENT SECTION: PROFESSIONAL KIT INCLUDED ========== -->
+   <!-- ========== ALTERNATIVE EQUIPMENT SECTION: PROFESSIONAL KIT INCLUDED (unchanged) ========== -->
 <section class="py-28 bg-white dark:bg-dark-card">
     <div class="container mx-auto px-6">
-        <!-- Section header with left alignment option (more editorial) -->
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
             <div>
                 <span class="text-primary dark:text-primary-light font-bold tracking-[0.3em] uppercase text-sm">"the gear locker"</span>
@@ -617,9 +666,7 @@
             <p class="text-lg text-neutral-dark/70 dark:text-gray-300 max-w-md mt-4 md:mt-0 font-alt">Travel light – we provide cinema-grade equipment with every booking. No hidden fees, just creative freedom.</p>
         </div>
 
-        <!-- Hero equipment showcase - large feature card -->
         <div class="grid lg:grid-cols-3 gap-8 mb-12">
-            <!-- Main featured equipment (span 2 columns) -->
             <div class="lg:col-span-2 relative rounded-4xl overflow-hidden bg-gradient-to-br from-primary/5 to-primary/10 dark:from-primary-light/5 dark:to-primary-light/10 border-2 border-gray-100 dark:border-gray-700 p-8 lg:p-10">
                 <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 dark:bg-primary-light/5 rounded-full blur-3xl"></div>
                 <div class="relative z-10">
@@ -644,7 +691,6 @@
                 </div>
             </div>
 
-            <!-- Right side - quick stats panel -->
             <div class="bg-bg-warm dark:bg-gray-800 rounded-4xl p-8 border-2 border-gray-100 dark:border-gray-700">
                 <div class="text-center mb-8">
                     <span class="text-6xl font-display font-bold text-primary dark:text-primary-light">35+</span>
@@ -671,9 +717,7 @@
             </div>
         </div>
 
-        <!-- Secondary equipment grid - 4 cards in a row -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-            <!-- Card 1: Profoto -->
             <div class="bg-bg-warm dark:bg-gray-800 rounded-3xl p-6 hover:shadow-xl transition border border-gray-200 dark:border-gray-700 group">
                 <div class="w-14 h-14 bg-primary/10 dark:bg-primary-light/20 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition"><i class="fas fa-bolt text-primary dark:text-primary-light text-2xl"></i></div>
                 <h3 class="text-xl font-display font-bold mb-1 text-neutral-dark dark:text-white">Profoto D3</h3>
@@ -684,7 +728,6 @@
                 </div>
             </div>
             
-            <!-- Card 2: Aputure -->
             <div class="bg-bg-warm dark:bg-gray-800 rounded-3xl p-6 hover:shadow-xl transition border border-gray-200 dark:border-gray-700 group">
                 <div class="w-14 h-14 bg-primary/10 dark:bg-primary-light/20 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition"><i class="fas fa-video text-primary dark:text-primary-light text-2xl"></i></div>
                 <h3 class="text-xl font-display font-bold mb-1 text-neutral-dark dark:text-white">Aputure LS 600d</h3>
@@ -695,7 +738,6 @@
                 </div>
             </div>
             
-            <!-- Card 3: Grip -->
             <div class="bg-bg-warm dark:bg-gray-800 rounded-3xl p-6 hover:shadow-xl transition border border-gray-200 dark:border-gray-700 group">
                 <div class="w-14 h-14 bg-primary/10 dark:bg-primary-light/20 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition"><i class="fas fa-tools text-primary dark:text-primary-light text-2xl"></i></div>
                 <h3 class="text-xl font-display font-bold mb-1 text-neutral-dark dark:text-white">Grip package</h3>
@@ -706,7 +748,6 @@
                 </div>
             </div>
             
-            <!-- Card 4: ARRI -->
             <div class="bg-bg-warm dark:bg-gray-800 rounded-3xl p-6 hover:shadow-xl transition border border-gray-200 dark:border-gray-700 group">
                 <div class="w-14 h-14 bg-primary/10 dark:bg-primary-light/20 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition"><i class="fas fa-camera text-primary dark:text-primary-light text-2xl"></i></div>
                 <h3 class="text-xl font-display font-bold mb-1 text-neutral-dark dark:text-white">ARRI Alexa</h3>
@@ -718,7 +759,6 @@
             </div>
         </div>
 
-        <!-- Bottom CTA with equipment highlights -->
         <div class="mt-16 flex flex-col md:flex-row items-center justify-between bg-primary/5 dark:bg-gray-800 rounded-4xl p-8 border border-primary/10 dark:border-gray-700">
             <div class="flex items-center gap-4 mb-6 md:mb-0">
                 <div class="flex -space-x-3">
@@ -736,7 +776,7 @@
     </div>
 </section>
 
-    <!-- ========== PORTFOLIOS ========== -->
+    <!-- ========== PORTFOLIOS (unchanged) ========== -->
     <section class="py-28 bg-white dark:bg-dark-card">
         <div class="container mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
@@ -773,7 +813,7 @@
         </div>
     </section>
 
-    <!-- ========== CTA ========== -->
+    <!-- ========== CTA (unchanged) ========== -->
     <section class="py-28 bg-primary dark:bg-primary-light text-white">
         <div class="container mx-auto px-6 text-center">
             <span class="text-white/80 uppercase tracking-[0.3em] text-sm font-bold">"360° preview"</span>
@@ -786,7 +826,7 @@
         </div>
     </section>
 
-    <!-- ========== FOOTER ========== -->
+    <!-- ========== FOOTER (unchanged) ========== -->
     <footer class="py-16 bg-white dark:bg-dark-card border-t-2 border-gray-200 dark:border-gray-800">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -836,7 +876,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- JavaScript (updated with register dropdown functionality and all original home page logic) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Theme Toggle
@@ -959,10 +999,8 @@
                         
                         if (!content) return;
                         
-                        // Check if this dropdown is open
                         const isOpen = content.classList.contains('show');
                         
-                        // Close all dropdowns
                         document.querySelectorAll('.mobile-dropdown-content').forEach(function(c) {
                             c.classList.remove('show');
                         });
@@ -971,7 +1009,6 @@
                             i.style.transform = 'rotate(0deg)';
                         });
                         
-                        // Open this one if it was closed
                         if (!isOpen) {
                             content.classList.add('show');
                             if (icon) {
@@ -981,7 +1018,6 @@
                     });
                 });
                 
-                // Close menu when clicking on links
                 const menuLinks = document.querySelectorAll('.mobile-menu-item, .mobile-dropdown-item');
                 
                 menuLinks.forEach(function(link) {
@@ -1003,7 +1039,6 @@
                     });
                 });
                 
-                // Close when clicking outside
                 document.addEventListener('click', function(e) {
                     if (!e.target.closest('#mobile-menu') && !e.target.closest('#mobile-toggle')) {
                         if (mobileMenu && mobileMenu.classList.contains('open')) {

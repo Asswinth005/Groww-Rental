@@ -19,8 +19,9 @@
     --font-family-alt: 'Source Sans Pro', sans-serif;
 }
 
-/* Fix FontAwesome overriding Tailwind's hidden class */
-.hidden {
+/* Fix FontAwesome overriding Tailwind's hidden class for the toggle button */
+html:not(.dark) .toggle-btn .fa-sun,
+html.dark .toggle-btn .fa-moon {
     display: none !important;
 }
 

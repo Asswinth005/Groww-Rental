@@ -18,3 +18,16 @@
     --font-family-display: 'Cormorant Garamond', serif;
     --font-family-alt: 'Source Sans Pro', sans-serif;
 }
+
+/* Fix FontAwesome overriding Tailwind's hidden class */
+.hidden {
+    display: none !important;
+}
+
+/* Swap the icons so Sun shows in Light mode, Moon shows in Dark mode */
+html:not(.dark) .toggle-btn .fa-moon::before {
+    content: "\f185"; /* Sun */
+}
+html.dark .toggle-btn .fa-sun::before {
+    content: "\f186"; /* Moon */
+}

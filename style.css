@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode for the toggle button */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
     --color-primary: #5A0E24;
     --color-primary-light: #B24C6B;

@@ -1,13 +1,15 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth">
+
 <head>
     <!-- Tailwind CSS (local build) -->
     <link rel="stylesheet" href="output.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, viewport-fit=cover">
     <title>ELITE STUDIO · Sign Up</title>
-<!-- Favicon - Using Font Awesome camera-retro icon -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23586C89' d='M220.6 121.2L271.1 96 448 96v96h48l0-144c0-26.5-21.5-48-48-48l-208 0c-12.4 0-24.1 4.8-32.9 13.3L131.5 48 48 48C21.5 48 0 69.5 0 96l0 288c0 26.5 21.5 48 48 48l192 0 0-48-192 0 0-288 60.3 0c5.5 0 10.8-2.2 14.7-6.1l25.6-25.6zM368 400c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80zm0-208c-70.7 0-128 57.3-128 128s57.3 128 128 128 128-57.3 128-128-57.3-128-128-128z'/></svg>">
+    <!-- Favicon - Using Font Awesome camera-retro icon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23586C89' d='M220.6 121.2L271.1 96 448 96v96h48l0-144c0-26.5-21.5-48-48-48l-208 0c-12.4 0-24.1 4.8-32.9 13.3L131.5 48 48 48C21.5 48 0 69.5 0 96l0 288c0 26.5 21.5 48 48 48l192 0 0-48-192 0 0-288 60.3 0c5.5 0 10.8-2.2 14.7-6.1l25.6-25.6zM368 400c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80zm0-208c-70.7 0-128 57.3-128 128s57.3 128 128 128 128-57.3 128-128-57.3-128-128-128z'/></svg>">
     <!-- Tailwind + your admin theme colors -->
     <script>
         tailwind.config = {
@@ -46,20 +48,26 @@
     <!-- Fonts: Poppins + Cormorant Garamond (same as admin) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         /* ----- FULL SCREEN, NO SCROLL ----- */
-        html, body {
+        html,
+        body {
             height: 100%;
             overflow: hidden;
             margin: 0;
             padding: 0;
         }
+
         body {
-            background-color: #FAF8F6;  /* bg-warm */
-            color: #2A2A2A;              /* neutral-dark */
+            background-color: #FAF8F6;
+            /* bg-warm */
+            color: #2A2A2A;
+            /* neutral-dark */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -67,8 +75,10 @@
             position: relative;
             font-family: 'Poppins', system-ui, sans-serif;
         }
+
         .dark body {
-            background-color: #0a0a0a;    /* dark-bg */
+            background-color: #0a0a0a;
+            /* dark-bg */
             color: #ffffff;
         }
 
@@ -81,69 +91,84 @@
             display: flex;
             gap: 8px;
         }
-        
+
         .toggle-btn {
-            width: 42px; 
-            height: 42px; 
-            border-radius: 50%;            /* round like admin */
-            display: inline-flex; 
-            align-items: center; 
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            /* round like admin */
+            display: inline-flex;
+            align-items: center;
             justify-content: center;
-            background: #E8E2DC;            /* neutral-light variant */
+            background: #E8E2DC;
+            /* neutral-light variant */
             color: #2A2A2A;
-            transition: all 0.2s ease; 
-            border: none; 
+            transition: all 0.2s ease;
+            border: none;
             cursor: pointer;
             font-size: 1.1rem;
         }
-        .dark .toggle-btn { 
-            background: #2a2a2a;            /* dark-surface */
-            color: #e0e0e0; 
+
+        .dark .toggle-btn {
+            background: #2a2a2a;
+            /* dark-surface */
+            color: #e0e0e0;
         }
-        .toggle-btn:hover { 
-            background: #5A0E24;             /* primary */
-            color: white; 
+
+        .toggle-btn:hover {
+            background: #5A0E24;
+            /* primary */
+            color: white;
         }
-        .dark .toggle-btn:hover { 
-            background: #B24C6B;              /* primary-light */
-            color: white; 
+
+        .dark .toggle-btn:hover {
+            background: #B24C6B;
+            /* primary-light */
+            color: white;
         }
-        .toggle-btn.active { 
-            background: #5A0E24; 
-            color: white; 
+
+        .toggle-btn.active {
+            background: #5A0E24;
+            color: white;
         }
-        .dark .toggle-btn.active { 
-            background: #B24C6B; 
-            color: white; 
+
+        .dark .toggle-btn.active {
+            background: #B24C6B;
+            color: white;
         }
 
         /* SIGNUP CARD — using admin dashboard-card style (matches login) */
         .signup-card {
             background: white;
-            border-radius: 32px;                /* matches dashboard-card */
-            padding: 2.2rem 2rem 2rem;
-            box-shadow: 0 8px 28px rgba(90,14,36,0.06);
-            border: 1px solid rgba(90,14,36,0.1);
+            border-radius: 32px;
+            /* matches dashboard-card */
+            padding: 1.5rem 1.8rem 1.5rem;
+            box-shadow: 0 8px 28px rgba(90, 14, 36, 0.06);
+            border: 1px solid rgba(90, 14, 36, 0.1);
             width: 100%;
             max-width: 460px;
             margin: 0 auto;
             transition: all 0.3s ease;
         }
+
         .dark .signup-card {
-            background: #1e1e1e;                 /* dark-card */
+            background: #1e1e1e;
+            /* dark-card */
             border-color: #333;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
+
         .signup-card:hover {
             border-color: #5A0E24;
-            box-shadow: 0 12px 32px rgba(90,14,36,0.12);
+            box-shadow: 0 12px 32px rgba(90, 14, 36, 0.12);
         }
 
         /* input — admin style with icon padding */
         .signup-input {
             width: 100%;
-            padding: 0.85rem 1.2rem 0.85rem 3rem;
-            border-radius: 40px;                  /* admin-input rounded */
+            padding: 0.75rem 1.2rem 0.75rem 3rem;
+            border-radius: 40px;
+            /* admin-input rounded */
             border: 1.5px solid #EEEAE6;
             background: #FAF8F6;
             font-size: 0.95rem;
@@ -151,20 +176,24 @@
             color: #1a1a1a;
             font-family: 'Poppins', sans-serif;
         }
+
         .dark .signup-input {
-            background: #2a2a2a;                   /* dark-surface */
+            background: #2a2a2a;
+            /* dark-surface */
             border-color: #444;
             color: #fff;
         }
+
         .signup-input:focus {
             outline: none;
             border-color: #5A0E24;
             background: white;
-            box-shadow: 0 0 0 4px rgba(90,14,36,0.1);
+            box-shadow: 0 0 0 4px rgba(90, 14, 36, 0.1);
         }
+
         .dark .signup-input:focus {
             border-color: #B24C6B;
-            box-shadow: 0 0 0 4px rgba(178,76,107,0.2);
+            box-shadow: 0 0 0 4px rgba(178, 76, 107, 0.2);
         }
 
         /* adventure btn → admin primary button */
@@ -172,7 +201,7 @@
             background: #5A0E24;
             color: white;
             font-weight: 600;
-            padding: 0.9rem 2.5rem;
+            padding: 0.75rem 2.5rem;
             border-radius: 40px;
             transition: all 0.3s ease;
             border: none;
@@ -184,18 +213,21 @@
             align-items: center;
             justify-content: center;
         }
+
         .admin-btn:hover {
             background: #3F081B;
             transform: translateY(-3px);
-            box-shadow: 0 12px 28px rgba(90,14,36,0.3);
+            box-shadow: 0 12px 28px rgba(90, 14, 36, 0.3);
         }
+
         .dark .admin-btn {
             background: #B24C6B;
             color: white;
         }
+
         .dark .admin-btn:hover {
             background: #8A3A55;
-            box-shadow: 0 12px 28px rgba(178,76,107,0.3);
+            box-shadow: 0 12px 28px rgba(178, 76, 107, 0.3);
         }
 
         /* social login buttons — side by side with admin styling */
@@ -204,7 +236,7 @@
             gap: 1rem;
             width: 100%;
         }
-        
+
         .social-btn {
             flex: 1;
             padding: 0.8rem 0.5rem;
@@ -223,24 +255,29 @@
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
         }
+
         .dark .social-btn {
             background: #2a2a2a;
             border-color: #444;
             color: #e5e5e5;
         }
+
         .social-btn:hover {
             border-color: #5A0E24;
             transform: translateY(-2px);
             background: white;
         }
+
         .dark .social-btn:hover {
             border-color: #B24C6B;
             background: #2a2a2a;
         }
+
         .social-btn i {
             font-size: 1.1rem;
             color: #5A0E24;
         }
+
         .dark .social-btn i {
             color: #B24C6B;
         }
@@ -249,6 +286,7 @@
         .logo-icon {
             transition: transform 0.3s ease;
         }
+
         a:hover .logo-icon {
             transform: rotate(8deg);
         }
@@ -274,34 +312,50 @@
             height: 2rem;
             border-radius: 50%;
         }
+
         .dark .password-eye {
             color: #B24C6B;
         }
+
         .password-eye:hover {
-            background: rgba(90,14,36,0.08);
+            background: rgba(90, 14, 36, 0.08);
             transform: translateY(-50%) scale(1.05);
         }
+
         .dark .password-eye:hover {
-            background: rgba(178,76,107,0.15);
+            background: rgba(178, 76, 107, 0.15);
         }
+
         /* Ensure password field padding respects eye icon */
         .password-wrapper .signup-input {
             padding-right: 3rem;
         }
+
         /* RTL mirror for eye icon */
         [dir="rtl"] .password-eye {
             right: auto;
             left: 1rem;
         }
+
         [dir="rtl"] .password-wrapper .signup-input {
             padding-left: 3rem;
             padding-right: 1.2rem;
         }
 
         /* RTL adjustments */
-        [dir="rtl"] .signup-input { padding: 0.85rem 3rem 0.85rem 1.2rem; }
-        [dir="rtl"] .input-icon { left: auto; right: 1.1rem; }
-        [dir="rtl"] .fa-arrow-right { transform: scaleX(-1); }
+        [dir="rtl"] .signup-input {
+            padding: 0.85rem 3rem 0.85rem 1.2rem;
+        }
+
+        [dir="rtl"] .input-icon {
+            left: auto;
+            right: 1.1rem;
+        }
+
+        [dir="rtl"] .fa-arrow-right {
+            transform: scaleX(-1);
+        }
+
         [dir="rtl"] .theme-toggle-wrapper {
             right: auto;
             left: 20px;
@@ -320,7 +374,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         /* welcome title using display font */
@@ -329,11 +383,12 @@
             font-size: 2rem;
             font-weight: 700;
             color: #2A2A2A;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
             margin-bottom: 0.15rem;
             text-align: center;
             line-height: 1.2;
         }
+
         .dark .welcome-title {
             color: white;
         }
@@ -342,8 +397,9 @@
             font-size: 0.9rem;
             color: rgba(42, 42, 42, 0.7);
             text-align: center;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
         }
+
         .dark .welcome-subtitle {
             color: #9CA3AF;
         }
@@ -353,16 +409,20 @@
             font-size: 0.75rem;
             color: #6B7280;
         }
+
         .dark .terms-text {
             color: #9CA3AF;
         }
+
         .terms-link {
             color: #5A0E24;
             font-weight: 500;
         }
+
         .terms-link:hover {
             text-decoration: underline;
         }
+
         .dark .terms-link {
             color: #B24C6B;
         }
@@ -372,27 +432,34 @@
             .social-btn-row {
                 flex-direction: column;
             }
+
             .signup-card {
                 padding: 1.8rem 1.5rem;
             }
+
             .welcome-title {
                 font-size: 1.6rem;
             }
         }
+
         @media (max-width: 480px) {
             .theme-toggle-wrapper {
                 top: 12px;
                 right: 12px;
             }
+
             [dir="rtl"] .theme-toggle-wrapper {
                 left: 12px;
             }
         }
 
         /* hidden utility */
-        .hidden { display: none; }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
+
 <body class="bg-bg-warm dark:bg-dark-bg">
 
     <!-- ===== THEME TOGGLES - TOP RIGHT ===== -->
@@ -408,13 +475,14 @@
 
     <!-- ===== SIGNUP CARD (ELITE STUDIO theme) ===== -->
     <div class="container-tight">
-        
+
         <div class="signup-card animate-fade-in">
-            
+
             <!-- ===== LOGO - CENTERED: ELITE STUDIO ===== -->
             <div class="logo-center">
                 <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse group">
-                    <div class="logo-icon w-10 h-10 bg-primary rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform">
+                    <div
+                        class="logo-icon w-10 h-10 bg-primary rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform">
                         <i class="fas fa-camera-retro text-white text-lg"></i>
                     </div>
                     <div class="font-display text-2xl font-bold tracking-tight">
@@ -422,39 +490,42 @@
                         <span class="text-primary dark:text-primary-light ml-1">STUDIO</span>
                     </div>
                 </a>
-                
+
                 <h1 class="welcome-title">Join Us Today</h1>
                 <p class="welcome-subtitle">Create your account and start creating</p>
             </div>
 
             <!-- ===== SIGNUP FORM (redirects to admin dashboard after signup) ===== -->
-            <form class="space-y-4" onsubmit="event.preventDefault(); window.location.href='login.html';">
-                
+            <form class="space-y-3" onsubmit="event.preventDefault(); window.location.href='login.html';">
+
                 <!-- full name field -->
                 <div class="relative">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-primary dark:text-primary-light input-icon">
+                    <span
+                        class="absolute inset-y-0 left-0 flex items-center pl-4 text-primary dark:text-primary-light input-icon">
                         <i class="fas fa-user w-5 text-sm"></i>
                     </span>
                     <input type="text" name="name" placeholder="Full name" required
-                           class="signup-input text-sm md:text-base">
+                        class="signup-input text-sm md:text-base">
                 </div>
 
                 <!-- email field -->
                 <div class="relative">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-primary dark:text-primary-light input-icon">
+                    <span
+                        class="absolute inset-y-0 left-0 flex items-center pl-4 text-primary dark:text-primary-light input-icon">
                         <i class="fas fa-envelope w-5 text-sm"></i>
                     </span>
                     <input type="email" name="email" placeholder="Email address" required
-                           class="signup-input text-sm md:text-base">
+                        class="signup-input text-sm md:text-base">
                 </div>
 
                 <!-- password field WITH EYE ICON -->
                 <div class="relative password-wrapper">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-primary dark:text-primary-light input-icon">
+                    <span
+                        class="absolute inset-y-0 left-0 flex items-center pl-4 text-primary dark:text-primary-light input-icon">
                         <i class="fas fa-lock w-5 text-sm"></i>
                     </span>
                     <input type="password" name="password" id="signup-password" placeholder="Password" required
-                           class="signup-input text-sm md:text-base" autocomplete="new-password">
+                        class="signup-input text-sm md:text-base" autocomplete="new-password">
                     <button type="button" id="toggle-signup-password" class="password-eye" aria-label="Show password">
                         <i class="far fa-eye-slash" id="signup-password-icon"></i>
                     </button>
@@ -462,11 +533,13 @@
 
                 <!-- confirm password field WITH EYE ICON -->
                 <div class="relative password-wrapper">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-primary dark:text-primary-light input-icon">
+                    <span
+                        class="absolute inset-y-0 left-0 flex items-center pl-4 text-primary dark:text-primary-light input-icon">
                         <i class="fas fa-lock w-5 text-sm"></i>
                     </span>
-                    <input type="password" name="confirm_password" id="signup-confirm-password" placeholder="Confirm password" required
-                           class="signup-input text-sm md:text-base" autocomplete="new-password">
+                    <input type="password" name="confirm_password" id="signup-confirm-password"
+                        placeholder="Confirm password" required class="signup-input text-sm md:text-base"
+                        autocomplete="new-password">
                     <button type="button" id="toggle-confirm-password" class="password-eye" aria-label="Show password">
                         <i class="far fa-eye-slash" id="confirm-password-icon"></i>
                     </button>
@@ -474,9 +547,12 @@
 
                 <!-- terms and conditions checkbox -->
                 <div class="flex items-start space-x-2 rtl:space-x-reverse mt-2">
-                    <input type="checkbox" id="terms" class="mt-1 rounded border-neutral-light dark:border-gray-600 text-primary focus:ring-primary/30 dark:bg-gray-700" required>
+                    <input type="checkbox" id="terms"
+                        class="mt-1 rounded border-neutral-light dark:border-gray-600 text-primary focus:ring-primary/30 dark:bg-gray-700"
+                        required>
                     <label for="terms" class="terms-text text-xs md:text-sm text-neutral-dark/70 dark:text-gray-400">
-                        I agree to the <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Privacy Policy</a>
+                        I agree to the <a href="#" class="terms-link">Terms of Service</a> and <a href="#"
+                            class="terms-link">Privacy Policy</a>
                     </label>
                 </div>
 
@@ -486,155 +562,181 @@
                     Create account
                 </button>
             </form>
-            
+
             <!-- ===== LOGIN LINK ===== -->
-            <div class="mt-4 text-center">
+            <div class="mt-3 text-center">
                 <span class="text-xs text-neutral-dark/60 dark:text-gray-400">Already have an account?</span>
-                <a href="login.html" class="text-xs font-semibold text-primary dark:text-primary-light hover:text-primary-dark ml-1 rtl:mr-1 hover:underline">
+                <a href="login.html"
+                    class="text-xs font-semibold text-primary dark:text-primary-light hover:text-primary-dark ml-1 rtl:mr-1 hover:underline">
                     Sign in
                 </a>
             </div>
-            
-            <!-- optional social signup (can be added later) -->
-                        
+
+            <!-- divider “or” -->
+            <div class="relative mt-4 mb-3">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-neutral-light dark:border-gray-700"></div>
+                </div>
+                <div class="relative flex justify-center text-xs">
+                    <span
+                        class="bg-white dark:bg-dark-card px-4 py-0.5 text-neutral-dark/50 dark:text-gray-400 rounded-full">
+                        or sign up with
+                    </span>
+                </div>
+            </div>
+
+            <!-- ===== SOCIAL BUTTONS: GOOGLE & APPLE ===== -->
+            <div class="mt-4 space-y-2">
+                <div class="social-btn-row">
+                    <button class="social-btn group" onclick="window.location.href='#';">
+                        <i class="fab fa-google"></i>
+                        <span>Google</span>
+                    </button>
+                    <button class="social-btn group" onclick="window.location.href='#';">
+                        <i class="fab fa-apple text-lg"></i>
+                        <span>Apple</span>
+                    </button>
+                </div>
+            </div>
         </div> <!-- end signup-card -->
 
         <!-- trust badges (colors updated) -->
-        
+
     </div>
 
-   
+
 
     <!-- ===== TOGGLE SCRIPT + PASSWORD EYE TOGGLES (ADDED WITHOUT ALTERING OTHER FUNCTIONALITY) ===== -->
     <script>
-        (function() {
-            // ---------- THEME ----------
-            const themeToggle = document.getElementById('theme-toggle');
-            const themeIconMoon = themeToggle?.querySelector('.fa-moon');
-            const themeIconSun = themeToggle?.querySelector('.fa-sun');
+            (function () {
+                // ---------- THEME ----------
+                const themeToggle = document.getElementById('theme-toggle');
+                const themeIconMoon = themeToggle?.querySelector('.fa-moon');
+                const themeIconSun = themeToggle?.querySelector('.fa-sun');
 
-            function setTheme(isDark) {
-                if (isDark) {
-                    document.documentElement.classList.add('dark');
-                    if (themeIconMoon) themeIconMoon.classList.add('hidden');
-                    if (themeIconSun) themeIconSun.classList.remove('hidden');
-                    themeToggle?.classList.add('active');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    if (themeIconMoon) themeIconMoon.classList.remove('hidden');
-                    if (themeIconSun) themeIconSun.classList.add('hidden');
-                    themeToggle?.classList.remove('active');
-                    localStorage.setItem('theme', 'light');
-                }
-            }
-            const savedTheme = localStorage.getItem('theme');
-            savedTheme === 'dark' ? setTheme(true) : setTheme(false);
-
-            if (themeToggle) {
-                themeToggle.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    setTheme(!document.documentElement.classList.contains('dark'));
-                });
-            }
-
-            // ---------- RTL ----------
-            const rtlBtn = document.getElementById('rtl-toggle');
-            function setRTL(isRTL) {
-                if (isRTL) {
-                    document.documentElement.dir = 'rtl';
-                    document.documentElement.lang = 'ar';
-                    rtlBtn?.classList.add('active');
-                    localStorage.setItem('dir', 'rtl');
-                } else {
-                    document.documentElement.dir = 'ltr';
-                    document.documentElement.lang = 'en';
-                    rtlBtn?.classList.remove('active');
-                    localStorage.setItem('dir', 'ltr');
-                }
-            }
-            const savedDir = localStorage.getItem('dir');
-            savedDir === 'rtl' ? setRTL(true) : setRTL(false);
-
-            if (rtlBtn) {
-                rtlBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    setRTL(document.documentElement.dir !== 'rtl');
-                });
-            }
-
-            // ---------- PASSWORD EYE TOGGLE FOR PASSWORD FIELD ----------
-            const passwordField = document.getElementById('signup-password');
-            const togglePasswordBtn = document.getElementById('toggle-signup-password');
-            const passwordEyeIcon = document.getElementById('signup-password-icon');
-            
-            if (passwordField && togglePasswordBtn && passwordEyeIcon) {
-                togglePasswordBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                    passwordField.setAttribute('type', type);
-                    
-                    if (type === 'text') {
-                        passwordEyeIcon.classList.remove('fa-eye-slash');
-                        passwordEyeIcon.classList.add('fa-eye');
-                        togglePasswordBtn.setAttribute('aria-label', 'Hide password');
+                function setTheme(isDark) {
+                    if (isDark) {
+                        document.documentElement.classList.add('dark');
+                        if (themeIconMoon) themeIconMoon.classList.add('hidden');
+                        if (themeIconSun) themeIconSun.classList.remove('hidden');
+                        themeToggle?.classList.add('active');
+                        localStorage.setItem('theme', 'dark');
                     } else {
-                        passwordEyeIcon.classList.remove('fa-eye');
-                        passwordEyeIcon.classList.add('fa-eye-slash');
-                        togglePasswordBtn.setAttribute('aria-label', 'Show password');
+                        document.documentElement.classList.remove('dark');
+                        if (themeIconMoon) themeIconMoon.classList.remove('hidden');
+                        if (themeIconSun) themeIconSun.classList.add('hidden');
+                        themeToggle?.classList.remove('active');
+                        localStorage.setItem('theme', 'light');
                     }
-                });
-                
-                togglePasswordBtn.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        togglePasswordBtn.click();
-                    }
-                });
-            }
+                }
+                const savedTheme = localStorage.getItem('theme');
+                savedTheme === 'dark' ? setTheme(true) : setTheme(false);
 
-            // ---------- PASSWORD EYE TOGGLE FOR CONFIRM PASSWORD FIELD ----------
-            const confirmPasswordField = document.getElementById('signup-confirm-password');
-            const toggleConfirmBtn = document.getElementById('toggle-confirm-password');
-            const confirmEyeIcon = document.getElementById('confirm-password-icon');
-            
-            if (confirmPasswordField && toggleConfirmBtn && confirmEyeIcon) {
-                toggleConfirmBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const type = confirmPasswordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                    confirmPasswordField.setAttribute('type', type);
-                    
-                    if (type === 'text') {
-                        confirmEyeIcon.classList.remove('fa-eye-slash');
-                        confirmEyeIcon.classList.add('fa-eye');
-                        toggleConfirmBtn.setAttribute('aria-label', 'Hide password');
-                    } else {
-                        confirmEyeIcon.classList.remove('fa-eye');
-                        confirmEyeIcon.classList.add('fa-eye-slash');
-                        toggleConfirmBtn.setAttribute('aria-label', 'Show password');
-                    }
-                });
-                
-                toggleConfirmBtn.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
+                if (themeToggle) {
+                    themeToggle.addEventListener('click', (e) => {
                         e.preventDefault();
-                        toggleConfirmBtn.click();
-                    }
-                });
-            }
-
-            // ---------- DEMO ALERTS (only for Terms/Privacy) ----------
-            document.querySelectorAll('a[href="#"]').forEach(link => {
-                if (link.textContent.includes('Terms') || link.textContent.includes('Privacy')) {
-                    link.addEventListener('click', (e) => { 
-                        e.preventDefault(); 
-                        alert('📋 Terms & Privacy demo'); 
+                        setTheme(!document.documentElement.classList.contains('dark'));
                     });
                 }
-            });
-            
-            console.log('Signup page — ELITE STUDIO theme loaded with password visibility toggles for both password fields');
-        })();
+
+                // ---------- RTL ----------
+                const rtlBtn = document.getElementById('rtl-toggle');
+                function setRTL(isRTL) {
+                    if (isRTL) {
+                        document.documentElement.dir = 'rtl';
+                        document.documentElement.lang = 'ar';
+                        rtlBtn?.classList.add('active');
+                        localStorage.setItem('dir', 'rtl');
+                    } else {
+                        document.documentElement.dir = 'ltr';
+                        document.documentElement.lang = 'en';
+                        rtlBtn?.classList.remove('active');
+                        localStorage.setItem('dir', 'ltr');
+                    }
+                }
+                const savedDir = localStorage.getItem('dir');
+                savedDir === 'rtl' ? setRTL(true) : setRTL(false);
+
+                if (rtlBtn) {
+                    rtlBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        setRTL(document.documentElement.dir !== 'rtl');
+                    });
+                }
+
+                // ---------- PASSWORD EYE TOGGLE FOR PASSWORD FIELD ----------
+                const passwordField = document.getElementById('signup-password');
+                const togglePasswordBtn = document.getElementById('toggle-signup-password');
+                const passwordEyeIcon = document.getElementById('signup-password-icon');
+
+                if (passwordField && togglePasswordBtn && passwordEyeIcon) {
+                    togglePasswordBtn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                        passwordField.setAttribute('type', type);
+
+                        if (type === 'text') {
+                            passwordEyeIcon.classList.remove('fa-eye-slash');
+                            passwordEyeIcon.classList.add('fa-eye');
+                            togglePasswordBtn.setAttribute('aria-label', 'Hide password');
+                        } else {
+                            passwordEyeIcon.classList.remove('fa-eye');
+                            passwordEyeIcon.classList.add('fa-eye-slash');
+                            togglePasswordBtn.setAttribute('aria-label', 'Show password');
+                        }
+                    });
+
+                    togglePasswordBtn.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            togglePasswordBtn.click();
+                        }
+                    });
+                }
+
+                // ---------- PASSWORD EYE TOGGLE FOR CONFIRM PASSWORD FIELD ----------
+                const confirmPasswordField = document.getElementById('signup-confirm-password');
+                const toggleConfirmBtn = document.getElementById('toggle-confirm-password');
+                const confirmEyeIcon = document.getElementById('confirm-password-icon');
+
+                if (confirmPasswordField && toggleConfirmBtn && confirmEyeIcon) {
+                    toggleConfirmBtn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const type = confirmPasswordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                        confirmPasswordField.setAttribute('type', type);
+
+                        if (type === 'text') {
+                            confirmEyeIcon.classList.remove('fa-eye-slash');
+                            confirmEyeIcon.classList.add('fa-eye');
+                            toggleConfirmBtn.setAttribute('aria-label', 'Hide password');
+                        } else {
+                            confirmEyeIcon.classList.remove('fa-eye');
+                            confirmEyeIcon.classList.add('fa-eye-slash');
+                            toggleConfirmBtn.setAttribute('aria-label', 'Show password');
+                        }
+                    });
+
+                    toggleConfirmBtn.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            toggleConfirmBtn.click();
+                        }
+                    });
+                }
+
+                // ---------- DEMO ALERTS (only for Terms/Privacy) ----------
+                document.querySelectorAll('a[href="#"]').forEach(link => {
+                    if (link.textContent.includes('Terms') || link.textContent.includes('Privacy')) {
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            alert('📋 Terms & Privacy demo');
+                        });
+                    }
+                });
+
+                console.log('Signup page — ELITE STUDIO theme loaded with password visibility toggles for both password fields');
+            })();
     </script>
 </body>
+
 </html>
